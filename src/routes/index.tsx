@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AboutUsSection } from "@/components/sections/AboutUsSection";
+import { AppShowcaseSection } from "@/components/sections/AppShowcaseSection";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { SliderSection } from "@/components/sections/SliderSection";
@@ -15,6 +16,7 @@ function IndexRoute() {
       <AboutUsSection />
       <FeaturesSection />
       <SliderSection />
+      <AppShowcaseSection />
     </main>
   );
 }
