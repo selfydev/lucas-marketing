@@ -4,6 +4,7 @@ import { ApplicationFeaturesSection } from "@/components/sections/ApplicationFea
 import { AppShowcaseSection } from "@/components/sections/AppShowcaseSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
+import { FooterSection } from "@/components/sections/FooterSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { InterviewPrepSection } from "@/components/sections/InterviewPrepSection";
 import { SliderSection } from "@/components/sections/SliderSection";
@@ -27,6 +28,7 @@ function IndexRoute() {
       <TestimonialsSection />
       <VisualBreakSection />
       <ContactSection />
+      <FooterSection />
     </main>
   );
 }
