@@ -100,6 +100,14 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
           <Link
             className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
             key={`link=${idx}`}
+            onClick={(e) => {
+              e.preventDefault();
+              const targetId = navItem.link.replace("#", "");
+              const element = document.getElementById(targetId);
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            }}
             onMouseEnter={() => setHovered(idx)}
             to={navItem.link}
           >
@@ -292,7 +300,15 @@ function MobileNav({ navItems, visible }: NavbarProps) {
                   >
                     <Link
                       className="relative block py-2 text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
-                      onClick={() => setOpen(false)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpen(false);
+                        const targetId = navItem.link.replace("#", "");
+                        const element = document.getElementById(targetId);
+                        if (element) {
+                          element.scrollIntoView({ behavior: "smooth", block: "start" });
+                        }
+                      }}
                       to={navItem.link}
                     >
                       {navItem.name}
