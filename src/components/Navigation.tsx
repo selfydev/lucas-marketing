@@ -54,7 +54,7 @@ export function Navigation() {
   });
 
   return (
-    <motion.div className="fixed inset-x-0 top-0 z-50 w-full pt-4">
+    <motion.div className="fixed inset-x-0 top-0 z-50 w-full pt-2 lg:pt-4">
       <DesktopNav navItems={navItems} visible={visible} />
       <MobileNav navItems={navItems} visible={visible} />
     </motion.div>
