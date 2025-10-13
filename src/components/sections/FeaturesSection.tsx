@@ -72,6 +72,7 @@ export function FeaturesSection() {
   return (
     <section
       className="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-4 sm:px-4 md:px-6 lg:px-4"
+      id="features"
       ref={sectionRef}
     >
       {/* Tile Grid Background - Centered on mobile, Left Side on desktop */}

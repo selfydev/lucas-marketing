@@ -150,7 +150,10 @@ export function TestimonialsSection() {
   ];
 
   return (
-    <section className="mx-auto w-full max-w-[1320px] px-4 py-16 md:px-[60px]">
+    <section
+      className="mx-auto w-full max-w-[1320px] px-4 py-16 md:px-[60px]"
+      id="testimonials"
+    >
       <div
         className="mb-16 flex flex-col items-center"
         style={{

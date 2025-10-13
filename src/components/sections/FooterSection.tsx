@@ -25,7 +25,7 @@ export function FooterSection() {
   }, []);
 
   return (
-    <footer className="relative w-full bg-transparent">
+    <footer className="relative w-full bg-transparent" id="contact">
       <div className="relative h-[650px] w-full md:h-[726px]">
         <div className="absolute top-[40px] left-0 h-[610px] w-full overflow-hidden bg-showcase-dark md:h-[686px]">
           {/* Grain texture overlay */}

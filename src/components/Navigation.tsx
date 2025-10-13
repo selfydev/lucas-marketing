@@ -6,7 +6,7 @@ import {
   useMotionValueEvent,
   useScroll,
 } from "motion/react";
-import { type RefObject, useRef, useState } from "react";
+import { type RefObject, useEffect, useRef, useState } from "react";
 import { Logo } from "@/components/Logo";
 import { ModeToggle } from "@/components/ModeToggle";
 import { Button } from "@/components/ui/button";
@@ -24,23 +24,19 @@ export function Navigation() {
   const navItems = [
     {
       name: "Features",
-      link: "/#features",
+      link: "#features",
     },
     {
-      name: "Pricing",
-      link: "/#pricing",
+      name: "Testimonials",
+      link: "#testimonials",
     },
     {
       name: "FAQ",
-      link: "/#faq",
-    },
-    {
-      name: "Blog",
-      link: "/#blog",
+      link: "#faq",
     },
     {
       name: "Contact",
-      link: "/#contact",
+      link: "#contact",
     },
   ];
 
@@ -155,78 +151,170 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
 function MobileNav({ navItems, visible }: NavbarProps) {
   const [open, setOpen] = useState(false);
 
+  // Body scroll lock when menu is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  // Animation variants for the dropdown container
+  const dropdownVariants = {
+    closed: {
+      scaleY: 0,
+      opacity: 0,
+      height: 0,
+      transition: {
+        scaleY: { duration: 0.3, ease: "easeInOut" },
+        opacity: { duration: 0.25, ease: "easeOut" },
+        height: { duration: 0.3, ease: "easeInOut" },
+      },
+    },
+    open: {
+      scaleY: 1,
+      opacity: 1,
+      height: "auto",
+      transition: {
+        scaleY: { duration: 0.4, ease: "easeOut" },
+        opacity: { duration: 0.3, ease: "easeIn" },
+        height: { duration: 0.4, ease: "easeOut" },
+        delayChildren: 0.1,
+        staggerChildren: 0.05,
+      },
+    },
+  };
+
+  // Animation variants for individual menu items
+  const itemVariants = {
+    closed: {
+      opacity: 0,
+      y: -10,
+      transition: {
+        opacity: { duration: 0.2, ease: "easeOut" },
+        y: { duration: 0.2, ease: "easeIn" },
+      },
+    },
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        opacity: { duration: 0.3, ease: "easeIn" },
+        y: { duration: 0.3, ease: "easeOut" },
+      },
+    },
+  };
+
   return (
     <>
+      {/* Backdrop blur overlay */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            animate={{ opacity: 1 }}
+            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm lg:hidden"
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+            onClick={() => setOpen(false)}
+            transition={{ duration: 0.2 }}
+          />
+        )}
+      </AnimatePresence>
+
       <motion.div
         animate={{
-          backdropFilter: visible ? "blur(10px)" : "none",
-          boxShadow: visible
+          backdropFilter: visible || open ? "blur(10px)" : "none",
+          boxShadow: visible || open
             ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
             : "none",
           width: visible ? "90%" : "100%",
           y: visible ? 20 : 0,
-          borderRadius: open ? "4px" : "2rem",
-          paddingRight: visible ? "12px" : "0px",
-          paddingLeft: visible ? "12px" : "0px",
+          borderRadius: open ? "1rem 1rem 0.5rem 0.5rem" : "2rem",
         }}
         className={cn(
-          "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden",
-          visible && "bg-white/80 dark:bg-neutral-950/80"
+          "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-4 py-2 lg:hidden overflow-hidden",
+          (visible || open) && "bg-white/80 dark:bg-neutral-950/80"
         )}
         transition={{
           type: "spring",
           stiffness: 200,
-          damping: 50,
+          damping: 30,
         }}
       >
         <div className="flex w-full flex-row items-center justify-between">
           <Logo />
-          {open ? (
-            <X
-              className="text-black dark:text-white"
-              onClick={() => setOpen(!open)}
-            />
-          ) : (
-            <Menu
-              className="text-black dark:text-white"
-              onClick={() => setOpen(!open)}
-            />
-          )}
+          <motion.div
+            animate={{ rotate: open ? 90 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {open ? (
+              <X
+                className="text-black dark:text-white"
+                onClick={() => setOpen(!open)}
+              />
+            ) : (
+              <Menu
+                className="text-black dark:text-white"
+                onClick={() => setOpen(!open)}
+              />
+            )}
+          </motion.div>
         </div>
 
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {open && (
             <motion.div
-              animate={{ opacity: 1 }}
-              className="absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950"
-              exit={{ opacity: 0 }}
-              initial={{
-                opacity: 0,
+              animate="open"
+              className="w-full origin-top"
+              exit="closed"
+              initial="closed"
+              style={{
+                transformOrigin: "top center",
               }}
+              variants={dropdownVariants}
             >
-              {navItems.map((navItem, idx: number) => (
-                <Link
-                  className="relative text-neutral-600 dark:text-neutral-300"
-                  key={`link=${idx}`}
-                  onClick={() => setOpen(false)}
-                  to={navItem.link}
+              <motion.div
+                className="flex flex-col gap-4 items-start justify-start w-full pt-6 pb-4"
+              >
+                {navItems.map((navItem, idx: number) => (
+                  <motion.div
+                    className="w-full"
+                    key={`link-${idx}`}
+                    variants={itemVariants}
+                  >
+                    <Link
+                      className="relative block py-2 text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                      onClick={() => setOpen(false)}
+                      to={navItem.link}
+                    >
+                      {navItem.name}
+                    </Link>
+                  </motion.div>
+                ))}
+                <motion.div
+                  className="w-full pt-4 space-y-3"
+                  variants={itemVariants}
                 >
-                  <motion.span className="block">{navItem.name} </motion.span>
-                </Link>
-              ))}
-              <Button
-                className="block w-full md:hidden"
-                onClick={() => setOpen(false)}
-                variant="outline"
-              >
-                Log in
-              </Button>
-              <Button
-                className="block w-full bg-primary text-white hover:bg-primary/90 md:hidden"
-                onClick={() => setOpen(false)}
-              >
-                Join the waitlist
-              </Button>
+                  <Button
+                    className="block w-full"
+                    onClick={() => setOpen(false)}
+                    variant="outline"
+                  >
+                    Log in
+                  </Button>
+                  <Button
+                    className="block w-full bg-primary text-white hover:bg-primary/90"
+                    onClick={() => setOpen(false)}
+                  >
+                    Join the waitlist
+                  </Button>
+                </motion.div>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>

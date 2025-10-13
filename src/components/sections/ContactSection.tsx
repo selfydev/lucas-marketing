@@ -45,7 +45,10 @@ export function ContactSection() {
   ];
 
   return (
-    <section className="relative mx-auto w-full max-w-[1320px] px-4 pt-16 md:px-[60px]">
+    <section
+      className="relative mx-auto w-full max-w-[1320px] px-4 pt-16 md:px-[60px]"
+      id="faq"
+    >
       <div className="flex flex-col gap-8 md:flex-row md:gap-[120px]">
         <div className="flex-shrink-0 text-center md:w-[342px] md:text-left">
           <h2 className="mb-[15px] font-normal text-[40px] text-neutral-950 leading-[48px] tracking-[0] md:whitespace-nowrap">
