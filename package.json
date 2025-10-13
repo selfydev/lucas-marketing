@@ -13,6 +13,7 @@
     "fix": "bun x ultracite fix"
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-slot": "^1.2.3",
     "@tailwindcss/vite": "^4.1.14",
     "@tanstack/react-router": "^1.132.47",
