@@ -224,7 +224,7 @@ function MobileNav({ navItems, visible }: NavbarProps) {
             transition={{
               duration: 0.3,
               delay: 0.25, // Delay so backdrop appears when menu is almost open
-              ease: "easeOut"
+              ease: "easeOut",
             }}
           />
         )}
@@ -233,15 +233,16 @@ function MobileNav({ navItems, visible }: NavbarProps) {
       <motion.div
         animate={{
           backdropFilter: visible || open ? "blur(10px)" : "none",
-          boxShadow: visible || open
-            ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-            : "none",
+          boxShadow:
+            visible || open
+              ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+              : "none",
           width: visible ? "90%" : "100%",
           y: visible ? 20 : 0,
-          borderRadius: open ? "1rem 1rem 0.5rem 0.5rem" : "2rem",
+          borderRadius: open ? "1.4rem 1.4rem 1.4rem 1.4rem" : "1.4rem",
         }}
         className={cn(
-          "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-4 py-2 lg:hidden overflow-hidden",
+          "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between overflow-hidden bg-transparent px-4 py-2 lg:hidden",
           (visible || open) && "bg-white/80 dark:bg-neutral-950/80"
         )}
         transition={{
@@ -282,9 +283,7 @@ function MobileNav({ navItems, visible }: NavbarProps) {
               }}
               variants={dropdownVariants}
             >
-              <motion.div
-                className="flex flex-col gap-4 items-start justify-start w-full pt-6 pb-4"
-              >
+              <motion.div className="flex w-full flex-col items-start justify-start gap-4 pt-6 pb-4">
                 {navItems.map((navItem, idx: number) => (
                   <motion.div
                     className="w-full"
@@ -292,7 +291,7 @@ function MobileNav({ navItems, visible }: NavbarProps) {
                     variants={itemVariants}
                   >
                     <Link
-                      className="relative block py-2 text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                      className="relative block py-2 text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
                       onClick={() => setOpen(false)}
                       to={navItem.link}
                     >
@@ -301,7 +300,7 @@ function MobileNav({ navItems, visible }: NavbarProps) {
                   </motion.div>
                 ))}
                 <motion.div
-                  className="w-full pt-4 space-y-3"
+                  className="w-full space-y-3 pt-4"
                   variants={itemVariants}
                 >
                   <Button
