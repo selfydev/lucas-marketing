@@ -1,6 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
 @import "tailwindcss" source("../");
 @import "tw-animate-css";
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -308,6 +308,18 @@
 	}
 	to {
 		transform: scaleX(1);
+	}
+}
+
+/* Fade In Up Animation */
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }
 
