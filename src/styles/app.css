@@ -42,6 +42,8 @@
 	--color-sidebar-ring: var(--sidebar-ring);
 	--color-showcase-dark: var(--showcase-dark);
 	--color-showcase-highlight: var(--showcase-highlight);
+	--color-card-light: var(--card-light);
+	--color-muted-green: var(--muted-green);
 }
 
 :root {
@@ -79,6 +81,8 @@
 	--sidebar-ring: oklch(0.708 0 0);
 	--showcase-dark: oklch(0.29 0.04 155);
 	--showcase-highlight: oklch(0.95 0.18 110);
+	--card-light: oklch(0.96 0.01 140);
+	--muted-green: oklch(0.68 0.04 142);
 }
 
 .dark {
@@ -371,4 +375,41 @@
 .hero-gradient-bg > * {
 	position: relative;
 	z-index: 1;
+}
+
+/* Hide scrollbar */
+.scrollbar-hide {
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+	scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+	display: none; /* WebKit */
+}
+
+/* Testimonials animations */
+@keyframes testimonialsScrollDown {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(-1000px); /* 5 testimonials * 200px each */
+	}
+}
+
+@keyframes testimonialsScrollUp {
+	0% {
+		transform: translateY(-1000px); /* Start from bottom */
+	}
+	100% {
+		transform: translateY(0); /* Move up to top */
+	}
+}
+
+.testimonials-scroll-down {
+	animation: testimonialsScrollDown 30s linear infinite;
+}
+
+.testimonials-scroll-up {
+	animation: testimonialsScrollUp 30s linear infinite;
 }
