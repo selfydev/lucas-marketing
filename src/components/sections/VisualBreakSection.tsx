@@ -20,6 +20,9 @@ export function VisualBreakSection() {
             className="md:-left-44 md:-translate-y-1/2 absolute right-4 bottom-16 h-[400px] w-auto scale-125 object-contain md:top-1/2 md:right-auto md:bottom-auto md:h-[900px] md:scale-100"
             data-testid="img-envelopes"
             src="/assets/envelopes.png"
+            width="600"
+            height="900"
+            loading="lazy"
           />
 
           {/* Letter on top right */}
@@ -28,6 +31,9 @@ export function VisualBreakSection() {
             className="-translate-x-1/2 md:-translate-y-1/2 absolute top-[-400px] left-1/2 z-10 h-[1400px] w-auto scale-110 object-contain md:top-1/2 md:right-16 md:left-auto md:h-[840px] md:translate-x-0 md:scale-100"
             data-testid="img-letter"
             src="/assets/letter.png"
+            width="600"
+            height="840"
+            loading="lazy"
           />
 
           {/* Paperclip over the letter */}
@@ -36,6 +42,9 @@ export function VisualBreakSection() {
             className="-translate-x-1/2 -translate-x-[200px] md:-translate-y-1/2 md:-translate-y-[320px] md:-translate-x-[550px] absolute top-20 left-1/2 z-20 h-[60px] w-auto object-contain md:top-1/2 md:right-16 md:left-auto md:h-[75px] md:translate-x-0"
             data-testid="img-paperclip"
             src="/assets/paperclip.png"
+            width="75"
+            height="75"
+            loading="lazy"
           />
 
           {/* Pencil at the bottom right */}
@@ -44,6 +53,9 @@ export function VisualBreakSection() {
             className="-translate-x-1/2 md:-translate-y-1/2 absolute top-64 left-1/2 z-30 h-[265px] w-auto translate-x-[50px] object-contain md:top-1/2 md:right-0 md:left-auto md:translate-x-0 md:translate-y-[100px]"
             data-testid="img-pencil"
             src="/assets/pencil.png"
+            width="100"
+            height="265"
+            loading="lazy"
           />
 
           {/* Large clip at the left side of the screen */}
@@ -52,6 +64,9 @@ export function VisualBreakSection() {
             className="md:-translate-y-1/2 absolute bottom-32 left-0 z-25 h-[194px] w-auto scale-[.8] object-contain md:top-1/2 md:right-auto md:bottom-auto md:left-8 md:translate-y-[270px] md:scale-100"
             data-testid="img-large-clip"
             src="/assets/large-clip.png"
+            width="150"
+            height="194"
+            loading="lazy"
           />
         </div>
       </div>

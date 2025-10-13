@@ -12,6 +12,9 @@ export function HeroSection() {
             alt="Katman"
             className="mx-auto mb-1 h-[69px] w-[127px] sm:h-[43px] sm:w-[80px] md:h-[54px] md:w-[100px] lg:h-[69px] lg:w-[127px]"
             src="/assets/katman-1.svg"
+            width="127"
+            height="69"
+            fetchPriority="high"
           />
         </div>
 
@@ -50,6 +53,9 @@ export function HeroSection() {
                       alt="Line"
                       className="absolute top-[0.4em] left-[-0.2em] h-[0.6em] animate-highlight opacity-80"
                       src="/assets/line-83.svg"
+                      width="100"
+                      height="20"
+                      loading="eager"
                       style={{
                         zIndex: 0,
                         maxWidth: "none",
@@ -79,6 +85,9 @@ export function HeroSection() {
                       alt="Line"
                       className="absolute top-[0.4em] left-[-0.2em] h-[0.6em] animate-highlight opacity-80"
                       src="/assets/line-83.svg"
+                      width="100"
+                      height="20"
+                      loading="eager"
                       style={{
                         zIndex: 0,
                         maxWidth: "none",

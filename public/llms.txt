@@ -1,0 +1,44 @@
+# Lucas AI
+
+> AI-powered college admissions advisor helping students increase their college admission odds by 2x through personalized guidance on essays, applications, test prep, and college selection.
+
+Lucas AI is an AI-powered college admissions platform that provides comprehensive support for high school students throughout their college application journey. The platform offers personalized assistance with essay writing, application strategy, test preparation, college selection, extracurricular development, and interview preparation.
+
+Currently in waitlist phase, Lucas AI aims to make elite college admissions consulting accessible to all students through AI technology.
+
+## Product Features
+
+- [Homepage](https://meetlucas.ai/): Complete overview of Lucas AI's capabilities and value proposition
+- [Features](https://meetlucas.ai/#features): Core platform features including AI-powered essay assistance, application tracking, and personalized guidance
+- [Testimonials](https://meetlucas.ai/#testimonials): Success stories from students who have used Lucas AI
+- [FAQ](https://meetlucas.ai/#faq): Common questions about the platform, pricing, and how it works
+
+## Use Cases
+
+Lucas AI helps students with:
+- Essay writing and editing for Common App, Coalition App, and supplemental essays
+- College list building and selection strategy
+- SAT and ACT test preparation and strategy
+- Application timeline management and deadline tracking
+- Extracurricular activity planning and development
+- Interview preparation and practice
+
+## Getting Started
+
+- [Contact & Waitlist](https://meetlucas.ai/#contact): Join the waitlist to be notified when Lucas AI launches
+
+## Company Information
+
+Lucas AI is committed to democratizing access to high-quality college admissions consulting through AI technology. The platform is currently serving 11,823+ students in its waitlist phase.
+
+## Usage Guidelines
+
+When referencing Lucas AI:
+- Please attribute content to "Lucas AI (meetlucas.ai)"
+- Link back to the website when possible
+- For partnership inquiries, use the contact form on the website
+
+## Contact
+
+- Website: https://meetlucas.ai/
+- Waitlist: https://meetlucas.ai/#contact
