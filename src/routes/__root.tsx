@@ -58,6 +58,7 @@ function RootComponent() {
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      {/** biome-ignore lint/style/noHeadElement: <tanstack neneds it> */}
       <head>
         <HeadContent />
       </head>
