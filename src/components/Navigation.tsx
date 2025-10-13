@@ -11,7 +11,6 @@ import {
 } from "motion/react";
 import { type RefObject, useEffect, useRef, useState } from "react";
 import { Logo } from "@/components/Logo";
-import { ModeToggle } from "@/components/ModeToggle";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -115,8 +114,6 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
         ))}
       </motion.div>
       <div className="flex items-center gap-4">
-        <ModeToggle />
-
         <AnimatePresence initial={false} mode="popLayout">
           {!visible && (
             <motion.div

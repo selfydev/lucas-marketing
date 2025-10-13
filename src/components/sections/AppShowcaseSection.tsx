@@ -42,10 +42,10 @@ export function AppShowcaseSection() {
         </div>
 
         {/* Before/After Slider */}
-        <div className="-translate-x-1/2 absolute top-[400px] left-1/2 transform md:top-[320px]">
+        <div className="-translate-x-1/2 -mt-6 absolute top-[400px] left-1/2 transform md:top-[320px]">
           <BeforeAfterSlider
-            afterImage="/assets/Dashboard2.png"
-            beforeImage="/assets/excel.png"
+            afterImage="/assets/excel.png"
+            beforeImage="/assets/Dashboard2.png"
             className="shadow-2xl"
           />
         </div>
@@ -77,7 +77,7 @@ export function AppShowcaseSection() {
         {/* iOS Message - top right */}
         <img
           alt="iOS Message notification"
-          className="absolute top-[650px] right-0 h-auto w-[320px] object-contain md:top-[200px]"
+          className="absolute top-[690px] right-0 h-auto w-[320px] object-contain md:top-[200px]"
           data-testid="img-ios-message"
           src="/assets/ios-message2.svg"
         />
