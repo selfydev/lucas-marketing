@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { AboutUsSection } from "@/components/sections/AboutUsSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 
 export const Route = createFileRoute("/")({
@@ -7,8 +8,9 @@ export const Route = createFileRoute("/")({
 
 function IndexRoute() {
   return (
-    <main className="hero-gradient-bg min-h-screen w-full">
+    <main className="hero-gradient-bg w-full">
       <HeroSection />
+      <AboutUsSection />
     </main>
   );
 }
