@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from "react";
 export function FeaturesSection() {
   const [animationData, setAnimationData] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement>(null);
   // biome-ignore lint/suspicious/noExplicitAny: lottie-react doesn't export proper types for ref
   const lottieRef = useRef<any>(null);
+  const hasCheckedInitialVisibility = useRef(false);
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -30,28 +31,30 @@ export function FeaturesSection() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          // Play animation from start when coming into view
-          if (lottieRef.current) {
-            lottieRef.current.goToAndPlay(0, true);
-          }
-        } else {
-          setIsVisible(false);
-          // Reset to start when going out of view
-          if (lottieRef.current) {
-            lottieRef.current.goToAndStop(0, true);
-          }
-        }
+        setIsVisible(entry.isIntersecting);
+        hasCheckedInitialVisibility.current = true;
       },
       {
         threshold: 0.2, // Trigger when 20% of the section is visible
-        rootMargin: "0px 0px -50px 0px", // Slight offset for better timing
+        rootMargin: "0px 0px -200px 0px", // Require 200px scroll-in before triggering
       }
     );
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
+
+      // Manually check initial visibility to handle refresh-on-section case
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+      // Match the 200px scroll-in requirement from IntersectionObserver
+      const isInitiallyVisible =
+        rect.top < windowHeight - 200 && rect.bottom > 0;
+
+      if (isInitiallyVisible && !hasCheckedInitialVisibility.current) {
+        setIsVisible(true);
+        hasCheckedInitialVisibility.current = true;
+      }
     }
 
     return () => {
@@ -60,6 +63,22 @@ export function FeaturesSection() {
       }
     };
   }, []);
+
+  // Play/stop animation based on visibility and when animation loads
+  useEffect(() => {
+    if (isVisible && animationData && lottieRef.current) {
+      // Small delay to ensure Lottie component is fully mounted
+      const timeoutId = setTimeout(() => {
+        if (lottieRef.current) {
+          lottieRef.current.goToAndPlay(0, true);
+        }
+      }, 100);
+      return () => clearTimeout(timeoutId);
+    }
+    if (!isVisible && lottieRef.current) {
+      lottieRef.current.goToAndStop(0, true);
+    }
+  }, [isVisible, animationData]);
 
   // Handle animation completion - loop if section is still visible
   const handleAnimationComplete = () => {
@@ -308,10 +327,10 @@ export function FeaturesSection() {
       </div>
       {/* Content Container - Vertical on mobile, horizontal side-by-side on desktop */}
       <div
-        className={`relative z-10 flex w-full flex-col items-center justify-center pb-20 md:flex-row md:items-center md:justify-center md:pb-0 ${isMobile ? "" : "-left-[140px]"}`}
+        className={`relative z-10 flex w-full flex-col items-center justify-center pb-20 md:flex-row md:items-center md:justify-center md:pb-0 ${isMobile ? "" : "-left-[100px]"}`}
       >
         {/* Text Content - First on mobile, exact desktop positioning restored */}
-        <div className="mb-8 max-w-[550px] text-center md:order-2 md:mb-0 md:ml-16 md:max-w-[550px] md:text-left">
+        <div className="mb-8 max-w-[550px] text-center md:order-2 md:mb-0 md:ml-20 md:max-w-[420px] md:text-left">
           <h2 className="mb-4 text-[40px] text-foreground leading-[48px] tracking-[0] md:mb-4 md:text-[40px] md:leading-[48px] lg:mb-4 lg:text-[40px] lg:leading-[48px]">
             Supercharge your college application
           </h2>
@@ -328,16 +347,14 @@ export function FeaturesSection() {
             <Lottie
               animationData={animationData}
               autoplay={false}
-              className="h-[60vh] w-[125%] object-contain drop-shadow-2xl md:h-[350px] lg:h-[500px]"
+              className="h-[60vh] w-[125%] object-contain drop-shadow-2xl md:h-[60vh] lg:h-[70vh]"
               data-testid="lottie-mobile-interface"
               loop={false}
               lottieRef={lottieRef}
               onComplete={handleAnimationComplete}
             />
           ) : (
-            <div className="flex h-[60vh] w-auto items-center justify-center rounded-lg bg-gray-100 object-contain drop-shadow-2xl md:h-[350px] lg:h-[500px]">
-              <span className="text-gray-500">Loading animation...</span>
-            </div>
+            <div className="h-[60vh] w-[125%] md:aspect-[9/19] md:h-[60vh] md:w-auto lg:h-[70vh]" />
           )}
         </div>
       </div>

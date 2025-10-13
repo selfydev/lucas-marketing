@@ -9,7 +9,7 @@ import {
   useMotionValueEvent,
   useScroll,
 } from "motion/react";
-import { type RefObject, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -42,11 +42,7 @@ export function Navigation() {
     },
   ];
 
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll({
-    target: ref as RefObject<HTMLElement>,
-    offset: ["start start", "end start"],
-  });
+  const { scrollY } = useScroll();
   const [visible, setVisible] = useState<boolean>(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -58,7 +54,7 @@ export function Navigation() {
   });
 
   return (
-    <motion.div className="fixed inset-x-0 top-0 z-50 w-full" ref={ref}>
+    <motion.div className="fixed inset-x-0 top-0 z-50 w-full">
       <DesktopNav navItems={navItems} visible={visible} />
       <MobileNav navItems={navItems} visible={visible} />
     </motion.div>

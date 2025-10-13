@@ -94,13 +94,6 @@ export function generateMetadata(config: SEOConfig = {}) {
         type: "font/woff2",
         crossOrigin: "anonymous" as const,
       },
-      {
-        rel: "preload",
-        href: "/fonts/InstrumentSerif-Italic.woff2",
-        as: "font",
-        type: "font/woff2",
-        crossOrigin: "anonymous" as const,
-      },
     ],
     scripts: [
       // Structured data (JSON-LD) for search engines
