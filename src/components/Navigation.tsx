@@ -54,7 +54,7 @@ export function Navigation() {
   });
 
   return (
-    <motion.div className="fixed inset-x-0 top-0 z-50 w-full">
+    <motion.div className="fixed inset-x-0 top-0 z-50 w-full pt-4">
       <DesktopNav navItems={navItems} visible={visible} />
       <MobileNav navItems={navItems} visible={visible} />
     </motion.div>
@@ -72,7 +72,7 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
           ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
           : "none",
         width: visible ? "40%" : "100%",
-        y: visible ? 20 : 0,
+        y: visible ? 6 : 0,
       }}
       className={cn(
         "relative z-[60] mx-auto hidden max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex",
@@ -92,10 +92,10 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
     >
       <Logo />
       <motion.div className="absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 font-medium text-sm text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2">
-        {navItems.map((navItem, idx: number) => (
+        {navItems.map((navItem) => (
           <Link
             className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
-            key={`link=${idx}`}
+            key={navItem.link}
             onClick={(e) => {
               e.preventDefault();
               const targetId = navItem.link.replace("#", "");
@@ -104,10 +104,10 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
                 element.scrollIntoView({ behavior: "smooth", block: "start" });
               }
             }}
-            onMouseEnter={() => setHovered(idx)}
+            onMouseEnter={() => setHovered(navItems.indexOf(navItem))}
             to={navItem.link}
           >
-            {hovered === idx && (
+            {hovered === navItems.indexOf(navItem) && (
               <motion.div
                 className="absolute inset-0 h-full w-full rounded-full bg-gray-100 dark:bg-neutral-800"
                 layoutId="hovered"
@@ -242,7 +242,7 @@ function MobileNav({ navItems, visible }: NavbarProps) {
               ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
               : "none",
           width: visible ? "90%" : "100%",
-          y: visible ? 20 : 0,
+          y: visible ? 6 : 0,
           borderRadius: open ? "1.4rem 1.4rem 1.4rem 1.4rem" : "1.4rem",
         }}
         className={cn(
@@ -288,10 +288,10 @@ function MobileNav({ navItems, visible }: NavbarProps) {
               variants={dropdownVariants}
             >
               <motion.div className="flex w-full flex-col items-start justify-start gap-4 pt-6 pb-4">
-                {navItems.map((navItem, idx: number) => (
+                {navItems.map((navItem) => (
                   <motion.div
                     className="w-full"
-                    key={`link-${idx}`}
+                    key={navItem.link}
                     variants={itemVariants}
                   >
                     <Link
@@ -302,7 +302,10 @@ function MobileNav({ navItems, visible }: NavbarProps) {
                         const targetId = navItem.link.replace("#", "");
                         const element = document.getElementById(targetId);
                         if (element) {
-                          element.scrollIntoView({ behavior: "smooth", block: "start" });
+                          element.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
                         }
                       }}
                       to={navItem.link}
