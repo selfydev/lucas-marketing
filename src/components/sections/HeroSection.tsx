@@ -142,9 +142,9 @@ export function HeroSection() {
               </div>
 
               {/* Typing Animation Text */}
-              <div className="min-w-0 flex-1 overflow-x-auto">
+              <div className="min-w-0 flex-1">
                 <TypewriterText
-                  className="whitespace-nowrap text-base text-foreground sm:text-xs md:text-sm lg:text-base"
+                  className="text-base text-foreground sm:whitespace-nowrap sm:text-xs md:text-sm lg:text-base"
                   text="Can you help me create a college list based on my profile and GPA?"
                 />
               </div>
