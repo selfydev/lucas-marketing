@@ -4,17 +4,17 @@ import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
   return (
-    <section className="mx-auto flex min-h-screen w-full max-w-4xl items-center justify-center px-4 pb-16 pt-2 sm:h-screen sm:pb-0 md:pb-12 lg:pb-16">
+    <section className="mx-auto flex min-h-screen w-full max-w-4xl items-center justify-center px-4 pt-16 pb-16 sm:h-screen sm:pt-0 sm:pb-0 md:pb-12 lg:pb-16">
       <div className="flex w-full flex-col items-center space-y-4">
         {/* Katman Logo */}
         <div className="relative">
           <img
             alt="Katman"
             className="mx-auto mb-1 h-[69px] w-[127px] sm:h-[43px] sm:w-[80px] md:h-[54px] md:w-[100px] lg:h-[69px] lg:w-[127px]"
+            fetchPriority="high"
+            height="69"
             src="/assets/katman-1.svg"
             width="127"
-            height="69"
-            fetchPriority="high"
           />
         </div>
 
@@ -52,10 +52,9 @@ export function HeroSection() {
                     <img
                       alt="Line"
                       className="absolute top-[0.4em] left-[-0.2em] h-[0.6em] animate-highlight opacity-80"
-                      src="/assets/line-83.svg"
-                      width="100"
                       height="20"
                       loading="eager"
+                      src="/assets/line-83.svg"
                       style={{
                         zIndex: 0,
                         maxWidth: "none",
@@ -64,6 +63,7 @@ export function HeroSection() {
                         animation: "highlightDraw 1.5s ease-out 2s forwards",
                         transform: "scaleX(0)",
                       }}
+                      width="100"
                     />
                     <span className="relative" style={{ zIndex: 1 }}>
                       cheating
@@ -84,10 +84,9 @@ export function HeroSection() {
                     <img
                       alt="Line"
                       className="absolute top-[0.4em] left-[-0.2em] h-[0.6em] animate-highlight opacity-80"
-                      src="/assets/line-83.svg"
-                      width="100"
                       height="20"
                       loading="eager"
+                      src="/assets/line-83.svg"
                       style={{
                         zIndex: 0,
                         maxWidth: "none",
@@ -96,6 +95,7 @@ export function HeroSection() {
                         animation: "highlightDraw 1.5s ease-out 2s forwards",
                         transform: "scaleX(0)",
                       }}
+                      width="100"
                     />
                     <span className="relative" style={{ zIndex: 1 }}>
                       cheating

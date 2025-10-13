@@ -46,10 +46,6 @@ export function generateMetadata(config: SEOConfig = {}) {
       { name: "keywords", content: keywords },
       { name: "author", content: "Lucas AI" },
 
-      // Safari theme color for iOS and macOS
-      { name: "theme-color", content: "#7ce650", media: "(prefers-color-scheme: light)" },
-      { name: "theme-color", content: "#214734", media: "(prefers-color-scheme: dark)" },
-
       // SEO meta tags
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { name: "googlebot", content: "index, follow" },

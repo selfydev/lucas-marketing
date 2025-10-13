@@ -60,6 +60,17 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang="en">
       {/** biome-ignore lint/style/noHeadElement: <tanstack neneds it> */}
       <head>
+        {/** Render theme-color meta tags outside HeadContent so both variants survive dedup */}
+        <meta
+          content="#7ce650"
+          media="(prefers-color-scheme: light)"
+          name="theme-color"
+        />
+        <meta
+          content="#214734"
+          media="(prefers-color-scheme: dark)"
+          name="theme-color"
+        />
         <HeadContent />
       </head>
       <body className="min-h-screen bg-white text-slate-950 antialiased">
