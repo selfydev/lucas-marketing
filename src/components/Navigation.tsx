@@ -2,6 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import {
   AnimatePresence,
+  easeIn,
+  easeInOut,
+  easeOut,
   motion,
   useMotionValueEvent,
   useScroll,
@@ -171,9 +174,9 @@ function MobileNav({ navItems, visible }: NavbarProps) {
       opacity: 0,
       height: 0,
       transition: {
-        scaleY: { duration: 0.3, ease: "easeInOut" },
-        opacity: { duration: 0.25, ease: "easeOut" },
-        height: { duration: 0.3, ease: "easeInOut" },
+        scaleY: { duration: 0.3, ease: easeInOut },
+        opacity: { duration: 0.25, ease: easeOut },
+        height: { duration: 0.3, ease: easeInOut },
       },
     },
     open: {
@@ -181,9 +184,9 @@ function MobileNav({ navItems, visible }: NavbarProps) {
       opacity: 1,
       height: "auto",
       transition: {
-        scaleY: { duration: 0.4, ease: "easeOut" },
-        opacity: { duration: 0.3, ease: "easeIn" },
-        height: { duration: 0.4, ease: "easeOut" },
+        scaleY: { duration: 0.4, ease: easeOut },
+        opacity: { duration: 0.3, ease: easeIn },
+        height: { duration: 0.4, ease: easeOut },
         delayChildren: 0.1,
         staggerChildren: 0.05,
       },
@@ -196,16 +199,16 @@ function MobileNav({ navItems, visible }: NavbarProps) {
       opacity: 0,
       y: -10,
       transition: {
-        opacity: { duration: 0.2, ease: "easeOut" },
-        y: { duration: 0.2, ease: "easeIn" },
+        opacity: { duration: 0.2, ease: easeOut },
+        y: { duration: 0.2, ease: easeIn },
       },
     },
     open: {
       opacity: 1,
       y: 0,
       transition: {
-        opacity: { duration: 0.3, ease: "easeIn" },
-        y: { duration: 0.3, ease: "easeOut" },
+        opacity: { duration: 0.3, ease: easeIn },
+        y: { duration: 0.3, ease: easeOut },
       },
     },
   };
