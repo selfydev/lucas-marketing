@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import type * as React from "react";
+import { Navigation } from "@/components/Navigation";
 import { generateMetadata } from "@/lib/seo";
 import appCss from "@/styles/app.css?url";
 
@@ -32,6 +33,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
+      <Navigation />
       <Outlet />
     </RootDocument>
   );
