@@ -1,3 +1,4 @@
+import { TypewriterText } from "@/components/TypewriterText";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -142,10 +143,10 @@ export function HeroSection() {
 
               {/* Typing Animation Text */}
               <div className="min-w-0 flex-1 overflow-x-auto">
-                <p className="typing-animation whitespace-nowrap text-base text-foreground sm:text-xs md:text-sm lg:text-base">
-                  Can you help me create a college list based on my profile and
-                  GPA?
-                </p>
+                <TypewriterText
+                  className="whitespace-nowrap text-base text-foreground sm:text-xs md:text-sm lg:text-base"
+                  text="Can you help me create a college list based on my profile and GPA?"
+                />
               </div>
             </div>
 

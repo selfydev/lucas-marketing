@@ -24,6 +24,7 @@
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.545.0",
     "motion": "^12.23.24",
+    "motion-plus": "^1.5.1",
     "react": "catalog:",
     "react-dom": "catalog:",
     "tailwind-merge": "^3.3.1",
