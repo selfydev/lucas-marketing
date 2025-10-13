@@ -11,6 +11,12 @@ export default defineConfig({
     tsconfigPaths(),
     tanstackStart({
       srcDirectory: "src",
+      prerender: {
+        enabled: true,
+        autoSubfolderIndex: true,
+        crawlLinks: true,
+        concurrency: 14,
+      },
     }),
     react(),
   ],
