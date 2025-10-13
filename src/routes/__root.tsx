@@ -6,22 +6,25 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import type * as React from "react";
+import { generateMetadata } from "@/lib/seo";
 import appCss from "@/styles/app.css?url";
 
 export const Route = createRootRoute({
-  head: () => ({
-    title: "Lucas AI Marketing",
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      {
-        name: "description",
-        content:
-          "Discover how Lucas AI helps universities modernize admissions.",
-      },
-    ],
-    links: [{ rel: "stylesheet", href: appCss }],
-  }),
+  head: () => {
+    const metadata = generateMetadata();
+
+    return {
+      meta: [
+        {
+          title:
+            "Lucas - AI College Admissions Advisor | Essays, Test Prep & Applications",
+        },
+        ...metadata.meta,
+      ],
+      links: [{ rel: "stylesheet", href: appCss }, ...metadata.links],
+      scripts: metadata.scripts,
+    };
+  },
   component: RootComponent,
   notFoundComponent: NotFound,
 });
