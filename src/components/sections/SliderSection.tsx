@@ -251,12 +251,12 @@ export function SliderSection() {
       <div className="sticky top-0 z-10 flex h-screen items-center justify-center">
         <div className="relative w-full">
           <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
-            <h1 className="mb-6 flex h-12 items-center justify-center text-center font-normal text-[40px] text-foreground leading-[42px] tracking-[0] md:mb-0 md:justify-start md:text-left md:text-[26px] md:leading-[31.2px]">
+            <h1 className="mb-6 flex h-12 items-center justify-center text-center font-normal text-[40px] text-foreground leading-[44px] tracking-[0] md:mb-0 md:justify-start md:text-left md:text-[26px] md:leading-[31.2px]">
               One step closer to your dream college
             </h1>
           </div>
 
-          <div className="-mt-[20px] mx-auto w-full max-w-7xl px-4 md:mt-0 lg:px-8">
+          <div className="-mt-[14px] mx-auto w-full max-w-7xl px-4 md:mt-0 lg:px-8">
             <div className="flex flex-col items-start gap-3 pt-2 pb-12 lg:flex-row lg:gap-8 lg:py-16 lg:pt-8 lg:pb-24">
               <div className="flex-1">
                 {/* Show animation with bounding box for all tabs */}
