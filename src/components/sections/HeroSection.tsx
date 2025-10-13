@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
   return (
-    <section className="mx-auto w-full max-w-4xl px-4 pt-2 pb-16 sm:flex sm:h-screen sm:items-center sm:justify-center sm:pb-0 md:pb-12 lg:pb-16">
-      <div className="flex flex-col items-center space-y-4 sm:w-full">
+    <section className="mx-auto flex min-h-screen w-full max-w-4xl items-center justify-center px-4 pb-16 pt-2 sm:h-screen sm:pb-0 md:pb-12 lg:pb-16">
+      <div className="flex w-full flex-col items-center space-y-4">
         {/* Katman Logo */}
         <div className="relative">
           <img
