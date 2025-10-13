@@ -221,7 +221,11 @@ function MobileNav({ navItems, visible }: NavbarProps) {
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
             onClick={() => setOpen(false)}
-            transition={{ duration: 0.2 }}
+            transition={{
+              duration: 0.3,
+              delay: 0.25, // Delay so backdrop appears when menu is almost open
+              ease: "easeOut"
+            }}
           />
         )}
       </AnimatePresence>
