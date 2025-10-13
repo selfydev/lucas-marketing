@@ -16,12 +16,12 @@ export function HeroSection() {
 
         {/* Badge */}
         <Badge
-          className="flex h-[34px] items-center rounded-full border-[#0092110d] bg-[#47d42b0d] px-5 text-[#3e8f23] backdrop-blur-sm sm:h-[28px] md:h-[30px] lg:h-[34px]"
+          className="flex h-[34px] items-center rounded-full border-primary/5 bg-primary/5 px-5 font-medium text-primary backdrop-blur-sm sm:h-[28px] md:h-[30px] lg:h-[34px]"
           variant="outline"
         >
-          <div className="mr-2 h-[5px] w-[5px] rounded-full bg-[#3e8f23]" />
+          <div className="mr-2 h-[5px] w-[5px] rounded-full bg-primary" />
           <span
-            className="font-medium text-lg tracking-[-0.36px] [font-family:'Neue_Montreal-Medium',Helvetica] sm:text-sm md:text-base"
+            className="font-medium text-lg tracking-[-0.36px] sm:text-sm md:text-base"
             style={{ fontSize: "0.8rem" }}
           >
             Your AI college admission consultant
@@ -31,7 +31,7 @@ export function HeroSection() {
         {/* Hero Headline */}
         <div className="space-y-4 text-center">
           <div className="relative">
-            <h1 className="max-w-[824px] px-2 text-center font-normal text-[#245039] text-[53px] leading-[1.1] tracking-[-1.80px] [font-family:'Neue_Montreal-Medium',Helvetica] sm:text-3xl sm:tracking-[-1.20px] md:text-5xl md:tracking-[-1.50px] lg:text-6xl lg:tracking-[-1.80px] xl:text-[90px]">
+            <h1 className="max-w-[824px] px-2 text-center font-medium text-[53px] text-foreground leading-[1.1] tracking-[-1.80px] sm:text-3xl sm:tracking-[-1.20px] md:text-5xl md:tracking-[-1.50px] lg:text-6xl lg:tracking-[-1.80px] xl:text-[90px]">
               {/* Mobile: 3 lines */}
               <span className="md:hidden">
                 <span className="font-medium tracking-[-1.62px] sm:tracking-[-1.20px] md:tracking-[-1.40px] lg:tracking-[-1.62px]">
@@ -99,7 +99,7 @@ export function HeroSection() {
 
         {/* Description */}
         <p
-          className="max-w-[910px] px-4 text-center font-medium text-[#245039] text-lg leading-normal [font-family:'Neue_Montreal-Medium',Helvetica]"
+          className="max-w-[910px] px-4 text-center font-medium text-foreground text-lg leading-normal"
           style={{ fontSize: "1.05rem" }}
         >
           Increase your college admission odds by 2x.
@@ -109,14 +109,12 @@ export function HeroSection() {
         </p>
 
         {/* CTA Button */}
-        <Button className="h-auto rounded-[5px] bg-[#3e8f23] px-5 py-3 text-white backdrop-blur-sm hover:bg-[#3e8f23]/90 sm:px-6 sm:py-4 md:px-4 md:py-2 lg:px-5 lg:py-3">
-          <span className="font-medium text-base [font-family:'Neue_Montreal-Medium',Helvetica]">
-            Join the waitlist
-          </span>
+        <Button className="h-auto rounded-[5px] px-5 py-3 font-medium backdrop-blur-sm sm:px-6 sm:py-4 md:px-4 md:py-2 lg:px-5 lg:py-3">
+          <span className="text-base">Join the waitlist</span>
         </Button>
 
         {/* Social Proof */}
-        <p className="text-center font-normal text-base text-black leading-[19.2px] tracking-[-0.10px] opacity-40 [font-family:'Neue_Montreal-Regular',Helvetica] sm:text-xs md:text-sm lg:text-base">
+        <p className="text-center text-base text-black leading-[19.2px] tracking-[-0.10px] opacity-40 sm:text-xs md:text-sm lg:text-base">
           Used by 11,823 students
         </p>
 
@@ -144,7 +142,7 @@ export function HeroSection() {
 
               {/* Typing Animation Text */}
               <div className="min-w-0 flex-1 overflow-x-auto">
-                <p className="typing-animation whitespace-nowrap font-normal text-[#245039] text-base [font-family:'Neue_Montreal-Regular',Helvetica] sm:text-xs md:text-sm lg:text-base">
+                <p className="typing-animation whitespace-nowrap text-base text-foreground sm:text-xs md:text-sm lg:text-base">
                   Can you help me create a college list based on my profile and
                   GPA?
                 </p>
