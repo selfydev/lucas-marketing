@@ -78,7 +78,7 @@
 	--sidebar-accent-foreground: oklch(0.3 0.08 158);
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
-	--showcase-dark: oklch(0.29 0.04 155);
+	--showcase-dark: #214734;
 	--showcase-highlight: oklch(0.95 0.18 110);
 	--card-light: oklch(0.96 0.01 140);
 	--muted-green: oklch(0.68 0.04 142);
