@@ -8,7 +8,6 @@ import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import type * as React from "react";
 import { Navigation } from "@/components/Navigation";
 import { generateMetadata } from "@/lib/seo";
-import { UIThemeProvider } from "@/providers/UIThemeProvider";
 import appCss from "@/styles/app.css?url";
 
 export const Route = createRootRoute({
@@ -50,13 +49,16 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
-      <UIThemeProvider>
-        <Navigation />
-        <Outlet />
-      </UIThemeProvider>
+      <Navigation />
+      <Outlet />
     </RootDocument>
   );
 }
+
+const THEME_COLORS = {
+  light: "#7ce650",
+  dark: "#7ce650",
+} as const;
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (

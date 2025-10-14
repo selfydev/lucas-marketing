@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useThemeOverride } from "@/providers/UIThemeProvider";
 
 interface NavbarProps {
   navItems: {
@@ -155,23 +154,38 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
 
 function MobileNav({ navItems, visible }: NavbarProps) {
   const [open, setOpen] = useState(false);
-  const setThemeOverride = useThemeOverride();
 
   // Body scroll lock and Safari theme color when menu is open
   useEffect(() => {
+    // Store original values
+    const originalOverflow = document.body.style.overflow;
+    const originalBackgroundColor = window.getComputedStyle(document.body).backgroundColor;
+
+    // Get or create theme-color meta tag
+    let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (!metaThemeColor) {
+      metaThemeColor = document.createElement('meta');
+      metaThemeColor.setAttribute('name', 'theme-color');
+      document.head.appendChild(metaThemeColor);
+    }
+    const originalThemeColor = metaThemeColor.getAttribute('content') || '';
+
     if (open) {
       document.body.style.overflow = "hidden";
-      setThemeOverride("#C3C7C1");
+      document.body.style.backgroundColor = "#C3C7C1";
+      metaThemeColor.setAttribute('content', '#C3C7C1');
     } else {
-      document.body.style.overflow = "";
-      setThemeOverride(null);
+      document.body.style.overflow = originalOverflow;
+      document.body.style.backgroundColor = originalBackgroundColor;
+      metaThemeColor.setAttribute('content', originalThemeColor);
     }
 
     return () => {
-      document.body.style.overflow = "";
-      setThemeOverride(null);
+      document.body.style.overflow = originalOverflow;
+      document.body.style.backgroundColor = originalBackgroundColor;
+      metaThemeColor?.setAttribute('content', originalThemeColor);
     };
-  }, [open, setThemeOverride]);
+  }, [open]);
 
   // Animation variants for the dropdown container
   const dropdownVariants = {

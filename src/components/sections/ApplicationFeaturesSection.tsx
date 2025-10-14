@@ -1,12 +1,6 @@
-import { useRef } from "react";
-import { useThemeSection } from "@/providers/UIThemeProvider";
-
 export function ApplicationFeaturesSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  useThemeSection(sectionRef, "#ffffff");
-
   return (
-    <section className="relative mx-auto mt-16 mb-4 w-full max-w-[1320px] px-4 md:px-[60px]" ref={sectionRef}>
+    <section className="relative mx-auto mt-16 mb-4 w-full max-w-[1320px] px-4 md:px-[60px]">
       <div className="flex h-auto w-full flex-col gap-4 md:flex-row">
         {/* Left section - Engineer your application */}
         <div
