@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useThemeOverride } from "@/providers/UIThemeProvider";
 
 interface NavbarProps {
   navItems: {
@@ -155,23 +154,33 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
 
 function MobileNav({ navItems, visible }: NavbarProps) {
   const [open, setOpen] = useState(false);
-  const setThemeOverride = useThemeOverride();
 
-  // Body scroll lock and Safari theme color when menu is open
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-      setThemeOverride("#C3C7C1");
-    } else {
-      document.body.style.overflow = "";
-      setThemeOverride(null);
+  const openMenu = () => {
+    document.body.style.backgroundColor = "#F8FDF5";
+    const metaTag = document.querySelector('meta[name="theme-color"]');
+    if (metaTag) {
+      metaTag.setAttribute("content", "#F8FDF5");
     }
 
+    setOpen(true);
+  };
+
+  const closeMenu = () => {
+    const metaTag = document.querySelector('meta[name="theme-color"]');
+    if (metaTag) {
+      metaTag.setAttribute("content", "#C3C7C1");
+    }
+    document.body.style.backgroundColor = "#C3C7C1";
+    alert("closeMenu");
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
-      setThemeOverride(null);
     };
-  }, [open, setThemeOverride]);
+  }, [open]);
 
   // Animation variants for the dropdown container
   const dropdownVariants = {
@@ -224,17 +233,19 @@ function MobileNav({ navItems, visible }: NavbarProps) {
       {/* Backdrop blur overlay */}
       <AnimatePresence>
         {open && (
-          <motion.div
+          <motion.button
             animate={{ opacity: 1 }}
-            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm lg:hidden"
+            aria-label="Close navigation menu"
+            className="fixed inset-0 z-40 appearance-none bg-black/20 p-0 backdrop-blur-sm lg:hidden"
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
-            onClick={() => setOpen(false)}
+            onClick={closeMenu}
             transition={{
               duration: 0.3,
               delay: 0.25, // Delay so backdrop appears when menu is almost open
               ease: "easeOut",
             }}
+            type="button"
           />
         )}
       </AnimatePresence>
@@ -262,22 +273,27 @@ function MobileNav({ navItems, visible }: NavbarProps) {
       >
         <div className="flex w-full flex-row items-center justify-between">
           <Logo className="h-5 w-auto" />
-          <motion.div
+          <motion.button
             animate={{ rotate: open ? 90 : 0 }}
+            aria-expanded={open}
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+            className="inline-flex items-center justify-center rounded-full p-2 text-black transition-colors hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:text-white dark:focus-visible:ring-white dark:hover:bg-white/10"
+            onClick={() => {
+              if (open) {
+                closeMenu();
+              } else {
+                openMenu();
+              }
+            }}
             transition={{ duration: 0.3 }}
+            type="button"
           >
             {open ? (
-              <X
-                className="size-5 text-black dark:text-white"
-                onClick={() => setOpen(!open)}
-              />
+              <X className="size-5 text-black dark:text-white" />
             ) : (
-              <Menu
-                className="size-5 text-black dark:text-white"
-                onClick={() => setOpen(!open)}
-              />
+              <Menu className="size-5 text-black dark:text-white" />
             )}
-          </motion.div>
+          </motion.button>
         </div>
 
         <AnimatePresence mode="wait">
@@ -303,7 +319,7 @@ function MobileNav({ navItems, visible }: NavbarProps) {
                       className="relative block py-2 text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
                       onClick={(e) => {
                         e.preventDefault();
-                        setOpen(false);
+                        closeMenu();
                         const targetId = navItem.link.replace("#", "");
                         const element = document.getElementById(targetId);
                         if (element) {
@@ -325,14 +341,16 @@ function MobileNav({ navItems, visible }: NavbarProps) {
                 >
                   <Button
                     className="block w-full"
-                    onClick={() => setOpen(false)}
+                    onClick={closeMenu}
+                    type="button"
                     variant="outline"
                   >
                     Log in
                   </Button>
                   <Button
                     className="block w-full bg-primary text-white hover:bg-primary/90"
-                    onClick={() => setOpen(false)}
+                    onClick={closeMenu}
+                    type="button"
                   >
                     Join the waitlist
                   </Button>
