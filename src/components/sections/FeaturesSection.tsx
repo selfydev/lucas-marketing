@@ -319,8 +319,8 @@ export function FeaturesSection() {
               id="paint0_radial_features"
               r="1"
             >
-              <stop stopColor="white" stopOpacity="0" />
-              <stop offset="1" stopColor="white" />
+              <stop stopColor="#FAFEF9" stopOpacity="0" />
+              <stop offset="1" stopColor="#FAFEF9" />
             </radialGradient>
           </defs>
         </svg>

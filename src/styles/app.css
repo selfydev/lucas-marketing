@@ -332,52 +332,6 @@
 	}
 }
 
-/* Hero background using the actual headerBG.svg file */
-.hero-gradient-bg {
-	background-image: url("/assets/headerBG.svg");
-	background-size: 100% auto;
-	background-position: center top;
-	background-repeat: no-repeat;
-	position: relative;
-	min-height: 100vh;
-}
-
-/* Mobile-specific styling to extend background past viewport width - only for hero section */
-@media (max-width: 1023px) {
-	.hero-gradient-bg::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		height: 100vh;
-		background-image: url("/assets/headerBG.svg");
-		background-size: 150% auto;
-		background-position: center top;
-		background-repeat: no-repeat;
-		z-index: -1;
-		overflow-x: hidden;
-	}
-
-	.hero-gradient-bg {
-		background: none;
-	}
-}
-
-/* Even more dramatic for small mobile devices */
-@media (max-width: 768px) {
-	.hero-gradient-bg::before {
-		background-size: 200% auto;
-		height: 120vh;
-	}
-}
-
-/* Ensure content is above background */
-.hero-gradient-bg > * {
-	position: relative;
-	z-index: 1;
-}
-
 /* Hide scrollbar */
 .scrollbar-hide {
 	-ms-overflow-style: none; /* Internet Explorer 10+ */

@@ -246,7 +246,7 @@ function MobileNav({ navItems, visible }: NavbarProps) {
           borderRadius: open ? "1.4rem 1.4rem 1.4rem 1.4rem" : "1.4rem",
         }}
         className={cn(
-          "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between overflow-hidden bg-transparent px-4 py-2 lg:hidden",
+          "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between overflow-hidden bg-transparent px-4 py-3 lg:hidden",
           (visible || open) && "bg-white/80 dark:bg-neutral-950/80"
         )}
         transition={{
@@ -256,19 +256,19 @@ function MobileNav({ navItems, visible }: NavbarProps) {
         }}
       >
         <div className="flex w-full flex-row items-center justify-between">
-          <Logo />
+          <Logo className="h-5 w-auto" />
           <motion.div
             animate={{ rotate: open ? 90 : 0 }}
             transition={{ duration: 0.3 }}
           >
             {open ? (
               <X
-                className="text-black dark:text-white"
+                className="size-5 text-black dark:text-white"
                 onClick={() => setOpen(!open)}
               />
             ) : (
               <Menu
-                className="text-black dark:text-white"
+                className="size-5 text-black dark:text-white"
                 onClick={() => setOpen(!open)}
               />
             )}

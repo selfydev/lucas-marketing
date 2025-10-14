@@ -57,7 +57,7 @@ function RootComponent() {
 
 const THEME_COLORS = {
   light: "#7ce650",
-  dark: "#214734",
+  dark: "#7ce650",
 } as const;
 
 function RootDocument({ children }: { children: React.ReactNode }) {
@@ -70,26 +70,20 @@ function RootDocument({ children }: { children: React.ReactNode }) {
          * declare the supported color schemes. Rendering these tags ahead of
          * HeadContent avoids TanStack Router's deduping.
          */}
-        <meta content="light dark" name="color-scheme" />
-        <meta content="light dark" name="supported-color-schemes" />
-        <meta content={THEME_COLORS.light} name="theme-color" />
+        <meta content="#F8FDF5" name="theme-color" />
         <meta
-          content={THEME_COLORS.light}
+          content="#F8FDF5"
           media="(prefers-color-scheme: light)"
           name="theme-color"
         />
         <meta
-          content={THEME_COLORS.dark}
+          content="#F8FDF5"
           media="(prefers-color-scheme: dark)"
           name="theme-color"
         />
-        <meta
-          content="default"
-          name="apple-mobile-web-app-status-bar-style"
-        />
         <HeadContent />
       </head>
-      <body className="min-h-screen bg-white text-slate-950 antialiased">
+      <body className="min-h-screen bg-[#F8FDF5] text-slate-950 antialiased">
         {children}
         {import.meta.env.DEV ? (
           <TanStackRouterDevtools position="bottom-right" />
