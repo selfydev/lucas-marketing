@@ -55,21 +55,37 @@ function RootComponent() {
   );
 }
 
+const THEME_COLORS = {
+  light: "#7ce650",
+  dark: "#214734",
+} as const;
+
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       {/** biome-ignore lint/style/noHeadElement: <tanstack neneds it> */}
       <head>
-        {/** Render theme-color meta tags outside HeadContent so both variants survive dedup */}
+        {/**
+         * Safari (iOS 17.4+) only honors multiple theme-color tags when we also
+         * declare the supported color schemes. Rendering these tags ahead of
+         * HeadContent avoids TanStack Router's deduping.
+         */}
+        <meta content="light dark" name="color-scheme" />
+        <meta content="light dark" name="supported-color-schemes" />
+        <meta content={THEME_COLORS.light} name="theme-color" />
         <meta
-          content="#7ce650"
+          content={THEME_COLORS.light}
           media="(prefers-color-scheme: light)"
           name="theme-color"
         />
         <meta
-          content="#214734"
+          content={THEME_COLORS.dark}
           media="(prefers-color-scheme: dark)"
           name="theme-color"
+        />
+        <meta
+          content="default"
+          name="apple-mobile-web-app-status-bar-style"
         />
         <HeadContent />
       </head>
