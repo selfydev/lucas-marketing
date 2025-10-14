@@ -156,10 +156,10 @@ function MobileNav({ navItems, visible }: NavbarProps) {
   const [open, setOpen] = useState(false);
 
   const openMenu = () => {
-    document.body.style.backgroundColor = "#F8FDF5";
+    document.body.style.backgroundColor = "#C3C7C1";
     const metaTag = document.querySelector('meta[name="theme-color"]');
     if (metaTag) {
-      metaTag.setAttribute("content", "#F8FDF5");
+      metaTag.setAttribute("content", "#C3C7C1");
     }
 
     setOpen(true);
@@ -168,10 +168,10 @@ function MobileNav({ navItems, visible }: NavbarProps) {
   const closeMenu = () => {
     const metaTag = document.querySelector('meta[name="theme-color"]');
     if (metaTag) {
-      metaTag.setAttribute("content", "#C3C7C1");
+      metaTag.setAttribute("content", "#F8FDF5");
     }
-    document.body.style.backgroundColor = "#C3C7C1";
-    alert("closeMenu");
+    document.body.style.backgroundColor = "#F8FDF5";
+
     setOpen(false);
   };
 
@@ -236,7 +236,7 @@ function MobileNav({ navItems, visible }: NavbarProps) {
           <motion.button
             animate={{ opacity: 1 }}
             aria-label="Close navigation menu"
-            className="fixed inset-0 z-40 appearance-none bg-black/20 p-0 backdrop-blur-sm lg:hidden"
+            className="fixed inset-0 z-40 appearance-none p-0 lg:hidden"
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
             onClick={closeMenu}
