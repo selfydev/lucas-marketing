@@ -155,16 +155,35 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
 function MobileNav({ navItems, visible }: NavbarProps) {
   const [open, setOpen] = useState(false);
 
-  // Body scroll lock when menu is open
+  // Body scroll lock and Safari theme color when menu is open
   useEffect(() => {
+    // Store original values
+    const originalOverflow = document.body.style.overflow;
+    const originalBackgroundColor = window.getComputedStyle(document.body).backgroundColor;
+
+    // Get or create theme-color meta tag
+    let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (!metaThemeColor) {
+      metaThemeColor = document.createElement('meta');
+      metaThemeColor.setAttribute('name', 'theme-color');
+      document.head.appendChild(metaThemeColor);
+    }
+    const originalThemeColor = metaThemeColor.getAttribute('content') || '';
+
     if (open) {
       document.body.style.overflow = "hidden";
+      document.body.style.backgroundColor = "#C3C7C1";
+      metaThemeColor.setAttribute('content', '#C3C7C1');
     } else {
-      document.body.style.overflow = "";
+      document.body.style.overflow = originalOverflow;
+      document.body.style.backgroundColor = originalBackgroundColor;
+      metaThemeColor.setAttribute('content', originalThemeColor);
     }
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = originalOverflow;
+      document.body.style.backgroundColor = originalBackgroundColor;
+      metaThemeColor?.setAttribute('content', originalThemeColor);
     };
   }, [open]);
 
