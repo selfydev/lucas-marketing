@@ -347,7 +347,7 @@ export function FeaturesSection() {
             <Lottie
               animationData={animationData}
               autoplay={false}
-              className="h-[60vh] w-[125%] object-contain drop-shadow-2xl md:h-[60vh] lg:h-[70vh]"
+              className="h-[70vh] w-[125%] object-contain drop-shadow-2xl md:h-[60vh] lg:h-[70vh]"
               data-testid="lottie-mobile-interface"
               loop={false}
               lottieRef={lottieRef}
