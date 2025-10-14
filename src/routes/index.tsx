@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({
 
 function IndexRoute() {
   return (
-    <main className="w-full bg-gradient-to-b from-bg-[#FDFFFD] via-white to-white">
+    <main className="w-full bg-gradient-to-b from-[#F8FDF5] via-white to-white">
       <HeroSection />
       <AboutUsSection />
       <FeaturesSection />

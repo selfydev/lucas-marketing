@@ -154,24 +154,14 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
 
 function MobileNav({ navItems, visible }: NavbarProps) {
   const [open, setOpen] = useState(false);
+  const [hasOpened, setHasOpened] = useState(false);
 
   const openMenu = () => {
-    document.body.style.backgroundColor = "#C3C7C1";
-    const metaTag = document.querySelector('meta[name="theme-color"]');
-    if (metaTag) {
-      metaTag.setAttribute("content", "#C3C7C1");
-    }
-
+    setHasOpened(true);
     setOpen(true);
   };
 
   const closeMenu = () => {
-    const metaTag = document.querySelector('meta[name="theme-color"]');
-    if (metaTag) {
-      metaTag.setAttribute("content", "#F8FDF5");
-    }
-    document.body.style.backgroundColor = "#F8FDF5";
-
     setOpen(false);
   };
 
@@ -181,6 +171,26 @@ function MobileNav({ navItems, visible }: NavbarProps) {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  useEffect(() => {
+    // Only run this effect if the menu has been opened at least once
+    if (!hasOpened) {
+      return;
+    }
+
+    const color = open ? "#D7E1D8" : "#F8FDF5";
+    const metaTag = document.querySelector('meta[name="theme-color"]');
+
+    if (open && metaTag) {
+      // Delay color change on open to sync with animations
+      document.body.style.backgroundColor = color;
+      (metaTag as HTMLMetaElement).content = color;
+    } else if (metaTag) {
+      // Update immediately on close
+      document.body.style.backgroundColor = color;
+      (metaTag as HTMLMetaElement).content = color;
+    }
+  }, [open, hasOpened]);
 
   // Animation variants for the dropdown container
   const dropdownVariants = {
@@ -222,7 +232,7 @@ function MobileNav({ navItems, visible }: NavbarProps) {
       opacity: 1,
       y: 0,
       transition: {
-        opacity: { duration: 0.3, ease: easeIn },
+        opacity: { duration: 0.3, ease: easeOut },
         y: { duration: 0.3, ease: easeOut },
       },
     },
@@ -230,25 +240,21 @@ function MobileNav({ navItems, visible }: NavbarProps) {
 
   return (
     <>
-      {/* Backdrop blur overlay */}
-      <AnimatePresence>
-        {open && (
-          <motion.button
-            animate={{ opacity: 1 }}
-            aria-label="Close navigation menu"
-            className="fixed inset-0 z-40 appearance-none p-0 lg:hidden"
-            exit={{ opacity: 0 }}
-            initial={{ opacity: 0 }}
-            onClick={closeMenu}
-            transition={{
-              duration: 0.3,
-              delay: 0.25, // Delay so backdrop appears when menu is almost open
-              ease: "easeOut",
-            }}
-            type="button"
-          />
-        )}
-      </AnimatePresence>
+      {/* Backdrop - entry animation only (no exit to avoid iOS Safari bug) */}
+      {open && (
+        <motion.button
+          animate={{ opacity: 1, backdropFilter: "blur(4px)" }}
+          aria-label="Close navigation menu"
+          className="fixed inset-0 z-40 bg-[#3a5a4a]/15 lg:hidden"
+          initial={{ opacity: 1, backdropFilter: "blur(0px)" }}
+          onClick={closeMenu}
+          transition={{
+            opacity: { duration: 0.3 },
+            backdropFilter: { duration: 0.3, delay: 0.3, ease: "easeOut" },
+          }}
+          type="button"
+        />
+      )}
 
       <motion.div
         animate={{
