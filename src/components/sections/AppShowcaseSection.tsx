@@ -55,10 +55,10 @@ export function AppShowcaseSection() {
           alt="Crumpled paper ball"
           className="absolute top-[700px] right-0 h-[376px] w-60 scale-x-[-1] object-cover md:top-0 md:left-0 md:scale-x-100"
           data-testid="img-crumpled-paper"
-          src="/assets/crumpled-paper.png"
-          width="240"
           height="376"
           loading="lazy"
+          src="/assets/crumpled-paper.png"
+          width="240"
         />
 
         {/* Rubber bands - middle left */}
@@ -66,10 +66,10 @@ export function AppShowcaseSection() {
           alt="Rubber bands"
           className="absolute top-[331px] left-0 hidden h-[253px] w-60 object-cover md:block"
           data-testid="img-rubber-bands"
-          src="/assets/rubber-bands.png"
-          width="240"
           height="253"
           loading="lazy"
+          src="/assets/rubber-bands.png"
+          width="240"
         />
 
         {/* Calculator - bottom left */}
@@ -77,10 +77,10 @@ export function AppShowcaseSection() {
           alt="Calculator"
           className="absolute top-[601px] left-0 h-[450px] w-[207px] object-cover"
           data-testid="img-calculator"
-          src="/assets/calculator.png"
-          width="207"
           height="450"
           loading="lazy"
+          src="/assets/calculator.png"
+          width="207"
         />
 
         {/* iOS Message - top right */}
@@ -88,10 +88,10 @@ export function AppShowcaseSection() {
           alt="iOS Message notification"
           className="absolute top-[690px] right-0 h-auto w-[320px] object-contain md:top-[200px]"
           data-testid="img-ios-message"
-          src="/assets/ios-message2.svg"
-          width="320"
           height="100"
           loading="lazy"
+          src="/assets/ios-message2.svg"
+          width="320"
         />
 
         {/* Phone clip - bottom right */}
@@ -99,10 +99,10 @@ export function AppShowcaseSection() {
           alt="Phone clip"
           className="absolute right-0 bottom-40 hidden h-[500px] w-auto object-contain md:block"
           data-testid="img-phone-clip"
-          src="/assets/phone-clip.png"
-          width="300"
           height="500"
           loading="lazy"
+          src="/assets/phone-clip.png"
+          width="300"
         />
       </div>
     </section>
