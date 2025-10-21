@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 import sticky_note_cross from "/assets/sticky-note-cross.png";
 
 const navigationLinks = [
-  { label: "About", href: "#" },
-  { label: "Pricing", href: "#" },
-  { label: "Enterprise", href: "#" },
-  { label: "Contact", href: "#" },
+  { label: "About", href: "/about" },
+  { label: "Pricing", href: "/#" },
+  { label: "Enterprise", href: "/#" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export function FooterSection() {

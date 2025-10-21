@@ -26,19 +26,23 @@ export function Navigation() {
   const navItems = [
     {
       name: "Features",
-      link: "#features",
+      link: "/#features",
     },
     {
       name: "Testimonials",
-      link: "#testimonials",
+      link: "/#testimonials",
     },
     {
       name: "FAQ",
-      link: "#faq",
+      link: "/#faq",
+    },
+    {
+      name: "About",
+      link: "/about",
     },
     {
       name: "Contact",
-      link: "#contact",
+      link: "/#contact",
     },
   ];
 
@@ -90,18 +94,25 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
         damping: 50,
       }}
     >
-      <Logo />
+      <div className="relative z-50">
+        <Logo />
+      </div>
       <motion.div className="absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 font-medium text-sm text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2">
         {navItems.map((navItem) => (
           <Link
             className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
             key={navItem.link}
             onClick={(e) => {
-              e.preventDefault();
-              const targetId = navItem.link.replace("#", "");
-              const element = document.getElementById(targetId);
-              if (element) {
-                element.scrollIntoView({ behavior: "smooth", block: "start" });
+              if (navItem.link.startsWith("#")) {
+                e.preventDefault();
+                const targetId = navItem.link.replace("#", "");
+                const element = document.getElementById(targetId);
+                if (element) {
+                  element.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }
               }
             }}
             onMouseEnter={() => setHovered(navItems.indexOf(navItem))}
@@ -324,15 +335,19 @@ function MobileNav({ navItems, visible }: NavbarProps) {
                     <Link
                       className="relative block py-2 text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
                       onClick={(e) => {
-                        e.preventDefault();
-                        closeMenu();
-                        const targetId = navItem.link.replace("#", "");
-                        const element = document.getElementById(targetId);
-                        if (element) {
-                          element.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start",
-                          });
+                        if (navItem.link.startsWith("#")) {
+                          e.preventDefault();
+                          closeMenu();
+                          const targetId = navItem.link.replace("#", "");
+                          const element = document.getElementById(targetId);
+                          if (element) {
+                            element.scrollIntoView({
+                              behavior: "smooth",
+                              block: "start",
+                            });
+                          }
+                        } else {
+                          closeMenu();
                         }
                       }}
                       to={navItem.link}

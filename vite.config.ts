@@ -14,7 +14,7 @@ export default defineConfig({
       prerender: {
         enabled: true,
         autoSubfolderIndex: true,
-        crawlLinks: true,
+        crawlLinks: false,
         concurrency: 14,
       },
       sitemap: {
