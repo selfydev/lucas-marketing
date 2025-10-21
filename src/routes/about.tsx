@@ -16,7 +16,14 @@ export const Route = createFileRoute("/about")({
     });
 
     return {
-      meta: [{ title: metadata.meta.find((m) => m.property === "og:title")?.content || "About Lucas" }, ...metadata.meta],
+      meta: [
+        {
+          title:
+            metadata.meta.find((m) => m.property === "og:title")?.content ||
+            "About Lucas",
+        },
+        ...metadata.meta,
+      ],
       links: metadata.links,
       scripts: metadata.scripts,
     };

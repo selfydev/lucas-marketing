@@ -18,7 +18,14 @@ export const Route = createFileRoute("/contact")({
     });
 
     return {
-      meta: [{ title: metadata.meta.find((m) => m.property === "og:title")?.content || "Contact Lucas" }, ...metadata.meta],
+      meta: [
+        {
+          title:
+            metadata.meta.find((m) => m.property === "og:title")?.content ||
+            "Contact Lucas",
+        },
+        ...metadata.meta,
+      ],
       links: metadata.links,
       scripts: metadata.scripts,
     };
