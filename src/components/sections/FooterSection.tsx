@@ -7,7 +7,7 @@ const navigationLinks = [
   { label: "About", href: "/about" },
   { label: "Pricing", href: "/#" },
   { label: "Enterprise", href: "/#" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function FooterSection() {
