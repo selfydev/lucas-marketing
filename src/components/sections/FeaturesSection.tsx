@@ -328,7 +328,7 @@ export function FeaturesSection() {
       {/* Content Container - Vertical on mobile, horizontal side-by-side on desktop */}
       <div className={"relative z-10 mx-auto grid w-full grid-cols-12"}>
         {/* Text Content - First on mobile, exact desktop positioning restored */}
-        <div className="col-span-12 mx-auto mb-8 flex max-w-10/12 flex-col justify-center text-balance text-center md:order-2 md:col-span-6 md:mr-auto md:mb-0 md:text-left">
+        <div className="col-span-12 mx-auto mb-8 flex max-w-10/12 flex-col justify-center text-balance text-center md:order-2 md:col-span-6 md:mx-0 md:mr-auto md:mb-0 md:max-w-lg md:text-left">
           <h2 className="mb-4 text-[40px] text-foreground leading-[48px] tracking-[0] md:mb-4 md:text-[40px] md:leading-[48px] lg:mb-4 lg:text-[40px] lg:leading-[48px]">
             Supercharge your college application
           </h2>
@@ -340,7 +340,7 @@ export function FeaturesSection() {
         </div>
 
         {/* Phone Image - Second on mobile, exact desktop positioning restored */}
-        <div className="relative z-20 col-span-12 flex flex-shrink-0 items-end justify-center pb-16 md:z-auto md:order-1 md:col-span-6 md:pb-0">
+        <div className="relative z-20 col-span-12 flex flex-shrink-0 items-end justify-center pb-16 md:z-auto md:order-1 md:col-span-6 md:mr-0 md:pb-0">
           {animationData ? (
             <Lottie
               animationData={animationData}
