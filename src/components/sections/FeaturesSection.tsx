@@ -326,23 +326,21 @@ export function FeaturesSection() {
         </svg>
       </div>
       {/* Content Container - Vertical on mobile, horizontal side-by-side on desktop */}
-      <div
-        className={`relative z-10 flex w-full flex-col items-center justify-center pb-20 md:flex-row md:items-center md:justify-center md:pb-0 ${isMobile ? "" : "-left-[100px]"}`}
-      >
+      <div className={"relative z-10 mx-auto grid w-full grid-cols-12"}>
         {/* Text Content - First on mobile, exact desktop positioning restored */}
-        <div className="mb-8 max-w-[550px] text-center md:order-2 md:mb-0 md:ml-20 md:max-w-[420px] md:text-left">
+        <div className="col-span-12 mx-auto mb-8 flex max-w-10/12 flex-col justify-center text-balance text-center md:order-2 md:col-span-6 md:mr-auto md:mb-0 md:text-left">
           <h2 className="mb-4 text-[40px] text-foreground leading-[48px] tracking-[0] md:mb-4 md:text-[40px] md:leading-[48px] lg:mb-4 lg:text-[40px] lg:leading-[48px]">
             Supercharge your college application
           </h2>
 
-          <p className="text-[26px] text-muted-foreground leading-[31.2px] tracking-[0] md:text-[26px] md:leading-[31.2px] lg:text-[26px] lg:leading-[31.2px]">
+          <p className="text-muted-foreground leading-[31.2px] tracking-[0] [26px] md:text-[26px] md:leading-[31.2px] lg:text-[26px] lg:leading-[31.2px]">
             Boost your extracurriculars, essays and interview prep{" "}
             {isMobile ? <br /> : ""} to get accepted.
           </p>
         </div>
 
         {/* Phone Image - Second on mobile, exact desktop positioning restored */}
-        <div className="relative z-20 flex justify-center pb-16 md:z-auto md:order-1 md:mr-8 md:flex-shrink-0 md:pb-0">
+        <div className="relative z-20 col-span-12 flex flex-shrink-0 items-end justify-center pb-16 md:z-auto md:order-1 md:col-span-6 md:pb-0">
           {animationData ? (
             <Lottie
               animationData={animationData}
