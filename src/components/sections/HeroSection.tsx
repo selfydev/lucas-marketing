@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
   return (
-    <section className="mx-auto flex min-h-screen w-full max-w-4xl items-center justify-center px-4 pt-16 pb-16 sm:h-screen sm:pt-0 sm:pb-0 md:pb-12 lg:pb-16">
+    <section className="mx-auto flex min-h-screen w-full max-w-4xl items-center justify-center px-4 pt-20 pb-4 sm:h-screen">
       <div className="flex w-full flex-col items-center space-y-4">
         {/* Katman Logo */}
         <div className="relative">
