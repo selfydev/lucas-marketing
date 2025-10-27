@@ -152,8 +152,8 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
                 ease: "easeOut",
               }}
             >
-              <Button className="hidden md:block" variant="ghost">
-                Log in
+              <Button asChild className="hidden md:block" variant="ghost">
+                <a href="https://hi.meetlucas.ai/sign-in">Log in</a>
               </Button>
             </motion.div>
           )}

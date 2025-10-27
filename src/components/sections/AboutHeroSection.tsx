@@ -58,8 +58,13 @@ export function AboutHeroSection() {
 
         {/* CTA */}
         <div className="mt-10 flex justify-center">
-          <Button className="h-auto rounded-[5px] px-6 py-4 font-medium backdrop-blur-sm">
-            <span className="text-base">Join our mission</span>
+          <Button
+            asChild
+            className="h-auto rounded-[5px] px-6 py-4 font-medium backdrop-blur-sm"
+          >
+            <a href="https://hi.meetlucas.ai/sign-in">
+              <span className="text-base">Join our mission</span>
+            </a>
           </Button>
         </div>
       </div>

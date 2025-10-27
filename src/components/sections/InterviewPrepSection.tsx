@@ -17,10 +17,19 @@ export function InterviewPrepSection() {
             Understand how you will be assessed, practice answers and get live
             feedback
           </p>
-          <Button className="inline-flex h-auto items-center justify-center gap-2.5 rounded-[5px] border border-solid bg-primary px-[19px] py-1.5 backdrop-blur-[2px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(2px)_brightness(100%)]">
-            <span className="whitespace-nowrap text-center font-medium text-base text-white leading-[normal] tracking-[0]">
-              Ready to practice?
-            </span>
+          <Button
+            className="inline-flex h-auto items-center justify-center gap-2.5 rounded-[5px] border border-solid bg-primary px-[19px] py-1.5 backdrop-blur-[2px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(2px)_brightness(100%)]"
+            asChild
+          >
+            <a
+              href="https://hi.meetlucas.ai/sign-in"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="whitespace-nowrap text-center font-medium text-base text-white leading-[normal] tracking-[0]">
+                Ready to practice?
+              </span>
+            </a>
           </Button>
         </div>
 
