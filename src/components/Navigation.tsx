@@ -97,7 +97,10 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
       <div className="relative z-50">
         <Logo />
       </div>
-      <motion.div className="absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 font-medium text-sm text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2">
+      <motion.div
+        style={{ zIndex: -10 }}
+        className="absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 font-medium text-sm text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2"
+      >
         {navItems.map((navItem) => (
           <Link
             className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
@@ -155,8 +158,11 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
             </motion.div>
           )}
         </AnimatePresence>
-        <Button className="hidden bg-primary text-white hover:bg-primary/90 md:block">
-          Join the waitlist
+        <Button
+          asChild
+          className="hidden bg-primary text-white hover:bg-primary/90 md:block"
+        >
+          <a href="https://hi.meetlucas.ai/sign-in">Sign up</a>
         </Button>
       </div>
     </motion.div>
@@ -174,6 +180,11 @@ function MobileNav({ navItems, visible }: NavbarProps) {
 
   const closeMenu = () => {
     setOpen(false);
+  };
+
+  const handleSignup = () => {
+    closeMenu();
+    window.location.href = "https://hi.meetlucas.ai/sign-in";
   };
 
   useEffect(() => {
@@ -279,7 +290,7 @@ function MobileNav({ navItems, visible }: NavbarProps) {
           borderRadius: open ? "1.4rem 1.4rem 1.4rem 1.4rem" : "1.4rem",
         }}
         className={cn(
-          "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between overflow-hidden bg-transparent px-4 py-3 lg:hidden",
+          "relative z-[60] mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between overflow-hidden bg-transparent px-4 py-3 lg:hidden",
           (visible || open) && "bg-white/80 dark:bg-neutral-950/80"
         )}
         transition={{
@@ -362,7 +373,7 @@ function MobileNav({ navItems, visible }: NavbarProps) {
                 >
                   <Button
                     className="block w-full"
-                    onClick={closeMenu}
+                    onClick={handleSignup}
                     type="button"
                     variant="outline"
                   >
@@ -370,10 +381,10 @@ function MobileNav({ navItems, visible }: NavbarProps) {
                   </Button>
                   <Button
                     className="block w-full bg-primary text-white hover:bg-primary/90"
-                    onClick={closeMenu}
+                    onClick={handleSignup}
                     type="button"
                   >
-                    Join the waitlist
+                    Sign up
                   </Button>
                 </motion.div>
               </motion.div>

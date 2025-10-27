@@ -202,10 +202,15 @@ export function FooterSection() {
             className="-translate-x-1/2 absolute top-[180px] left-1/2 h-10 w-[200px] transform md:top-[220px] md:h-11 md:w-[235px]"
             style={{ top: isMobile ? "139px" : "180px" }}
           >
-            <Button className="relative h-full w-full rounded-[30px] border-0 bg-[linear-gradient(180deg,rgba(238,238,238,1)_0%,rgba(199,199,199,1)_100%)] shadow-none hover:bg-[linear-gradient(180deg,rgba(228,228,228,1)_0%,rgba(189,189,189,1)_100%)]">
-              <span className="text-center font-medium text-neutral-800 text-sm leading-[normal] tracking-[-0.32px] md:text-base">
-                Start your journey
-              </span>
+            <Button
+              className="relative h-full w-full rounded-[30px] border-0 bg-[linear-gradient(180deg,rgba(238,238,238,1)_0%,rgba(199,199,199,1)_100%)] shadow-none hover:bg-[linear-gradient(180deg,rgba(228,228,228,1)_0%,rgba(189,189,189,1)_100%)]"
+              asChild
+            >
+              <a href="https://hi.meetlucas.ai/sign-in">
+                <span className="text-center font-medium text-neutral-800 text-sm leading-[normal] tracking-[-0.32px] md:text-base">
+                  Start your journey
+                </span>
+              </a>
             </Button>
           </div>
         </div>

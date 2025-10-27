@@ -119,8 +119,13 @@ export function HeroSection() {
         </p>
 
         {/* CTA Button */}
-        <Button className="h-auto rounded-[5px] px-5 py-3 font-medium backdrop-blur-sm sm:px-6 sm:py-4 md:px-4 md:py-2 lg:px-5 lg:py-3">
-          <span className="text-base">Join the waitlist</span>
+        <Button
+          asChild
+          className="h-auto rounded-[5px] px-5 py-3 font-medium backdrop-blur-sm sm:px-6 sm:py-4 md:px-4 md:py-2 lg:px-5 lg:py-3"
+        >
+          <a href="https://hi.meetlucas.ai/sign-in">
+            <span className="text-base">Join the waitlist</span>
+          </a>
         </Button>
 
         {/* Social Proof */}
