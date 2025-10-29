@@ -1,7 +1,8 @@
 import posthog from "posthog-js";
 
-const POSTHOG_KEY = import.meta.env.VITE_PUBLIC_POSTHOG_KEY ?? "";
-const POSTHOG_HOST = import.meta.env.VITE_PUBLIC_POSTHOG_HOST ?? "/badabing";
+// PostHog public key - this is meant to be client-side, not a secret
+const POSTHOG_KEY = "phc_GsdvpAKR8IssD0CjWYzaB9wuDUNSkBwLrOJ98juQ90P";
+const POSTHOG_HOST = "/badabing";
 
 let isInitialized = false;
 
@@ -11,7 +12,6 @@ if (typeof window !== "undefined") {
 		keyLength: POSTHOG_KEY.length,
 		host: POSTHOG_HOST,
 		keyPrefix: POSTHOG_KEY.substring(0, 8) + "...",
-		fullKeyForDebug: POSTHOG_KEY, // Remove this line once confirmed working
 	});
 }
 
