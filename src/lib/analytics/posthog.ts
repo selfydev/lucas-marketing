@@ -6,14 +6,6 @@ const POSTHOG_HOST = "/badabing";
 
 let isInitialized = false;
 
-// Debug: Log PostHog configuration on module load (client-side only)
-if (typeof window !== "undefined") {
-	console.warn("[PostHog] Config loaded:", {
-		keyLength: POSTHOG_KEY.length,
-		host: POSTHOG_HOST,
-		keyPrefix: POSTHOG_KEY.substring(0, 8) + "...",
-	});
-}
 
 function shouldEnableAnalytics(): boolean {
   return typeof window !== "undefined" && POSTHOG_KEY.length > 0;
@@ -21,17 +13,14 @@ function shouldEnableAnalytics(): boolean {
 
 export function initPostHog(): void {
   if (!shouldEnableAnalytics() || isInitialized) {
-      console.log("[PostHog] Init skipped:", {
-        hasKey: POSTHOG_KEY.length > 0,
-        isInitialized,
-        shouldEnable: shouldEnableAnalytics(),
-      });
+    console.log("[PostHog] Init skipped:", {
+      hasKey: POSTHOG_KEY.length > 0,
+      isInitialized,
+      shouldEnable: shouldEnableAnalytics(),
+    });
 
     return;
   }
-
-
- console.log("[PostHog] Initializing with host:", POSTHOG_HOST);
 
 
   posthog.init(POSTHOG_KEY, {
@@ -41,10 +30,6 @@ export function initPostHog(): void {
     capture_pageleave: true,
     disable_session_recording: false, // Enable session recordings for marketing site
     persistence: "localStorage+cookie",
-    loaded: (ph) => {
-      console.log("[PostHog] Successfully loaded");
-      ph.debug();
-    },
   });
 
   isInitialized = true;
@@ -63,5 +48,4 @@ export function isAnalyticsEnabled(): boolean {
 }
 
 // Re-export posthog for direct usage
-export { default as posthog } from "posthog-js";
-export { default } from "posthog-js";
+export { default as posthog, default } from "posthog-js";

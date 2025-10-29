@@ -57,7 +57,7 @@ export default defineConfig({
     minify: "terser",
     terserOptions: {
       compress: {
-        drop_console: false, // Temporarily disabled to debug PostHog initialization
+        drop_console: true,
         drop_debugger: true,
       },
     },
