@@ -62,7 +62,7 @@ export function AboutHeroSection() {
             asChild
             className="h-auto rounded-[5px] px-6 py-4 font-medium backdrop-blur-sm"
           >
-            <a href="https://hi.meetlucas.ai/sign-in">
+            <a href="https://app.meetlucas.ai/sign-in">
               <span className="text-base">Join our mission</span>
             </a>
           </Button>

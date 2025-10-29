@@ -18,13 +18,11 @@ export function InterviewPrepSection() {
             feedback
           </p>
           <Button
-            className="inline-flex h-auto items-center justify-center gap-2.5 rounded-[5px] border border-solid bg-primary px-[19px] py-1.5 backdrop-blur-[2px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(2px)_brightness(100%)]"
             asChild
+            className="inline-flex h-auto items-center justify-center gap-2.5 rounded-[5px] border border-solid bg-primary px-[19px] py-1.5 backdrop-blur-[2px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(2px)_brightness(100%)]"
           >
             <a
-              href="https://hi.meetlucas.ai/sign-in"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="https://app.meetlucas.ai/sign-in"
             >
               <span className="whitespace-nowrap text-center font-medium text-base text-white leading-[normal] tracking-[0]">
                 Ready to practice?

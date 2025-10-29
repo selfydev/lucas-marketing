@@ -98,8 +98,8 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
         <Logo />
       </div>
       <motion.div
-        style={{ zIndex: -10 }}
         className="absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 font-medium text-sm text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2"
+        style={{ zIndex: -10 }}
       >
         {navItems.map((navItem) => (
           <Link
@@ -153,7 +153,7 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
               }}
             >
               <Button asChild className="hidden md:block" variant="ghost">
-                <a href="https://hi.meetlucas.ai/sign-in">Log in</a>
+                <a href="https://app.meetlucas.ai/sign-in">Log in</a>
               </Button>
             </motion.div>
           )}
@@ -162,7 +162,7 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
           asChild
           className="hidden bg-primary text-white hover:bg-primary/90 md:block"
         >
-          <a href="https://hi.meetlucas.ai/sign-in">Sign up</a>
+          <a href="https://app.meetlucas.ai/sign-in">Sign up</a>
         </Button>
       </div>
     </motion.div>
@@ -184,7 +184,7 @@ function MobileNav({ navItems, visible }: NavbarProps) {
 
   const handleSignup = () => {
     closeMenu();
-    window.location.href = "https://hi.meetlucas.ai/sign-in";
+    window.location.href = "https://app.meetlucas.ai/sign-in";
   };
 
   useEffect(() => {
