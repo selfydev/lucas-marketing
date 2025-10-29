@@ -1,4 +1,4 @@
-import posthog from "posthog-js";
+import posthogInstance from "posthog-js";
 
 // PostHog public key - this is meant to be client-side, not a secret
 const POSTHOG_KEY = "phc_GsdvpAKR8IssD0CjWYzaB9wuDUNSkBwLrOJ98juQ90P";
@@ -13,17 +13,11 @@ function shouldEnableAnalytics(): boolean {
 
 export function initPostHog(): void {
   if (!shouldEnableAnalytics() || isInitialized) {
-    console.log("[PostHog] Init skipped:", {
-      hasKey: POSTHOG_KEY.length > 0,
-      isInitialized,
-      shouldEnable: shouldEnableAnalytics(),
-    });
-
     return;
   }
 
 
-  posthog.init(POSTHOG_KEY, {
+  posthogInstance.init(POSTHOG_KEY, {
     api_host: POSTHOG_HOST,
     autocapture: true,
     capture_pageview: false, // We'll manually track pageviews in the router
@@ -40,7 +34,7 @@ export function capturePageview(): void {
     return;
   }
 
-  posthog.capture("$pageview");
+  posthogInstance.capture("$pageview");
 }
 
 export function isAnalyticsEnabled(): boolean {
@@ -48,4 +42,4 @@ export function isAnalyticsEnabled(): boolean {
 }
 
 // Re-export posthog for direct usage
-export { default as posthog, default } from "posthog-js";
+export { default as posthog } from "posthog-js";
