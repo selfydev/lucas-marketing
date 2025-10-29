@@ -24,6 +24,10 @@ export default defineConfig({
     }),
     react(),
   ],
+  ssr: {
+    // Mark posthog-js as external for SSR to avoid "window is not defined" errors
+    external: ["posthog-js"],
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

@@ -3,10 +3,13 @@ import {
   HeadContent,
   Outlet,
   Scripts,
+  useRouter,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { useEffect } from "react";
 import type * as React from "react";
 import { Navigation } from "@/components/Navigation";
+import { capturePageview, initPostHog } from "@/lib/analytics/posthog";
 import { generateMetadata } from "@/lib/seo";
 import appCss from "@/styles/app.css?url";
 
@@ -47,6 +50,30 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
+  const router = useRouter();
+
+  // Initialize PostHog on mount (client-side only)
+  useEffect(() => {
+    initPostHog();
+  }, []);
+
+  // Track pageviews on route changes
+  useEffect(() => {
+    const handleRouteChange = () => {
+      capturePageview();
+    };
+
+    // Capture initial pageview
+    capturePageview();
+
+    // Subscribe to route changes
+    const unsubscribe = router.subscribe("onResolved", handleRouteChange);
+
+    return () => {
+      unsubscribe();
+    };
+  }, [router]);
+
   return (
     <RootDocument>
       <Navigation />
