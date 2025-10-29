@@ -11,7 +11,18 @@ function shouldEnableAnalytics(): boolean {
 
 export function initPostHog(): void {
 	if (!shouldEnableAnalytics() || isInitialized) {
+		if (import.meta.env.DEV) {
+			console.log("[PostHog] Init skipped:", {
+				hasKey: POSTHOG_KEY.length > 0,
+				isInitialized,
+				shouldEnable: shouldEnableAnalytics(),
+			});
+		}
 		return;
+	}
+
+	if (import.meta.env.DEV) {
+		console.log("[PostHog] Initializing with host:", POSTHOG_HOST);
 	}
 
 	posthog.init(POSTHOG_KEY, {
@@ -23,6 +34,7 @@ export function initPostHog(): void {
 		persistence: "localStorage+cookie",
 		loaded: (ph) => {
 			if (import.meta.env.DEV) {
+				console.log("[PostHog] Successfully loaded");
 				ph.debug();
 			}
 		},
