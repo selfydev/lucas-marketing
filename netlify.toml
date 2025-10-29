@@ -16,7 +16,7 @@
   NODE_VERSION = "20"
 
 # PostHog Reverse Proxy - /badabing endpoint for stealth analytics
-# This proxies requests to PostHog's ingest endpoint to avoid ad-blockers
+# This proxies requests to PostHog's ingest endpoint to avoid ad-blockers so quite nice
 [[redirects]]
   from = "/badabing/*"
   to = "https://us.i.posthog.com/:splat"
