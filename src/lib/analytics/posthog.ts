@@ -5,6 +5,16 @@ const POSTHOG_HOST = import.meta.env.VITE_PUBLIC_POSTHOG_HOST ?? "/badabing";
 
 let isInitialized = false;
 
+// Debug: Log PostHog configuration on module load (client-side only)
+if (typeof window !== "undefined") {
+	console.warn("[PostHog] Config loaded:", {
+		keyLength: POSTHOG_KEY.length,
+		host: POSTHOG_HOST,
+		keyPrefix: POSTHOG_KEY.substring(0, 8) + "...",
+		fullKeyForDebug: POSTHOG_KEY, // Remove this line once confirmed working
+	});
+}
+
 function shouldEnableAnalytics(): boolean {
   return typeof window !== "undefined" && POSTHOG_KEY.length > 0;
 }
@@ -52,5 +62,6 @@ export function isAnalyticsEnabled(): boolean {
   return shouldEnableAnalytics() && isInitialized;
 }
 
-export { posthog };
-export default posthog;
+// Re-export posthog for direct usage
+export { default as posthog } from "posthog-js";
+export { default } from "posthog-js";
