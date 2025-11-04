@@ -124,7 +124,7 @@ export function HeroSection() {
           className="h-auto rounded-[5px] px-5 py-3 font-medium backdrop-blur-sm sm:px-6 sm:py-4 md:px-4 md:py-2 lg:px-5 lg:py-3"
         >
           <a href="https://app.meetlucas.ai/sign-in">
-            <span className="text-base">Join the waitlist</span>
+            <span className="text-base">Join now</span>
           </a>
         </Button>
 
