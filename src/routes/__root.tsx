@@ -6,8 +6,8 @@ import {
   useRouter,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-import { useEffect } from "react";
 import type * as React from "react";
+import { useEffect } from "react";
 import { Navigation } from "@/components/Navigation";
 import { capturePageview, initPostHog } from "@/lib/analytics/posthog";
 import { generateMetadata } from "@/lib/seo";

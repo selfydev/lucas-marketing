@@ -6,7 +6,6 @@ const POSTHOG_HOST = "/badabing";
 
 let isInitialized = false;
 
-
 function shouldEnableAnalytics(): boolean {
   return typeof window !== "undefined" && POSTHOG_KEY.length > 0;
 }
@@ -15,7 +14,6 @@ export function initPostHog(): void {
   if (!shouldEnableAnalytics() || isInitialized) {
     return;
   }
-
 
   posthogInstance.init(POSTHOG_KEY, {
     api_host: POSTHOG_HOST,
