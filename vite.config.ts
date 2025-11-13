@@ -53,18 +53,16 @@ export default defineConfig({
         },
       },
     },
-    // Enable minification
-    minify: "terser",
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
+    // Enable minification with esbuild (faster than terser)
+    minify: "esbuild",
     // Optimize chunk size warnings
     chunkSizeWarningLimit: 1000,
     // Generate source maps for production debugging (can be disabled)
     sourcemap: false,
+  },
+  esbuild: {
+    // Drop console and debugger statements in production
+    drop: ["console", "debugger"],
   },
   // Optimize dependencies
   optimizeDeps: {
