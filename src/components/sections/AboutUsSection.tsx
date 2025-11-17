@@ -1,4 +1,17 @@
+import { useEffect, useState } from "react";
+
 export function AboutUsSection() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <section className="relative flex h-[100dvh] w-full items-center justify-center overflow-hidden pb-[env(safe-area-inset-bottom)] md:h-auto md:min-h-screen md:pb-0">
       <div className="w-full max-w-7xl px-4 sm:px-4 md:px-6 lg:px-4">
@@ -18,58 +31,42 @@ export function AboutUsSection() {
 
         {/* Main Headline - Center */}
         <div className="relative text-center">
-          <h2
-            className="mx-auto max-w-[824px] px-2 text-center font-medium text-[65px] text-foreground leading-[73px] tracking-[-0.02em] sm:text-[28px] sm:leading-[32px] sm:tracking-[-0.01em] md:text-[45px] md:leading-[50px] md:tracking-[-0.015em] lg:text-[65px] lg:leading-[73px] lg:tracking-[-0.02em]"
-            style={{ lineHeight: 1 }}
-          >
-            <span style={{ fontSize: "55px" }}>
-              <span className="font-medium tracking-[-0.02em] sm:tracking-[-0.01em] md:tracking-[-0.015em] lg:tracking-[-0.02em]">
-                The{" "}
+          <h2 className="mx-auto max-w-[824px] space-y-2 px-2 text-center font-medium text-foreground text-[46px] leading-[1.05] tracking-[-1.8px] sm:text-3xl sm:tracking-[-1.2px] md:text-5xl md:tracking-[-1.5px] lg:text-[65px]">
+            <span className="block text-[0.9em] leading-tight">
+              The
+              <span className="ml-2 inline-block italic tracking-[-1.8px] [font-family:'Instrument_Serif',serif]">
+                college
               </span>
-              {/* Desktop highlight line */}
-              <img
-                alt="Line"
-                className="absolute top-[0.4em] left-[-0.2em] hidden h-[0.6em] opacity-80 md:block"
-                src="/assets/line-83.svg"
-                style={{
-                  zIndex: 0,
-                  width: "calc(100% + 0.4em)",
-                  paddingLeft: "115px",
-                }}
-              />
-              {/* Mobile highlight line */}
-              <img
-                alt="Line"
-                className="absolute top-[0.4em] left-[-0.2em] h-[0.6em] opacity-80 md:hidden"
-                src="/assets/line-83.svg"
-                style={{
-                  paddingLeft: "175px",
-                  paddingRight: "50px",
-                  height: "34px",
-                  maxHeight: "none",
-                  objectFit: "cover",
-                  opacity: 1,
-                  zIndex: 0,
-                  width: "calc(100% + 0.4em)",
-                }}
-              />
-              <span
-                className="relative italic tracking-[-0.02em] sm:tracking-[-0.01em] md:tracking-[-0.015em] lg:tracking-[-0.02em]"
-                style={{
-                  fontSize: "55px",
-                  fontFamily: "'Instrument Serif', serif",
-                }}
-              >
-                <span className="relative" style={{ zIndex: 1 }}>
-                  college admission genius
+            </span>
+            <span className="block text-[0.9em] leading-tight">
+              <span className="relative inline-flex flex-wrap items-baseline justify-center gap-x-2">
+                <span className="relative inline-block italic tracking-[-1.8px] [font-family:'Instrument_Serif',serif]">
+                  <span className="relative inline-block">
+                    <img
+                      alt="Highlight"
+                      className="absolute top-[0.55em] left-[-0.1em] h-[0.45em] animate-highlight opacity-80"
+                      height="20"
+                      loading="eager"
+                      src="/assets/line-83.svg"
+                      style={{
+                        zIndex: 0,
+                        maxWidth: "none",
+                        width: "110%",
+                        transformOrigin: "left center",
+                        animation: "highlightDraw 1.5s ease-out 1s forwards",
+                        transform: "scaleX(0)",
+                      }}
+                      width="100"
+                    />
+                    <span className="relative z-10 px-1">admission</span>
+                  </span>
+                </span>
+                <span className="italic tracking-[-1.8px] [font-family:'Instrument_Serif',serif]">
+                  genius
                 </span>
               </span>
             </span>
-            <br />
-            <span
-              className="font-medium tracking-[-0.02em] sm:tracking-[-0.01em] md:tracking-[-0.015em] lg:tracking-[-0.02em]"
-              style={{ fontSize: "55px" }}
-            >
+            <span className="block text-[0.84em] leading-tight sm:text-[0.9em]">
               that fits in your pocket.
             </span>
           </h2>
@@ -92,7 +89,7 @@ export function AboutUsSection() {
       <div
         className="absolute bottom-8 left-0 z-10 sm:bottom-2 md:bottom-4 lg:bottom-8"
         style={{
-          bottom: "150px",
+          bottom: isMobile ? "100px" : "6px",
           left: "-100px",
         }}
       >

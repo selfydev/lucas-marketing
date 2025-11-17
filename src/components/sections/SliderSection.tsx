@@ -295,8 +295,8 @@ export function SliderSection() {
                             activeIndex === 2
                               ? "scale(1.1)"
                               : activeIndex === 3
-                                ? "scale(1.2)"
-                                : "scale(1)",
+                              ? "scale(1.2)"
+                              : "scale(1)",
                           transition: "transform 300ms ease-out",
                         }}
                       />
@@ -347,13 +347,20 @@ export function SliderSection() {
                 </div>
 
                 <Button
+                  asChild
                   className="group h-auto p-0 text-foreground hover:bg-transparent"
                   variant="ghost"
                 >
-                  <span className="font-normal text-[17.7px] leading-[21.6px] tracking-[0]">
-                    Learn more on the platform
-                  </span>
-                  <ArrowRightIcon className="ml-2 h-6 w-6 transition-transform group-hover:translate-x-1" />
+                  <a
+                    href="https://app.meetlucas.ai/sign-in"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <span className="font-normal text-[17.7px] leading-[21.6px] tracking-[0]">
+                      Learn more on the platform
+                    </span>
+                    <ArrowRightIcon className="ml-2 h-6 w-6 transition-transform group-hover:translate-x-1" />
+                  </a>
                 </Button>
               </div>
             </div>
@@ -436,8 +443,8 @@ export function SliderSection() {
                             index === activeIndex
                               ? `${Math.max(progress * 100, 5)}%`
                               : index < activeIndex
-                                ? "100%"
-                                : "0%",
+                              ? "100%"
+                              : "0%",
                           transition: "none",
                         }}
                       />
