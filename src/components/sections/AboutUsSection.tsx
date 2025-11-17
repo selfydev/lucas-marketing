@@ -19,57 +19,34 @@ export function AboutUsSection() {
         {/* Main Headline - Center */}
         <div className="relative text-center">
           <h2
-            className="mx-auto max-w-[824px] px-2 text-center font-medium text-[65px] text-foreground leading-[73px] tracking-[-0.02em] sm:text-[28px] sm:leading-[32px] sm:tracking-[-0.01em] md:text-[45px] md:leading-[50px] md:tracking-[-0.015em] lg:text-[65px] lg:leading-[73px] lg:tracking-[-0.02em]"
-            style={{ lineHeight: 1 }}
+            className="mx-auto max-w-[824px] px-2 text-center font-medium text-foreground
+           text-[65px] leading-[73px] tracking-[-0.02em]"
           >
-            <span style={{ fontSize: "55px" }}>
-              <span className="font-medium tracking-[-0.02em] sm:tracking-[-0.01em] md:tracking-[-0.015em] lg:tracking-[-0.02em]">
-                The{" "}
-              </span>
-              {/* Desktop highlight line */}
-              <img
-                alt="Line"
-                className="absolute top-[0.4em] left-[-0.2em] hidden h-[0.6em] opacity-80 md:block"
-                src="/assets/line-83.svg"
-                style={{
-                  zIndex: 0,
-                  width: "calc(100% + 0.4em)",
-                  paddingLeft: "115px",
-                }}
-              />
-              {/* Mobile highlight line */}
-              <img
-                alt="Line"
-                className="absolute top-[0.4em] left-[-0.2em] h-[0.6em] opacity-80 md:hidden"
-                src="/assets/line-83.svg"
-                style={{
-                  paddingLeft: "175px",
-                  paddingRight: "50px",
-                  height: "34px",
-                  maxHeight: "none",
-                  objectFit: "cover",
-                  opacity: 1,
-                  zIndex: 0,
-                  width: "calc(100% + 0.4em)",
-                }}
-              />
+            <span className="font-medium">The </span>
+            <span
+              className="italic"
+              style={{
+                fontFamily: "'Instrument Serif',serif",
+                fontSize: "55px",
+              }}
+            >
+              college
               <span
-                className="relative italic tracking-[-0.02em] sm:tracking-[-0.01em] md:tracking-[-0.015em] lg:tracking-[-0.02em]"
-                style={{
-                  fontSize: "55px",
-                  fontFamily: "'Instrument Serif', serif",
-                }}
+                className="relative inline-block z-0 align-baseline whitespace-nowrap
+         mx-[0.18em]                     /* spacing around the word (no padding) */
+         after:content-[''] after:absolute
+         after:left-0 after:right-0      /* highlight only under the word */
+         after:bottom-[0.28em]
+         after:h-[0.50em]
+         after:bg-[#FFEB3B]
+         after:rounded after:-z-10"
               >
-                <span className="relative" style={{ zIndex: 1 }}>
-                  college admission genius
-                </span>
+                &nbsp; admission &nbsp;
               </span>
+              genius
             </span>
             <br />
-            <span
-              className="font-medium tracking-[-0.02em] sm:tracking-[-0.01em] md:tracking-[-0.015em] lg:tracking-[-0.02em]"
-              style={{ fontSize: "55px" }}
-            >
+            <span className="font-medium" style={{ fontSize: "55px" }}>
               that fits in your pocket.
             </span>
           </h2>
