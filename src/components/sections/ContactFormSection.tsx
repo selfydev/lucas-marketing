@@ -2,19 +2,33 @@ import { CheckCircle2, Loader2 } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { submitMarketingContact } from "@/lib/api/contact";
+import type { ContactSubmissionInput } from "@/lib/api/contact";
+import { isAnalyticsEnabled, posthog } from "@/lib/analytics/posthog";
 
-interface FormData {
-  name: string;
-  email: string;
-  userType: "student" | "university" | "";
-  message: string;
-}
+type FormData = Omit<ContactSubmissionInput, "userType"> & {
+  userType: ContactSubmissionInput["userType"] | "";
+};
 
 interface FormErrors {
   name?: string;
   email?: string;
   userType?: string;
   message?: string;
+}
+
+const CONTACT_FORM_SUBMISSION_EVENT = "marketing_contact_form_submission";
+
+function captureContactFormSubmission(data: ContactSubmissionInput) {
+  if (!isAnalyticsEnabled()) {
+    return;
+  }
+
+  posthog.capture(CONTACT_FORM_SUBMISSION_EVENT, {
+    ...data,
+    submittedAt: new Date().toISOString(),
+    source: "marketing_contact_form",
+  });
 }
 
 export function ContactFormSection() {
@@ -106,18 +120,28 @@ export function ContactFormSection() {
       return;
     }
 
+    if (!formData.userType) {
+      return;
+    }
+
+    const submissionPayload: ContactSubmissionInput = {
+      name: formData.name,
+      email: formData.email,
+      userType: formData.userType,
+      message: formData.message,
+    };
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
     try {
-      // TODO: Replace with actual server function call
-      // For now, simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await submitMarketingContact(submissionPayload);
 
       console.log("[CONTACT FORM] Submission:", {
-        ...formData,
+        ...submissionPayload,
         timestamp: new Date().toISOString(),
       });
+
+      captureContactFormSubmission(submissionPayload);
 
       setSubmitStatus("success");
       // Reset form after 3 seconds

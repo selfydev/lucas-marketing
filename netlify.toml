@@ -14,6 +14,7 @@
 [build.environment]
   # Node.js version for the build environment
   NODE_VERSION = "20"
+  VITE_SERVER_URL = "https://future.meetlucas.ai"
 
 # PostHog Reverse Proxy - /badabing endpoint for stealth analytics
 # This proxies requests to PostHog's ingest endpoint to avoid ad-blockers so quite nice
