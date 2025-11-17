@@ -121,10 +121,10 @@ export function HeroSection() {
         {/* CTA Button */}
         <Button
           asChild
-          className="h-auto rounded-[5px] px-5 py-3 font-medium backdrop-blur-sm sm:px-6 sm:py-4 md:px-4 md:py-2 lg:px-5 lg:py-3"
+          className="h-auto rounded-[5px] px-8 py-3 font-medium backdrop-blur-sm sm:px-9 sm:py-4 md:px-7 md:py-2 lg:px-8 lg:py-3"
         >
           <a href="https://app.meetlucas.ai/sign-in">
-            <span className="text-base">Join now</span>
+            <span className="text-base">Start for free</span>
           </a>
         </Button>
 
