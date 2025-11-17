@@ -1,4 +1,17 @@
+import { useEffect, useState } from "react";
+
 export function AboutUsSection() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <section className="relative flex h-[100dvh] w-full items-center justify-center overflow-hidden pb-[env(safe-area-inset-bottom)] md:h-auto md:min-h-screen md:pb-0">
       <div className="w-full max-w-7xl px-4 sm:px-4 md:px-6 lg:px-4">
@@ -69,7 +82,7 @@ export function AboutUsSection() {
       <div
         className="absolute bottom-8 left-0 z-10 sm:bottom-2 md:bottom-4 lg:bottom-8"
         style={{
-          bottom: "150px",
+          bottom: isMobile ? "100px" : "6px",
           left: "-100px",
         }}
       >
