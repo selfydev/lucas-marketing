@@ -14,7 +14,25 @@
 [build.environment]
   # Node.js version for the build environment
   NODE_VERSION = "20"
+
+# Default/staging environment variables (used for deploy previews and
+# branch deploys unless overridden below)
+[context.deploy-preview.environment]
   VITE_SERVER_URL = "https://future.meetlucas.ai"
+  VITE_AUTH_URL = "https://future.meetlucas.ai"
+  VITE_APP_ENV = "staging"
+
+[context.branch-deploy.environment]
+  VITE_SERVER_URL = "https://future.meetlucas.ai"
+  VITE_AUTH_URL = "https://future.meetlucas.ai"
+  VITE_APP_ENV = "staging"
+
+# Production deploys (e.g. from the main branch) should point at the
+# sauce cluster in order to avoid CORS failures in production.
+[context.production.environment]
+  VITE_SERVER_URL = "https://sauce.meetlucas.ai"
+  VITE_AUTH_URL = "https://sauce.meetlucas.ai"
+  VITE_APP_ENV = "production"
 
 # PostHog Reverse Proxy - /badabing endpoint for stealth analytics
 # This proxies requests to PostHog's ingest endpoint to avoid ad-blockers so quite nice
