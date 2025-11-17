@@ -31,35 +31,42 @@ export function AboutUsSection() {
 
         {/* Main Headline - Center */}
         <div className="relative text-center">
-          <h2
-            className="mx-auto max-w-[824px] px-2 text-center font-medium text-foreground
-           text-[65px] leading-[73px] tracking-[-0.02em]"
-          >
-            <span className="font-medium">The </span>
-            <span
-              className="italic"
-              style={{
-                fontFamily: "'Instrument Serif',serif",
-                fontSize: "55px",
-              }}
-            >
-              college
-              <span
-                className="relative inline-block z-0 align-baseline whitespace-nowrap
-         mx-[0.18em]                     /* spacing around the word (no padding) */
-         after:content-[''] after:absolute
-         after:left-0 after:right-0      /* highlight only under the word */
-         after:bottom-[0.28em]
-         after:h-[0.50em]
-         after:bg-[#FFEB3B]
-         after:rounded after:-z-10"
-              >
-                &nbsp; admission &nbsp;
+          <h2 className="mx-auto max-w-[824px] space-y-2 px-2 text-center font-medium text-foreground text-[46px] leading-[1.05] tracking-[-1.8px] sm:text-3xl sm:tracking-[-1.2px] md:text-5xl md:tracking-[-1.5px] lg:text-[65px]">
+            <span className="block text-[0.9em] leading-tight">
+              The
+              <span className="ml-2 inline-block italic tracking-[-1.8px] [font-family:'Instrument_Serif',serif]">
+                college
               </span>
-              genius
             </span>
-            <br />
-            <span className="font-medium" style={{ fontSize: "55px" }}>
+            <span className="block text-[0.9em] leading-tight">
+              <span className="relative inline-flex flex-wrap items-baseline justify-center gap-x-2">
+                <span className="relative inline-block italic tracking-[-1.8px] [font-family:'Instrument_Serif',serif]">
+                  <span className="relative inline-block">
+                    <img
+                      alt="Highlight"
+                      className="absolute top-[0.55em] left-[-0.1em] h-[0.45em] animate-highlight opacity-80"
+                      height="20"
+                      loading="eager"
+                      src="/assets/line-83.svg"
+                      style={{
+                        zIndex: 0,
+                        maxWidth: "none",
+                        width: "110%",
+                        transformOrigin: "left center",
+                        animation: "highlightDraw 1.5s ease-out 1s forwards",
+                        transform: "scaleX(0)",
+                      }}
+                      width="100"
+                    />
+                    <span className="relative z-10 px-1">admission</span>
+                  </span>
+                </span>
+                <span className="italic tracking-[-1.8px] [font-family:'Instrument_Serif',serif]">
+                  genius
+                </span>
+              </span>
+            </span>
+            <span className="block text-[0.84em] leading-tight sm:text-[0.9em]">
               that fits in your pocket.
             </span>
           </h2>
