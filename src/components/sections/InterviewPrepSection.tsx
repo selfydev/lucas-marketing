@@ -21,7 +21,7 @@ export function InterviewPrepSection() {
             asChild
             className="inline-flex h-auto items-center justify-center gap-2.5 rounded-[5px] border border-solid bg-primary px-[19px] py-1.5 backdrop-blur-[2px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(2px)_brightness(100%)]"
           >
-            <a href="https://app.meetlucas.ai/sign-in">
+            <a href="https://app.meetlucas.ai/sign-up">
               <span className="whitespace-nowrap text-center font-medium text-base text-white leading-[normal] tracking-[0]">
                 Ready to practice?
               </span>

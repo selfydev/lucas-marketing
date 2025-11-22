@@ -162,7 +162,7 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
           asChild
           className="hidden bg-primary text-white hover:bg-primary/90 md:block"
         >
-          <a href="https://app.meetlucas.ai/sign-in">Sign up</a>
+          <a href="https://app.meetlucas.ai/sign-up">Sign up</a>
         </Button>
       </div>
     </motion.div>
@@ -184,7 +184,7 @@ function MobileNav({ navItems, visible }: NavbarProps) {
 
   const handleSignup = () => {
     closeMenu();
-    window.location.href = "https://app.meetlucas.ai/sign-in";
+    window.location.href = "https://app.meetlucas.ai/sign-up";
   };
 
   useEffect(() => {

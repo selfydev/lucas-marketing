@@ -352,7 +352,7 @@ export function SliderSection() {
                   variant="ghost"
                 >
                   <a
-                    href="https://app.meetlucas.ai/sign-in"
+                    href="https://app.meetlucas.ai/sign-up"
                     rel="noopener noreferrer"
                     target="_blank"
                   >
