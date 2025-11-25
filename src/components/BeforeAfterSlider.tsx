@@ -28,7 +28,7 @@ export function BeforeAfterSlider({
   const clipPath = useTransform(
     x,
     [-boundary, boundary],
-    ["inset(0% 0% 0% 0%)", "inset(0% 0% 0% 100%)"]
+    ["inset(0% 0% 0% 0%)", "inset(0% 0% 0% 100%)"],
   );
 
   // Dynamic slider line color that fades at edges for visual polish
@@ -48,7 +48,7 @@ export function BeforeAfterSlider({
     <div
       className={cn(
         "relative mx-auto h-[295px] w-[calc(100vw-8px)] select-none overflow-hidden rounded-lg border-2 border-white/20 md:h-[500px] md:w-[800px]",
-        className
+        className,
       )}
       data-mobile-responsive="true"
       data-testid="before-after-slider"
@@ -119,7 +119,7 @@ function useSliderColor(x: MotionValue<number>, boundary: number) {
       "rgba(255, 255, 255, 1)",
       "rgba(255, 255, 255, 1)",
       "rgba(255, 255, 255, 0)",
-    ]
+    ],
   );
 }
 

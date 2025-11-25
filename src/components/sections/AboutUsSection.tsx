@@ -31,7 +31,7 @@ export function AboutUsSection() {
 
         {/* Main Headline - Center */}
         <div className="relative text-center">
-          <h2 className="mx-auto max-w-[824px] space-y-2 px-2 text-center font-medium text-foreground text-[46px] leading-[1.05] tracking-[-1.8px] sm:text-3xl sm:tracking-[-1.2px] md:text-5xl md:tracking-[-1.5px] lg:text-[65px]">
+          <h2 className="mx-auto max-w-[824px] space-y-2 px-2 text-center font-medium text-[46px] text-foreground leading-[1.05] tracking-[-1.8px] sm:text-3xl sm:tracking-[-1.2px] md:text-5xl md:tracking-[-1.5px] lg:text-[65px]">
             <span className="block text-[0.9em] leading-tight">
               The
               <span className="ml-2 inline-block italic tracking-[-1.8px] [font-family:'Instrument_Serif',serif]">

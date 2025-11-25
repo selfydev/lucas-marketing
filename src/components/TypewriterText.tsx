@@ -24,7 +24,7 @@ export function TypewriterText({ text, className }: TypewriterTextProps) {
     const updateHeight = () => {
       const nextHeight = element.getBoundingClientRect().height;
       setMeasuredHeight((current) =>
-        current === nextHeight ? current : nextHeight
+        current === nextHeight ? current : nextHeight,
       );
     };
 

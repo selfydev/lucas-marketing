@@ -189,7 +189,7 @@ export function TestimonialsSection() {
             {Array.from({ length: 4 }, (_, colIndex) => {
               const columnTestimonials = testimonials.slice(
                 colIndex * 5,
-                (colIndex + 1) * 5
+                (colIndex + 1) * 5,
               );
               const isUpDirection = colIndex % 2 === 1;
               const animationClass = isUpDirection

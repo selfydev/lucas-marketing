@@ -99,7 +99,7 @@ export function SliderSection() {
       {
         threshold: 0.2, // Trigger when 20% of the animation container is visible
         rootMargin: "0px 0px -50px 0px", // Slight offset for better timing
-      }
+      },
     );
 
     if (animationContainerRef.current) {
@@ -196,13 +196,13 @@ export function SliderSection() {
         // Calculate overall progress (0 to 1)
         const overallProgress = Math.min(
           scrolledIntoSection / totalScrollableDistance,
-          1
+          1,
         );
 
         // Calculate which slide should be active
         const slideIndex = Math.min(
           Math.floor(overallProgress * slides.length),
-          slides.length - 1
+          slides.length - 1,
         );
 
         // Calculate progress within the current slide
@@ -295,8 +295,8 @@ export function SliderSection() {
                             activeIndex === 2
                               ? "scale(1.1)"
                               : activeIndex === 3
-                              ? "scale(1.2)"
-                              : "scale(1)",
+                                ? "scale(1.2)"
+                                : "scale(1)",
                           transition: "transform 300ms ease-out",
                         }}
                       />
@@ -443,8 +443,8 @@ export function SliderSection() {
                             index === activeIndex
                               ? `${Math.max(progress * 100, 5)}%`
                               : index < activeIndex
-                              ? "100%"
-                              : "0%",
+                                ? "100%"
+                                : "0%",
                           transition: "none",
                         }}
                       />

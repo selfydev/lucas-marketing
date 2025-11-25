@@ -2,9 +2,9 @@ import { CheckCircle2, Loader2 } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { submitMarketingContact } from "@/lib/api/contact";
-import type { ContactSubmissionInput } from "@/lib/api/contact";
 import { isAnalyticsEnabled, posthog } from "@/lib/analytics/posthog";
+import type { ContactSubmissionInput } from "@/lib/api/contact";
+import { submitMarketingContact } from "@/lib/api/contact";
 
 type FormData = Omit<ContactSubmissionInput, "userType"> & {
   userType: ContactSubmissionInput["userType"] | "";
@@ -48,7 +48,7 @@ export function ContactFormSection() {
 
   const validateField = (
     name: keyof FormData,
-    value: string
+    value: string,
   ): string | undefined => {
     switch (name) {
       case "name":

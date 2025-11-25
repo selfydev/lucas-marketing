@@ -1,9 +1,9 @@
-import { createORPCClient } from "@orpc/client";
-import { RPCLink } from "@orpc/client/fetch";
 import type {
   MarketingContractInputs,
   MarketingContractOutputs,
 } from "@lucas-ai/contracts/marketing";
+import { createORPCClient } from "@orpc/client";
+import { RPCLink } from "@orpc/client/fetch";
 
 const LOCAL_SERVER_FALLBACK = "http://localhost:5005";
 
@@ -13,14 +13,14 @@ const normalizedServerUrl =
 
 if (!normalizedServerUrl) {
   throw new Error(
-    "VITE_SERVER_URL must be configured for the marketing app in production."
+    "VITE_SERVER_URL must be configured for the marketing app in production.",
   );
 }
 
 type MarketingRouterClient = {
   marketing: {
     submitContact: (
-      input: MarketingContractInputs["submitContact"]
+      input: MarketingContractInputs["submitContact"],
     ) => Promise<MarketingContractOutputs["submitContact"]>;
   };
 };

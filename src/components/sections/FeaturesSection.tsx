@@ -37,7 +37,7 @@ export function FeaturesSection() {
       {
         threshold: 0.2, // Trigger when 20% of the section is visible
         rootMargin: "0px 0px -200px 0px", // Require 200px scroll-in before triggering
-      }
+      },
     );
 
     if (sectionRef.current) {
