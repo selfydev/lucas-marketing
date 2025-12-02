@@ -41,6 +41,10 @@ export function Navigation() {
       link: "/about",
     },
     {
+      name: "Blog",
+      link: "/blog",
+    },
+    {
       name: "Contact",
       link: "/contact",
     },
@@ -79,8 +83,8 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
         y: visible ? 2 : 0,
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
+        "relative z-[60] mx-auto hidden max-w-7xl flex-row items-center justify-between self-start rounded-full border border-white/5 bg-white/5 px-4 py-2 backdrop-blur-xl lg:flex dark:border-white/5 dark:bg-neutral-950/80",
+        visible && "bg-white/80 dark:bg-neutral-950/80"
       )}
       onMouseLeave={() => {
         setHovered(null);
@@ -290,8 +294,8 @@ function MobileNav({ navItems, visible }: NavbarProps) {
           borderRadius: open ? "1.4rem 1.4rem 1.4rem 1.4rem" : "1.4rem",
         }}
         className={cn(
-          "relative z-[60] mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between overflow-hidden bg-transparent px-4 py-3 lg:hidden",
-          (visible || open) && "bg-white/80 dark:bg-neutral-950/80",
+          "relative z-[60] mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between overflow-hidden border border-white/60 bg-white/80 px-4 py-3 backdrop-blur-xl lg:hidden dark:border-white/10 dark:bg-neutral-950/80",
+          (visible || open) && "bg-white/80 dark:bg-neutral-950/80"
         )}
         transition={{
           type: "spring",

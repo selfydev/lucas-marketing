@@ -2,11 +2,50 @@ import path from "node:path";
 import tailwindcss from "@tailwindcss/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react-swc";
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
+
+// Plugin to handle sitemap.xml and rss.xml routes
+function xmlRoutesPlugin(): Plugin {
+  return {
+    name: "xml-routes",
+    configureServer(server) {
+      server.middlewares.use(async (req, res, next) => {
+        if (req.url === "/sitemap.xml") {
+          try {
+            const { generateSitemapXML } = await import("./src/lib/server/sitemap.js");
+            const xml = await generateSitemapXML();
+            res.setHeader("Content-Type", "application/xml; charset=utf-8");
+            res.setHeader("Cache-Control", "public, max-age=3600");
+            res.end(xml);
+          } catch (error) {
+            console.error("Error generating sitemap:", error);
+            res.statusCode = 500;
+            res.end("Error generating sitemap");
+          }
+        } else if (req.url === "/blog/rss.xml") {
+          try {
+            const { generateRSSFeed } = await import("./src/lib/server/rss.js");
+            const xml = await generateRSSFeed();
+            res.setHeader("Content-Type", "application/rss+xml; charset=utf-8");
+            res.setHeader("Cache-Control", "public, max-age=3600");
+            res.end(xml);
+          } catch (error) {
+            console.error("Error generating RSS feed:", error);
+            res.statusCode = 500;
+            res.end("Error generating RSS feed");
+          }
+        } else {
+          next();
+        }
+      });
+    },
+  };
+}
 
 export default defineConfig({
   plugins: [
+    xmlRoutesPlugin(),
     tailwindcss(),
     tsconfigPaths({
       projects: [path.resolve(__dirname, "tsconfig.json")],
