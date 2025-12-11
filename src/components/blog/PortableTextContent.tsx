@@ -10,13 +10,23 @@ const components: PortableTextComponents = {
     image: ({ value }) => {
       if (!value?.asset?._ref) return null;
 
-      const altText = typeof value.alt === "string" && value.alt.trim().length > 0 ? value.alt : "Blog image";
+      const altText =
+        typeof value.alt === "string" && value.alt.trim().length > 0
+          ? value.alt
+          : "Blog image";
 
       return (
         <figure className="my-8 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
-          <img alt={altText} className="w-full" loading="lazy" src={value.url || ""} />
+          <img
+            alt={altText}
+            className="w-full"
+            loading="lazy"
+            src={value.url || ""}
+          />
           {value.caption ? (
-            <figcaption className="px-4 pb-4 pt-2 text-center text-sm text-slate-500">{value.caption}</figcaption>
+            <figcaption className="px-4 pt-2 pb-4 text-center text-slate-500 text-sm">
+              {value.caption}
+            </figcaption>
           ) : null}
         </figure>
       );
@@ -24,19 +34,31 @@ const components: PortableTextComponents = {
   },
   block: {
     h2: ({ children }) => (
-      <h2 className="mt-10 text-3xl font-semibold text-slate-900 first:mt-0">{children}</h2>
+      <h2 className="mt-10 font-semibold text-3xl text-slate-900 first:mt-0">
+        {children}
+      </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="mt-8 text-2xl font-semibold text-slate-900 first:mt-0">{children}</h3>
+      <h3 className="mt-8 font-semibold text-2xl text-slate-900 first:mt-0">
+        {children}
+      </h3>
     ),
-    normal: ({ children }) => <p className="leading-relaxed text-slate-700">{children}</p>,
+    normal: ({ children }) => (
+      <p className="text-slate-700 leading-relaxed">{children}</p>
+    ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-cyan-500 pl-4 italic text-slate-800">{children}</blockquote>
+      <blockquote className="border-cyan-500 border-l-4 pl-4 text-slate-800 italic">
+        {children}
+      </blockquote>
     ),
   },
   list: {
-    bullet: ({ children }) => <ul className="ml-6 list-disc space-y-2 text-slate-700">{children}</ul>,
-    number: ({ children }) => <ol className="ml-6 list-decimal space-y-2 text-slate-700">{children}</ol>,
+    bullet: ({ children }) => (
+      <ul className="ml-6 list-disc space-y-2 text-slate-700">{children}</ul>
+    ),
+    number: ({ children }) => (
+      <ol className="ml-6 list-decimal space-y-2 text-slate-700">{children}</ol>
+    ),
   },
   listItem: {
     bullet: ({ children }) => <li className="leading-relaxed">{children}</li>,
@@ -81,7 +103,7 @@ function PortableTextContent({ value }: PortableTextContentProps) {
   if (!value?.length) return null;
 
   return (
-    <div className="prose prose-lg prose-slate max-w-none prose-headings:text-slate-900 prose-a:text-cyan-700">
+    <div className="prose prose-lg prose-slate max-w-none prose-a:text-cyan-700 prose-headings:text-slate-900">
       <PortableText components={components} value={value} />
     </div>
   );

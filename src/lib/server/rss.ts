@@ -41,7 +41,7 @@ ${posts
       <description>${escapeXml(post.excerpt || "")}</description>
       <author>${escapeXml(post.authorName || "Lucas AI Team")}</author>
       <pubDate>${new Date(post.publishedAt).toUTCString()}</pubDate>
-    </item>`
+    </item>`,
   )
   .join("\n")}
   </channel>

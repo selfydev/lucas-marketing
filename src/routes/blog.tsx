@@ -1,9 +1,13 @@
-import { Outlet, createFileRoute, useRouterState } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  Outlet,
+  useRouterState,
+} from "@tanstack/react-router";
 import { BlogList } from "@/components/blog/BlogList";
 import { Button } from "@/components/ui/button";
 import { calculateReadingTime, fetchBlogIndex } from "@/lib/queries/blog";
-import type { BlogPost } from "@/lib/types/blog";
 import { generateMetadata } from "@/lib/seo";
+import type { BlogPost } from "@/lib/types/blog";
 
 type BlogPostWithMeta = BlogPost & { readingTime: number | null };
 
@@ -18,7 +22,11 @@ export const Route = createFileRoute("/blog")({
 
     return {
       meta: [
-        { title: metadata.meta.find((m) => m.property === "og:title")?.content || "Lucas AI Blog" },
+        {
+          title:
+            metadata.meta.find((m) => m.property === "og:title")?.content ||
+            "Lucas AI Blog",
+        },
         ...metadata.meta,
       ],
       links: metadata.links,
@@ -38,7 +46,8 @@ export const Route = createFileRoute("/blog")({
       readingTime: calculateReadingTime(post.body),
     }));
 
-    const heroImage = posts.find((post) => post.coverImage?.url)?.coverImage?.url;
+    const heroImage = posts.find((post) => post.coverImage?.url)?.coverImage
+      ?.url;
 
     return {
       ...index,
@@ -50,7 +59,8 @@ export const Route = createFileRoute("/blog")({
 });
 
 function sanitizePage(page?: unknown) {
-  const parsed = typeof page === "string" ? Number.parseInt(page, 10) : Number(page ?? 1);
+  const parsed =
+    typeof page === "string" ? Number.parseInt(page, 10) : Number(page ?? 1);
 
   if (Number.isNaN(parsed) || parsed < 1) {
     return 1;
@@ -61,7 +71,8 @@ function sanitizePage(page?: unknown) {
 
 function BlogRoute() {
   const isViewingPost = useRouterState({
-    select: (state) => state.matches.some((match) => match.routeId === "/blog/$slug"),
+    select: (state) =>
+      state.matches.some((match) => match.routeId === "/blog/$slug"),
   });
 
   if (isViewingPost) {
@@ -87,20 +98,26 @@ function BlogIndexPage() {
   };
 
   return (
-    <main className="bg-white pb-16 pt-32">
+    <main className="bg-white pt-32 pb-16">
       <section className="relative isolate overflow-hidden px-6 py-16 sm:px-8 lg:px-12">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-50 via-white to-emerald-50" aria-hidden="true" />
+        <div
+          className="-z-10 absolute inset-0 bg-gradient-to-br from-cyan-50 via-white to-emerald-50"
+          aria-hidden="true"
+        />
         <div className="mx-auto flex max-w-5xl flex-col gap-10 lg:flex-row lg:items-center">
           <div className="flex-1 space-y-4 text-left">
-            <p className="text-sm font-semibold uppercase tracking-wide text-cyan-700">Lucas AI Blog</p>
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+            <p className="font-semibold text-cyan-700 text-sm uppercase tracking-wide">
+              Lucas AI Blog
+            </p>
+            <h1 className="font-bold text-4xl text-slate-900 tracking-tight sm:text-5xl">
               Practical guidance for every stage of the admissions journey
             </h1>
             <p className="max-w-3xl text-lg text-slate-600">
-              Learn how Lucas supports students with essays, interviews, and application strategy. Read the latest product
-              updates, success stories, and guidance from our team.
+              Learn how Lucas supports students with essays, interviews, and
+              application strategy. Read the latest product updates, success
+              stories, and guidance from our team.
             </p>
-            <div className="flex flex-wrap gap-3 text-sm text-slate-600">
+            <div className="flex flex-wrap gap-3 text-slate-600 text-sm">
               <span className="rounded-full bg-cyan-50 px-4 py-2 font-medium text-cyan-800">
                 {total} {total === 1 ? "article" : "articles"}
               </span>
@@ -116,7 +133,10 @@ function BlogIndexPage() {
                 className="h-full w-full object-cover"
                 src={heroImage}
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-slate-900/10 to-transparent" aria-hidden="true" />
+              <div
+                className="absolute inset-0 bg-gradient-to-tr from-slate-900/10 to-transparent"
+                aria-hidden="true"
+              />
             </div>
           ) : null}
         </div>
@@ -127,7 +147,7 @@ function BlogIndexPage() {
 
         {totalPages > 1 ? (
           <div className="mt-10 flex items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-            <div className="text-sm text-slate-600">
+            <div className="text-slate-600 text-sm">
               Showing page {page} of {totalPages}
             </div>
             <div className="flex items-center gap-3">

@@ -23,9 +23,11 @@ export interface RSSPost {
 /**
  * Fetch recent blog posts for RSS feed generation
  */
-export async function fetchRecentBlogPostsForRSS(limit = 20): Promise<RSSPost[]> {
+export async function fetchRecentBlogPostsForRSS(
+  limit = 20,
+): Promise<RSSPost[]> {
   const client = getSanityClient();
-  
+
   const query = `*[_type == "Post" && !(_id in path("drafts.**"))] | order(PublishedAt desc) [0...${limit}] {
     Title,
     "slug": SlugCurrent.current,

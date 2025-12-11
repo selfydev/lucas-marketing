@@ -7,10 +7,14 @@ function getSanityClient() {
   const projectId = process.env.VITE_SANITY_PROJECT_ID;
   const dataset = process.env.VITE_SANITY_DATASET;
   if (!projectId) {
-    throw new Error("Missing required environment variable: VITE_SANITY_PROJECT_ID");
+    throw new Error(
+      "Missing required environment variable: VITE_SANITY_PROJECT_ID",
+    );
   }
   if (!dataset) {
-    throw new Error("Missing required environment variable: VITE_SANITY_DATASET");
+    throw new Error(
+      "Missing required environment variable: VITE_SANITY_DATASET",
+    );
   }
   return createClient({
     projectId,
@@ -61,7 +65,7 @@ ${staticRoutes
     <lastmod>${currentDate}</lastmod>
     <changefreq>${route.changefreq}</changefreq>
     <priority>${route.priority}</priority>
-  </url>`
+  </url>`,
   )
   .join("\n")}
 ${blogSlugs
@@ -71,7 +75,7 @@ ${blogSlugs
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
-  </url>`
+  </url>`,
   )
   .join("\n")}
 </urlset>`;

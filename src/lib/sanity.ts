@@ -1,4 +1,8 @@
-import { createClient, type ClientConfig, type SanityClient } from "@sanity/client";
+import {
+  type ClientConfig,
+  createClient,
+  type SanityClient,
+} from "@sanity/client";
 
 export const SANITY_API_VERSION = "2025-02-15";
 

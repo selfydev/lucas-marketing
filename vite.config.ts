@@ -13,7 +13,9 @@ function xmlRoutesPlugin(): Plugin {
       server.middlewares.use(async (req, res, next) => {
         if (req.url === "/sitemap.xml") {
           try {
-            const { generateSitemapXML } = await import("./src/lib/server/sitemap.js");
+            const { generateSitemapXML } = await import(
+              "./src/lib/server/sitemap.js"
+            );
             const xml = await generateSitemapXML();
             res.setHeader("Content-Type", "application/xml; charset=utf-8");
             res.setHeader("Cache-Control", "public, max-age=3600");

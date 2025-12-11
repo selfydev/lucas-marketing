@@ -21,7 +21,10 @@ export async function fetchBlogIndex({
   pageSize = BLOG_PAGE_SIZE,
 }: Partial<{ page: number; pageSize: number }> = {}): Promise<BlogIndexResult> {
   const clampedPage = Number.isInteger(page) && page && page > 0 ? page : 1;
-  const safePageSize = Number.isInteger(pageSize) && pageSize && pageSize > 0 ? pageSize : BLOG_PAGE_SIZE;
+  const safePageSize =
+    Number.isInteger(pageSize) && pageSize && pageSize > 0
+      ? pageSize
+      : BLOG_PAGE_SIZE;
   const start = (clampedPage - 1) * safePageSize;
   const end = start + safePageSize;
 
@@ -45,7 +48,9 @@ export async function fetchBlogIndex({
   };
 }
 
-export async function fetchBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+export async function fetchBlogPostBySlug(
+  slug: string,
+): Promise<BlogPost | null> {
   if (!slug) {
     return null;
   }
@@ -77,7 +82,11 @@ export function calculateReadingTime(blocks?: PortableTextBlock[]) {
       }
 
       return (block.children ?? [])
-        .map((child) => (typeof child === "object" && "text" in child ? (child as { text?: string }).text ?? "" : ""))
+        .map((child) =>
+          typeof child === "object" && "text" in child
+            ? ((child as { text?: string }).text ?? "")
+            : "",
+        )
         .join(" ")
         .split(/\s+/);
     })

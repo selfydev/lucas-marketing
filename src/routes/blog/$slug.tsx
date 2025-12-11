@@ -1,13 +1,10 @@
-import { Link, createFileRoute, notFound } from "@tanstack/react-router";
-import { PostHeader } from "@/components/blog/PostHeader";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PortableTextContent } from "@/components/blog/PortableTextContent";
+import { PostHeader } from "@/components/blog/PostHeader";
 import { buildPostOgImage } from "@/lib/blog";
-import {
-  calculateReadingTime,
-  fetchBlogPostBySlug,
-} from "@/lib/queries/blog";
-import type { BlogPost } from "@/lib/types/blog";
+import { calculateReadingTime, fetchBlogPostBySlug } from "@/lib/queries/blog";
 import { generateMetadata } from "@/lib/seo";
+import type { BlogPost } from "@/lib/types/blog";
 
 type BlogPostWithMeta = BlogPost & { readingTime: number | null };
 
@@ -29,10 +26,16 @@ export const Route = createFileRoute("/blog/$slug")({
     }
 
     const seoTitle =
-      loaderData.seo?.og?.title || loaderData.seo?.title || `${loaderData.title} | Lucas AI Blog`;
+      loaderData.seo?.og?.title ||
+      loaderData.seo?.title ||
+      `${loaderData.title} | Lucas AI Blog`;
     const seoDescription =
-      loaderData.seo?.og?.description || loaderData.seo?.description || loaderData.excerpt || loaderData.title;
-    const seoImage = loaderData.seo?.og?.image?.url || buildPostOgImage(loaderData);
+      loaderData.seo?.og?.description ||
+      loaderData.seo?.description ||
+      loaderData.excerpt ||
+      loaderData.title;
+    const seoImage =
+      loaderData.seo?.og?.image?.url || buildPostOgImage(loaderData);
 
     const metadata = generateMetadata({
       title: seoTitle,
@@ -44,7 +47,11 @@ export const Route = createFileRoute("/blog/$slug")({
 
     return {
       meta: [
-        { title: metadata.meta.find((m) => m.property === "og:title")?.content || loaderData.title },
+        {
+          title:
+            metadata.meta.find((m) => m.property === "og:title")?.content ||
+            loaderData.title,
+        },
         ...metadata.meta,
       ],
       links: metadata.links,
@@ -69,7 +76,7 @@ function BlogPostPage() {
       <section className="mx-auto max-w-3xl px-6 pt-12 sm:px-8">
         <PortableTextContent value={post.body} />
 
-        <div className="mt-12 border-t border-slate-200 pt-6 text-sm text-slate-600">
+        <div className="mt-12 border-slate-200 border-t pt-6 text-slate-600 text-sm">
           <Link
             className="font-semibold text-cyan-700 underline-offset-4 transition hover:text-cyan-800 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2"
             search={{ page }}
