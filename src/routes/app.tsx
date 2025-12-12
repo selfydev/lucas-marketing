@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import Lottie from "lottie-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { ONBOARDING_STEPS, OnboardingCard } from "@/components/OnboardingCard";
 import { LUCAS_BOT_CONTACT } from "@/lib/vcf";
+import lucasAnimation from "@/assets/lottie/lucas-animated.json";
 
 export const Route = createFileRoute("/app")({
   ssr: false,
@@ -10,16 +12,26 @@ export const Route = createFileRoute("/app")({
 });
 
 function AppPage() {
+  const [animationComplete, setAnimationComplete] = useState(false);
   const [showCard, setShowCard] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
 
   const totalSteps = ONBOARDING_STEPS.length;
 
+  // First: animation completes and fades out, background fades in
   useEffect(() => {
-    const timer = setTimeout(() => setShowCard(true), 2000);
-    return () => clearTimeout(timer);
+    const animationTimer = setTimeout(() => setAnimationComplete(true), 5000);
+    return () => clearTimeout(animationTimer);
   }, []);
+
+  // Second: card appears after background transition completes
+  useEffect(() => {
+    if (animationComplete) {
+      const cardTimer = setTimeout(() => setShowCard(true), 800);
+      return () => clearTimeout(cardTimer);
+    }
+  }, [animationComplete]);
 
   const handleContinue = () => {
     if (currentStep < totalSteps - 1) {
@@ -32,77 +44,52 @@ function AppPage() {
 
   return (
     <main className="relative h-screen w-full overflow-hidden bg-white">
-      {/* Background image - covers entire viewport */}
-      <div className="absolute inset-0">
+      {/* Background image - shows after animation */}
+      <motion.div
+        animate={{ opacity: animationComplete ? 1 : 0 }}
+        className="absolute inset-0"
+        initial={{ opacity: 0 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+      >
         <img
           alt=""
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-bottom"
           src="/assets/app-hero-bg.png"
         />
-      </div>
+      </motion.div>
 
-      {/* Gradient overlay - fades when card appears */}
+      {/* Gradient overlay - fades in with background, dims when card appears */}
       <motion.div
-        animate={{ opacity: showCard ? 0.4 : 1 }}
-        className="absolute top-0 left-0 h-full w-full bg-linear-to-b from-[rgba(61,131,177,0.8)] to-[rgba(200,231,249,0)]"
-        transition={{ duration: 0.6 }}
+        animate={{ opacity: animationComplete ? (showCard ? 0.4 : 0.8) : 0 }}
+        className="absolute inset-0 bg-linear-to-b from-[rgba(61,131,177,0.8)] to-[rgba(200,231,249,0)]"
+        initial={{ opacity: 0 }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
       />
 
-      {/* Foreground gradient layer - slides down and out */}
+      {/* Lottie animation - full bleed intro */}
       <AnimatePresence>
-        {!showCard && (
+        {!animationComplete && (
           <motion.div
-            animate={{ opacity: 1, y: 0 }}
-            className="-mb-64 absolute inset-x-0 bottom-0 h-[85vh]"
-            exit={{ opacity: 0, y: "30vh" }}
-            initial={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-          >
-            <img
-              alt=""
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 size-full object-cover object-bottom"
-              src="/assets/app-hero-gradient.png"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Logo - always visible */}
-      <img
-        alt="Lucas"
-        className="-translate-x-1/2 absolute top-16 left-1/2 z-10 h-12 w-16 md:top-[121px] md:h-16 md:w-20"
-        src="/assets/logo-white-full.svg"
-      />
-
-      {/* Hero title - fades out */}
-      <AnimatePresence>
-        {!showCard && (
-          <motion.h1
-            animate={{ opacity: 1, y: 0 }}
-            className="-translate-x-1/2 absolute top-[calc(50%-132px)] left-1/2 w-full max-w-[calc(100%-2rem)] text-center font-serif text-5xl text-white tracking-[-2px] sm:max-w-[calc(100%-4rem)] sm:text-7xl sm:tracking-[-3px] md:text-8xl md:tracking-[-4px] lg:top-[calc(50%-157px)] lg:max-w-none lg:text-[130px] lg:tracking-[-5.2px]"
-            exit={{ opacity: 0, y: -20 }}
-            initial={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            School on Autopilot
-          </motion.h1>
-        )}
-      </AnimatePresence>
-
-      {/* Hero subtitle - fades out */}
-      <AnimatePresence>
-        {!showCard && (
-          <motion.p
             animate={{ opacity: 1 }}
-            className="-translate-x-1/2 absolute top-[calc(50%+10px)] left-1/2 w-full max-w-[calc(100%-2rem)] text-center font-mono font-normal text-lg text-white tracking-[-0.3px] sm:max-w-[calc(100%-4rem)] sm:text-xl md:text-2xl lg:top-[calc(50%+12px)] lg:max-w-none lg:text-[28px] lg:tracking-[-0.56px]"
+            className="absolute inset-0 z-10 flex items-center justify-center bg-white"
             exit={{ opacity: 0 }}
             initial={{ opacity: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: 1, ease: "easeInOut" }}
           >
-            Let's get started
-          </motion.p>
+            <Lottie
+              animationData={lucasAnimation}
+              autoplay
+              loop={false}
+              rendererSettings={{
+                preserveAspectRatio: "xMidYMid slice",
+              }}
+              style={{
+                width: "100%",
+                height: "100%",
+              }}
+            />
+          </motion.div>
         )}
       </AnimatePresence>
 
