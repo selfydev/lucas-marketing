@@ -13,7 +13,7 @@ const ONBOARDING_STEPS = [
     button: "continue",
   },
   {
-    title: "wanna grab my number?",
+    title: "grab my number",
     body: ["we can talk admissions all day long,", "whenever you need me."],
     button: "add me to your contacts",
   },
