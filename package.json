@@ -15,12 +15,8 @@
 	"dependencies": {
 		"@lucas-ai/contracts": "workspace:*",
 		"@orpc/client": "^1.12.2",
-		"@portabletext/react": "^6.0.0",
-		"@portabletext/types": "^4.0.0",
 		"@radix-ui/react-accordion": "^1.2.12",
 		"@radix-ui/react-slot": "^1.2.4",
-		"@sanity/client": "^7.13.2",
-		"@sanity/image-url": "^2.0.2",
 		"@tailwindcss/vite": "^4.1.17",
 		"@tanstack/react-router": "^1.140.5",
 		"@tanstack/react-router-devtools": "^1.140.5",

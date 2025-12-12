@@ -5,9 +5,6 @@ import sticky_note_cross from "/assets/sticky-note-cross.png";
 
 const navigationLinks = [
   { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
-  { label: "Pricing", href: "/#" },
-  { label: "Enterprise", href: "/#" },
   { label: "Contact", href: "/contact" },
 ];
 

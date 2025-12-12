@@ -41,10 +41,6 @@ export function Navigation() {
       link: "/about",
     },
     {
-      name: "Blog",
-      link: "/blog",
-    },
-    {
       name: "Contact",
       link: "/contact",
     },
@@ -109,7 +105,7 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
           <Link
             className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
             key={navItem.link}
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent) => {
               if (navItem.link.startsWith("#")) {
                 e.preventDefault();
                 const targetId = navItem.link.replace("#", "");
@@ -349,7 +345,7 @@ function MobileNav({ navItems, visible }: NavbarProps) {
                   >
                     <Link
                       className="relative block py-2 text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
-                      onClick={(e) => {
+                      onClick={(e: React.MouseEvent) => {
                         if (navItem.link.startsWith("#")) {
                           e.preventDefault();
                           closeMenu();
