@@ -7,6 +7,10 @@ const POSTHOG_HOST = "/badabing";
 let isInitialized = false;
 
 function shouldEnableAnalytics(): boolean {
+  // Disable analytics in development
+  if (import.meta.env.DEV) {
+    return false;
+  }
   return typeof window !== "undefined" && POSTHOG_KEY.length > 0;
 }
 

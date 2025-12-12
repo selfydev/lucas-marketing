@@ -12,6 +12,7 @@ import {
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
+import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 
 interface NavbarProps {
@@ -20,6 +21,9 @@ interface NavbarProps {
     link: string;
   }[];
   visible: boolean;
+  session: ReturnType<typeof authClient.useSession>["data"];
+  isLoading: boolean;
+  onSignOut: () => void;
 }
 
 export function Navigation() {
@@ -48,6 +52,11 @@ export function Navigation() {
 
   const { scrollY } = useScroll();
   const [visible, setVisible] = useState<boolean>(false);
+  const { data: session, isPending: isLoading } = authClient.useSession();
+
+  const handleSignOut = async () => {
+    await authClient.signOut();
+  };
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 100) {
@@ -59,14 +68,33 @@ export function Navigation() {
 
   return (
     <motion.div className="fixed inset-x-0 top-0 z-50 w-full pt-2 lg:pt-4">
-      <DesktopNav navItems={navItems} visible={visible} />
-      <MobileNav navItems={navItems} visible={visible} />
+      <DesktopNav
+        isLoading={isLoading}
+        navItems={navItems}
+        onSignOut={handleSignOut}
+        session={session}
+        visible={visible}
+      />
+      <MobileNav
+        isLoading={isLoading}
+        navItems={navItems}
+        onSignOut={handleSignOut}
+        session={session}
+        visible={visible}
+      />
     </motion.div>
   );
 }
 
-function DesktopNav({ navItems, visible }: NavbarProps) {
+function DesktopNav({
+  navItems,
+  visible,
+  session,
+  isLoading,
+  onSignOut,
+}: NavbarProps) {
   const [hovered, setHovered] = useState<number | null>(null);
+  const appUrl = import.meta.env.VITE_APP_URL ?? "https://app.meetlucas.ai";
 
   return (
     <motion.div
@@ -132,46 +160,75 @@ function DesktopNav({ navItems, visible }: NavbarProps) {
         ))}
       </motion.div>
       <div className="flex items-center gap-4">
-        <AnimatePresence initial={false} mode="popLayout">
-          {!visible && (
-            <motion.div
-              animate={{
-                x: 0,
-                opacity: [0, 0, 1],
-              }}
-              exit={{
-                x: 100,
-                opacity: [0, 0, 0],
-              }}
-              initial={{
-                x: 100,
-                opacity: 0,
-              }}
-              transition={{
-                duration: 0.5,
-                ease: "easeOut",
-              }}
+        {isLoading ? (
+          <div className="h-9 w-20 animate-pulse rounded-full bg-gray-200 dark:bg-neutral-800" />
+        ) : session?.user ? (
+          <>
+            <Button
+              asChild
+              className="hidden bg-primary text-white hover:bg-primary/90 md:block"
             >
-              <Button asChild className="hidden md:block" variant="ghost">
-                <a href="https://app.meetlucas.ai/sign-in">Log in</a>
-              </Button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <Button
-          asChild
-          className="hidden bg-primary text-white hover:bg-primary/90 md:block"
-        >
-          <a href="https://app.meetlucas.ai/sign-up">Sign up</a>
-        </Button>
+              <a href={appUrl}>Go to App</a>
+            </Button>
+            <Button
+              className="hidden md:block"
+              onClick={onSignOut}
+              variant="ghost"
+            >
+              Sign out
+            </Button>
+          </>
+        ) : (
+          <>
+            <AnimatePresence initial={false} mode="popLayout">
+              {!visible && (
+                <motion.div
+                  animate={{
+                    x: 0,
+                    opacity: [0, 0, 1],
+                  }}
+                  exit={{
+                    x: 100,
+                    opacity: [0, 0, 0],
+                  }}
+                  initial={{
+                    x: 100,
+                    opacity: 0,
+                  }}
+                  transition={{
+                    duration: 0.5,
+                    ease: "easeOut",
+                  }}
+                >
+                  <Button asChild className="hidden md:block" variant="ghost">
+                    <a href={`${appUrl}/sign-in`}>Log in</a>
+                  </Button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <Button
+              asChild
+              className="hidden bg-primary text-white hover:bg-primary/90 md:block"
+            >
+              <a href={`${appUrl}/sign-up`}>Sign up</a>
+            </Button>
+          </>
+        )}
       </div>
     </motion.div>
   );
 }
 
-function MobileNav({ navItems, visible }: NavbarProps) {
+function MobileNav({
+  navItems,
+  visible,
+  session,
+  isLoading,
+  onSignOut,
+}: NavbarProps) {
   const [open, setOpen] = useState(false);
   const [hasOpened, setHasOpened] = useState(false);
+  const appUrl = import.meta.env.VITE_APP_URL ?? "https://app.meetlucas.ai";
 
   const openMenu = () => {
     setHasOpened(true);
@@ -184,7 +241,22 @@ function MobileNav({ navItems, visible }: NavbarProps) {
 
   const handleSignup = () => {
     closeMenu();
-    window.location.href = "https://app.meetlucas.ai/sign-up";
+    window.location.href = `${appUrl}/sign-up`;
+  };
+
+  const handleLogin = () => {
+    closeMenu();
+    window.location.href = `${appUrl}/sign-in`;
+  };
+
+  const handleGoToApp = () => {
+    closeMenu();
+    window.location.href = appUrl;
+  };
+
+  const handleSignOut = () => {
+    closeMenu();
+    onSignOut();
   };
 
   useEffect(() => {
@@ -371,21 +443,45 @@ function MobileNav({ navItems, visible }: NavbarProps) {
                   className="w-full space-y-3 pt-4"
                   variants={itemVariants}
                 >
-                  <Button
-                    className="block w-full"
-                    onClick={handleSignup}
-                    type="button"
-                    variant="outline"
-                  >
-                    Log in
-                  </Button>
-                  <Button
-                    className="block w-full bg-primary text-white hover:bg-primary/90"
-                    onClick={handleSignup}
-                    type="button"
-                  >
-                    Sign up
-                  </Button>
+                  {isLoading ? (
+                    <div className="h-10 w-full animate-pulse rounded-md bg-gray-200 dark:bg-neutral-800" />
+                  ) : session?.user ? (
+                    <>
+                      <Button
+                        className="block w-full bg-primary text-white hover:bg-primary/90"
+                        onClick={handleGoToApp}
+                        type="button"
+                      >
+                        Go to App
+                      </Button>
+                      <Button
+                        className="block w-full"
+                        onClick={handleSignOut}
+                        type="button"
+                        variant="outline"
+                      >
+                        Sign out
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button
+                        className="block w-full"
+                        onClick={handleLogin}
+                        type="button"
+                        variant="outline"
+                      >
+                        Log in
+                      </Button>
+                      <Button
+                        className="block w-full bg-primary text-white hover:bg-primary/90"
+                        onClick={handleSignup}
+                        type="button"
+                      >
+                        Sign up
+                      </Button>
+                    </>
+                  )}
                 </motion.div>
               </motion.div>
             </motion.div>

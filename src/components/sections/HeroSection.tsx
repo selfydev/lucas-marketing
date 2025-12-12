@@ -46,7 +46,7 @@ export function HeroSection() {
                   so easy
                 </span>
                 <br />
-                <span className="relative inline-block italic tracking-[-1.62px] [font-family:'Instrument_Serif',Helvetica] sm:tracking-[-1.20px] md:tracking-[-1.40px] lg:tracking-[-1.62px]">
+                <span className="relative inline-block font-serif italic tracking-[-1.62px] sm:tracking-[-1.20px] md:tracking-[-1.40px] lg:tracking-[-1.62px]">
                   it feels like{" "}
                   <span className="relative inline-block">
                     <img
@@ -65,9 +65,7 @@ export function HeroSection() {
                       }}
                       width="100"
                     />
-                    <span className="relative" style={{ zIndex: 1 }}>
-                      cheating
-                    </span>
+                    <span className="relative z-10">cheating</span>
                   </span>
                 </span>
               </span>
@@ -78,7 +76,7 @@ export function HeroSection() {
                   College prep so easy
                 </span>
                 <br />
-                <span className="relative inline-block italic tracking-[-1.62px] [font-family:'Instrument_Serif',Helvetica] sm:tracking-[-1.20px] md:tracking-[-1.40px] lg:tracking-[-1.62px]">
+                <span className="relative inline-block font-serif italic tracking-[-1.62px] sm:tracking-[-1.20px] md:tracking-[-1.40px] lg:tracking-[-1.62px]">
                   it feels like{" "}
                   <span className="relative inline-block">
                     <img
@@ -97,9 +95,7 @@ export function HeroSection() {
                       }}
                       width="100"
                     />
-                    <span className="relative" style={{ zIndex: 1 }}>
-                      cheating
-                    </span>
+                    <span className="relative z-10">cheating</span>
                   </span>
                 </span>
               </span>

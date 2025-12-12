@@ -26,13 +26,7 @@ export function AboutHeroSection() {
                 }}
                 width="100"
               />
-              <span
-                className="relative italic tracking-[-0.02em]"
-                style={{
-                  zIndex: 1,
-                  fontFamily: "'Instrument Serif', serif",
-                }}
-              >
+              <span className="relative z-10 font-serif italic tracking-[-0.02em]">
                 every student
               </span>
             </span>

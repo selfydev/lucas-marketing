@@ -145,14 +145,50 @@
 	font-display: swap;
 }
 
-/* Override default sans font to use Neue Montreal */
+/* Geist Mono Font Declaration */
+@font-face {
+	font-family: "Geist Mono";
+	src: url("/fonts/GeistMono-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Cigars Serif Font Declarations */
+@font-face {
+	font-family: "Cigars";
+	src: url("/fonts/hw-cigars-regular.otf") format("opentype");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Cigars";
+	src: url("/fonts/hw-cigars-medium.otf") format("opentype");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Cigars";
+	src: url("/fonts/hw-cigars-bold.otf") format("opentype");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Override default fonts */
 @theme {
 	--font-sans:
 		"Neue Montreal", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
 		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 	--font-serif:
-		"Instrument Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times,
-		serif;
+		"Cigars", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	--font-mono:
+		"Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+		"Liberation Mono", "Courier New", monospace;
 }
 
 /* AI Input Field - Enhanced Glass Effect with Gradient Border */
@@ -369,4 +405,12 @@
 
 .testimonials-scroll-up {
 	animation: testimonialsScrollUp 30s linear infinite;
+}
+
+/* Onboarding Card - Glass Effect */
+.onboarding-card {
+	background: rgba(255, 255, 255, 0.85);
+	backdrop-filter: blur(13.6px);
+	-webkit-backdrop-filter: blur(13.6px);
+	box-shadow: 0px 14px 21.1px -5px rgba(0, 0, 0, 0.04);
 }

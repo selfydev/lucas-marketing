@@ -34,13 +34,13 @@ export function AboutUsSection() {
           <h2 className="mx-auto max-w-[824px] space-y-2 px-2 text-center font-medium text-[46px] text-foreground leading-[1.05] tracking-[-1.8px] sm:text-3xl sm:tracking-[-1.2px] md:text-5xl md:tracking-[-1.5px] lg:text-[65px]">
             <span className="block text-[0.9em] leading-tight">
               The
-              <span className="ml-2 inline-block italic tracking-[-1.8px] [font-family:'Instrument_Serif',serif]">
+              <span className="ml-2 inline-block font-serif italic tracking-[-1.8px]">
                 college
               </span>
             </span>
             <span className="block text-[0.9em] leading-tight">
               <span className="relative inline-flex flex-wrap items-baseline justify-center gap-x-2">
-                <span className="relative inline-block italic tracking-[-1.8px] [font-family:'Instrument_Serif',serif]">
+                <span className="relative inline-block font-serif italic tracking-[-1.8px]">
                   <span className="relative inline-block">
                     <img
                       alt="Highlight"
@@ -61,7 +61,7 @@ export function AboutUsSection() {
                     <span className="relative z-10 px-1">admission</span>
                   </span>
                 </span>
-                <span className="italic tracking-[-1.8px] [font-family:'Instrument_Serif',serif]">
+                <span className="font-serif italic tracking-[-1.8px]">
                   genius
                 </span>
               </span>
