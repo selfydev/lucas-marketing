@@ -2,7 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
 import { ONBOARDING_STEPS, OnboardingCard } from "@/components/OnboardingCard";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import { LUCAS_BOT_CONTACT } from "@/lib/vcf";
+
+const MotionOptimizedImage = motion.create(OptimizedImage);
 
 // =============================================================================
 // ANIMATION CONFIGURATION
@@ -116,10 +119,11 @@ function AppPage() {
   return (
     <main className="relative h-screen w-full overflow-hidden bg-white">
       {/* Background - static, always visible */}
-      <img
+      <OptimizedImage
         alt=""
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 size-full object-cover object-bottom"
+        priority
         src="/assets/app-hero-bg.png"
       />
 
@@ -132,11 +136,12 @@ function AppPage() {
       />
 
       {/* Logo - persistent after initial animation */}
-      <motion.img
+      <MotionOptimizedImage
         alt="Lucas"
         animate={{ opacity: 1, y: 0 }}
         className="-translate-x-1/2 absolute top-16 left-1/2 z-30 h-12 w-16 md:top-24 md:h-16 md:w-20"
         initial={{ opacity: 0, y: -10 }}
+        priority
         src="/assets/logo-white-full.svg"
         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
       />
@@ -151,7 +156,7 @@ function AppPage() {
             transition={{ duration: 1, ease: "easeInOut" }}
           >
             {/* Bushes - animated zoom from bottom */}
-            <motion.img
+            <MotionOptimizedImage
               alt=""
               animate={{ scale: bushesAnimation.animateScale }}
               aria-hidden="true"
@@ -160,6 +165,7 @@ function AppPage() {
                 scale: bushesAnimation.initialScale,
                 y: bushesAnimation.initialY,
               }}
+              priority
               src="/assets/app-hero-gradient.png"
               transition={{
                 duration: TIMING.bushesZoom,

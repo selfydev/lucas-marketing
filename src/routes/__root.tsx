@@ -12,6 +12,7 @@ import type * as React from "react";
 import { useEffect, useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { capturePageview, initPostHog } from "@/lib/analytics/posthog";
+import { cdn } from "@/lib/cdn";
 import { generateMetadata } from "@/lib/seo";
 import appCss from "@/styles/app.css?url";
 
@@ -27,7 +28,16 @@ export const Route = createRootRoute({
         },
         ...metadata.meta,
       ],
-      links: [{ rel: "stylesheet", href: appCss }, ...metadata.links],
+      links: [
+        { rel: "stylesheet", href: appCss },
+        // Preload critical LCP image (Dashboard in hero slider)
+        {
+          rel: "preload",
+          href: cdn("/assets/Dashboard2.png", 1024),
+          as: "image",
+        },
+        ...metadata.links,
+      ],
       scripts: metadata.scripts,
     };
   },
@@ -54,7 +64,6 @@ function RootComponent() {
         },
       }),
   );
-
 
   useEffect(() => {
     initPostHog();

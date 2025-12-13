@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import { downloadLucasContact } from "@/lib/vcf";
 
 const ONBOARDING_STEPS = [
@@ -116,10 +117,13 @@ export function OnboardingCard({
       <div className="onboarding-card relative flex w-[440px] max-w-[calc(100vw-2rem)] flex-col items-center rounded-[22px] px-3 py-8">
         {/* Illustration - static, doesn't animate */}
         <div className="mb-4 h-[170px] w-[122px] overflow-hidden">
-          <img
+          <OptimizedImage
             alt="Lucas landscape illustration"
             className="size-full object-contain"
+            height={170}
+            sizes="122px"
             src="/assets/imessage-illustration.png"
+            width={122}
           />
         </div>
 

@@ -7,6 +7,7 @@ import {
   useTransform,
 } from "motion/react";
 import { useLayoutEffect, useRef, useState } from "react";
+import { cdn, srcset } from "@/lib/cdn";
 import { cn } from "@/lib/utils";
 
 interface BeforeAfterSliderProps {
@@ -59,7 +60,9 @@ export function BeforeAfterSlider({
         alt="After"
         className="absolute inset-0 h-full w-full object-cover"
         data-testid="img-after"
-        src={afterImage}
+        sizes="(max-width: 768px) 100vw, 800px"
+        src={cdn(afterImage, 1024)}
+        srcSet={srcset(afterImage)}
       />
 
       {/* Before Image (Overlay with clip-path reveal) */}
@@ -67,7 +70,9 @@ export function BeforeAfterSlider({
         alt="Before"
         className="absolute inset-0 h-full w-full object-cover"
         data-testid="img-before"
-        src={beforeImage}
+        sizes="(max-width: 768px) 100vw, 800px"
+        src={cdn(beforeImage, 1024)}
+        srcSet={srcset(beforeImage)}
         style={{ clipPath }}
       />
 

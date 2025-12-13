@@ -1,4 +1,6 @@
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
+import { OptimizedImage } from "@/components/ui/optimized-image";
+import { cdn } from "@/lib/cdn";
 
 export function AppShowcaseSection() {
   return (
@@ -8,9 +10,9 @@ export function AppShowcaseSection() {
         <div
           className="pointer-events-none absolute inset-0 z-10 opacity-100"
           style={{
-            backgroundImage: "url(/assets/grain.png)",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
+            backgroundImage: `url(${cdn("/assets/grain.png", 800)})`,
+            backgroundRepeat: "repeat",
+            backgroundSize: "200px 200px",
           }}
         />
 
@@ -51,36 +53,33 @@ export function AppShowcaseSection() {
         </div>
 
         {/* Crumpled paper - top left */}
-        <img
+        <OptimizedImage
           alt="Crumpled paper ball"
           className="absolute top-[700px] right-0 h-[376px] w-60 scale-x-[-1] object-cover md:top-0 md:left-0 md:scale-x-100"
-          data-testid="img-crumpled-paper"
-          height="376"
-          loading="lazy"
+          height={376}
+          sizes="240px"
           src="/assets/crumpled-paper.png"
-          width="240"
+          width={240}
         />
 
         {/* Rubber bands - middle left */}
-        <img
+        <OptimizedImage
           alt="Rubber bands"
           className="absolute top-[331px] left-0 hidden h-[253px] w-60 object-cover md:block"
-          data-testid="img-rubber-bands"
-          height="253"
-          loading="lazy"
+          height={253}
+          sizes="240px"
           src="/assets/rubber-bands.png"
-          width="240"
+          width={240}
         />
 
         {/* Calculator - bottom left */}
-        <img
+        <OptimizedImage
           alt="Calculator"
           className="absolute top-[601px] left-0 h-[450px] w-[207px] object-cover"
-          data-testid="img-calculator"
-          height="450"
-          loading="lazy"
+          height={450}
+          sizes="207px"
           src="/assets/calculator.png"
-          width="207"
+          width={207}
         />
 
         {/* iOS Message - top right */}
@@ -95,14 +94,13 @@ export function AppShowcaseSection() {
         />
 
         {/* Phone clip - bottom right */}
-        <img
+        <OptimizedImage
           alt="Phone clip"
           className="absolute right-0 bottom-40 hidden h-[500px] w-auto object-contain md:block"
-          data-testid="img-phone-clip"
-          height="500"
-          loading="lazy"
+          height={500}
+          sizes="300px"
           src="/assets/phone-clip.png"
-          width="300"
+          width={300}
         />
       </div>
     </section>

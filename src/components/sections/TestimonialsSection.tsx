@@ -1,3 +1,5 @@
+import { OptimizedImage } from "@/components/ui/optimized-image";
+
 export function TestimonialsSection() {
   const testimonials = [
     {
@@ -224,10 +226,13 @@ export function TestimonialsSection() {
                         <div className="mt-auto flex items-center gap-3">
                           {/* Avatar */}
                           {testimonial.imageURL ? (
-                            <img
+                            <OptimizedImage
                               alt={testimonial.name}
-                              className="h-10 w-10 flex-shrink-0 rounded-full"
+                              className="h-10 w-10 flex-shrink-0 rounded-full object-cover"
+                              height={40}
+                              sizes="40px"
                               src={`/assets/profiles/${testimonial.imageURL}`}
+                              width={40}
                             />
                           ) : (
                             <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary">
