@@ -11,17 +11,21 @@ import { generateVCard, imageToBase64 } from "./generate-vcard";
 
 /**
  * Downloads or shares a VCF file
- * - On mobile: attempts Web Share API first
+ * - On iOS: uses direct download (opens native "Add to Contact" directly)
+ * - On Android: attempts Web Share API (better UX)
  * - On desktop or fallback: triggers file download
  */
 export async function downloadOrShareVCard(
   vcardContent: string,
   filename = VCF_FILENAME,
 ): Promise<void> {
-  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const isAndroid = /Android/i.test(navigator.userAgent);
 
-  // Try Web Share API on mobile (better UX - opens native contact sheet)
-  if (isMobile && navigator.share && navigator.canShare) {
+  // On Android, try Web Share API (opens native contact picker)
+  // Skip on iOS - Web Share API shows share sheet first, but direct download
+  // triggers Safari's native vCard handling which goes straight to "Add to Contact"
+  if (isAndroid && navigator.share && navigator.canShare) {
     try {
       const file = new File([vcardContent], filename, {
         type: "text/vcard",
@@ -39,7 +43,7 @@ export async function downloadOrShareVCard(
     }
   }
 
-  // Standard download fallback
+  // Direct download - on iOS Safari this opens "Add to Contact" directly
   const blob = new Blob([vcardContent], { type: "text/vcard;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
@@ -50,8 +54,12 @@ export async function downloadOrShareVCard(
   link.click();
   document.body.removeChild(link);
 
-  // Cleanup blob URL
-  URL.revokeObjectURL(url);
+  // Cleanup blob URL after a short delay to ensure iOS processes the download
+  if (isIOS) {
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  } else {
+    URL.revokeObjectURL(url);
+  }
 }
 
 /**
