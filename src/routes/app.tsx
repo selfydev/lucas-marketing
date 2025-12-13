@@ -93,13 +93,13 @@ function AppPage() {
               src="/assets/app-hero-bg.png"
             />
 
-                  {/* Gradient overlay - fades in with background, dims when card appears */}
-      <motion.div
-        animate={{ opacity: (showCard ? 0.4 : 0.8) }}
-        className="absolute inset-0 bg-linear-to-b from-[rgba(61,131,177,0.8)] to-[rgba(200,231,249,0)]"
-        initial={{ opacity: 0 }}
-        transition={{ duration: 0.8, ease: "backOut" }}
-      />
+            {/* Gradient overlay - fades in with background, dims when card appears */}
+            <motion.div
+              animate={{ opacity: showCard ? 0.4 : 0.8 }}
+              className="absolute inset-0 bg-linear-to-b from-[rgba(61,131,177,0.8)] to-[rgba(200,231,249,0)]"
+              initial={{ opacity: 0 }}
+              transition={{ duration: 0.8, ease: "backOut" }}
+            />
 
             {/* Bushes - scale from 72% to 91% */}
             <motion.img
@@ -110,7 +110,7 @@ function AppPage() {
               initial={{ scale: 1, y: 400 }}
               src="/assets/app-hero-gradient.png"
               transition={{
-                duration: 5.35,
+                duration: 5.15,
                 ease: [0, 0, 0.58, 1],
               }}
             />
