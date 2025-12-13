@@ -48,14 +48,14 @@ function RootComponent() {
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 60 * 1000, // 1 minute
+            staleTime: 60 * 1000,
             refetchOnWindowFocus: false,
           },
         },
       }),
   );
 
-  // Initialize PostHog on mount (client-side only)
+
   useEffect(() => {
     initPostHog();
   }, []);
