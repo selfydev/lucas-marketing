@@ -10,18 +10,19 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AppRouteImport } from './routes/app'
+import { Route as AutopilotRouteImport } from './routes/autopilot'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiContactVcfRouteImport } from './routes/api/contact.vcf'
 
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AppRoute = AppRouteImport.update({
-  id: '/app',
-  path: '/app',
+const AutopilotRoute = AutopilotRouteImport.update({
+  id: '/autopilot',
+  path: '/autopilot',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -34,39 +35,54 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiContactVcfRoute = ApiContactVcfRouteImport.update({
+  id: '/api/contact/vcf',
+  path: '/api/contact/vcf',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/app': typeof AppRoute
+  '/autopilot': typeof AutopilotRoute
   '/contact': typeof ContactRoute
+  '/api/contact/vcf': typeof ApiContactVcfRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/app': typeof AppRoute
+  '/autopilot': typeof AutopilotRoute
   '/contact': typeof ContactRoute
+  '/api/contact/vcf': typeof ApiContactVcfRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/app': typeof AppRoute
+  '/autopilot': typeof AutopilotRoute
   '/contact': typeof ContactRoute
+  '/api/contact/vcf': typeof ApiContactVcfRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/app' | '/contact'
+  fullPaths: '/' | '/about' | '/autopilot' | '/contact' | '/api/contact/vcf'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/app' | '/contact'
-  id: '__root__' | '/' | '/about' | '/app' | '/contact'
+  to: '/' | '/about' | '/autopilot' | '/contact' | '/api/contact/vcf'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/autopilot'
+    | '/contact'
+    | '/api/contact/vcf'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  AppRoute: typeof AppRoute
+  AutopilotRoute: typeof AutopilotRoute
   ContactRoute: typeof ContactRoute
+  ApiContactVcfRoute: typeof ApiContactVcfRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -78,11 +94,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/app': {
-      id: '/app'
-      path: '/app'
-      fullPath: '/app'
-      preLoaderRoute: typeof AppRouteImport
+    '/autopilot': {
+      id: '/autopilot'
+      path: '/autopilot'
+      fullPath: '/autopilot'
+      preLoaderRoute: typeof AutopilotRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -99,14 +115,22 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/contact/vcf': {
+      id: '/api/contact/vcf'
+      path: '/api/contact/vcf'
+      fullPath: '/api/contact/vcf'
+      preLoaderRoute: typeof ApiContactVcfRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  AppRoute: AppRoute,
+  AutopilotRoute: AutopilotRoute,
   ContactRoute: ContactRoute,
+  ApiContactVcfRoute: ApiContactVcfRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

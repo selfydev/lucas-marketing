@@ -50,13 +50,6 @@
   status = 200
   force = true
 
-# Redirect rules for SPA fallback
-# This handles 404s by serving the index.html (already pre-rendered)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 404
-
 # =============================================================================
 # Cache Headers - Browser caching for static assets
 # Netlify CDN already caches for 1 year; these control browser cache

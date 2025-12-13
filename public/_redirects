@@ -1,4 +1,0 @@
-# Netlify redirect rules for SPA fallback
-# This ensures proper 404 handling and client-side routing
-
-/*    /index.html   404
