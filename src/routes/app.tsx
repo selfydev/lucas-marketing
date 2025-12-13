@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import Lottie from "lottie-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
+import lucasAnimation from "@/assets/lottie/lucas-animated.json";
 import { ONBOARDING_STEPS, OnboardingCard } from "@/components/OnboardingCard";
 import { LUCAS_BOT_CONTACT } from "@/lib/vcf";
-import lucasAnimation from "@/assets/lottie/lucas-animated.json";
 
 export const Route = createFileRoute("/app")({
   ssr: false,
@@ -67,12 +67,22 @@ function AppPage() {
         transition={{ duration: 0.8, ease: "easeInOut" }}
       />
 
+      {/* Logo - persistent, animates in but never out */}
+      <motion.img
+        alt="Lucas"
+        animate={{ opacity: 1, y: 0 }}
+        className="-translate-x-1/2 absolute top-16 left-1/2 z-30 h-12 w-16 md:top-24 md:h-16 md:w-20"
+        initial={{ opacity: 0, y: -10 }}
+        src="/assets/logo-white-full.svg"
+        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+      />
+
       {/* Lottie animation - full bleed intro */}
       <AnimatePresence>
         {!animationComplete && (
           <motion.div
             animate={{ opacity: 1 }}
-            className="absolute inset-0 z-10 flex items-center justify-center bg-white"
+            className="absolute inset-0 z-10 bg-[#a8d4ea]"
             exit={{ opacity: 0 }}
             initial={{ opacity: 1 }}
             transition={{ duration: 1, ease: "easeInOut" }}
@@ -89,6 +99,37 @@ function AppPage() {
                 height: "100%",
               }}
             />
+
+            {/* Animated text overlay - responsive */}
+            <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
+              {/* Title - vertical center expand reveal, starts 0.7s, ends 2.2s */}
+              <motion.div
+                animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
+                className="mt-[-60px]"
+                initial={{ clipPath: "inset(50% 0% 50% 0%)" }}
+                transition={{ duration: 1.2, delay: 0.7, ease: "easeOut" }}
+              >
+                <h1 className="w-full px-4 text-center font-serif text-5xl text-white tracking-[-1.5px] sm:tracking-[-2px] md:text-7xl md:tracking-[-3px] lg:text-8xl lg:tracking-[-4px] xl:text-[110px] xl:tracking-[-4.4px]">
+                  college admissions on autopilot
+                </h1>
+              </motion.div>
+
+              {/* Subtitle - clip reveal from top at 2.2s */}
+              <motion.div
+                animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
+                className="mt-4 md:mt-6"
+                initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
+                transition={{
+                  duration: 2,
+                  delay: 2.2,
+                  ease: [0.5, 0, 0, 1],
+                }}
+              >
+                <p className="text-center font-mono text-base text-white tracking-[-0.3px] sm:text-lg md:text-xl lg:text-2xl">
+                  lets get started
+                </p>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
