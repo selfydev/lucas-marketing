@@ -1,8 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import Lottie from "lottie-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
-import lucasAnimation from "@/assets/lottie/lucas-animated.json";
 import { ONBOARDING_STEPS, OnboardingCard } from "@/components/OnboardingCard";
 import { LUCAS_BOT_CONTACT } from "@/lib/vcf";
 
@@ -77,26 +75,43 @@ function AppPage() {
         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
       />
 
-      {/* Lottie animation - full bleed intro */}
+      {/* Intro animation - sky + bushes + text */}
       <AnimatePresence>
         {!animationComplete && (
           <motion.div
             animate={{ opacity: 1 }}
-            className="absolute inset-0 z-10 bg-[#a8d4ea]"
+            className="absolute inset-0 z-10"
             exit={{ opacity: 0 }}
             initial={{ opacity: 1 }}
             transition={{ duration: 1, ease: "easeInOut" }}
           >
-            <Lottie
-              animationData={lucasAnimation}
-              autoplay
-              loop={false}
-              rendererSettings={{
-                preserveAspectRatio: "xMidYMid slice",
-              }}
-              style={{
-                width: "100%",
-                height: "100%",
+            {/* Sky background */}
+            <img
+              alt=""
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 size-full object-cover object-bottom"
+              src="/assets/app-hero-bg.png"
+            />
+
+                  {/* Gradient overlay - fades in with background, dims when card appears */}
+      <motion.div
+        animate={{ opacity: (showCard ? 0.4 : 0.8) }}
+        className="absolute inset-0 bg-linear-to-b from-[rgba(61,131,177,0.8)] to-[rgba(200,231,249,0)]"
+        initial={{ opacity: 0 }}
+        transition={{ duration: 0.8, ease: "backOut" }}
+      />
+
+            {/* Bushes - scale from 72% to 91% */}
+            <motion.img
+              alt=""
+              animate={{ scale: 1.28 }}
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 bottom-0 w-full origin-bottom"
+              initial={{ scale: 1, y: 400 }}
+              src="/assets/app-hero-gradient.png"
+              transition={{
+                duration: 5.35,
+                ease: [0, 0, 0.58, 1],
               }}
             />
 
