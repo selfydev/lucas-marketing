@@ -1,8 +1,41 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ONBOARDING_STEPS, OnboardingCard } from "@/components/OnboardingCard";
 import { LUCAS_BOT_CONTACT } from "@/lib/vcf";
+
+// Screen width breakpoints for interpolation
+const MIN_WIDTH = 320;
+const MAX_WIDTH = 1920;
+
+// Bushes animation values
+const BUSHES = {
+  mobile: { initialScale: 2, animateScale: 3.28 },
+  desktop: { initialScale: 1, animateScale: 1.12 },
+};
+
+// Y offset as ratio of viewport WIDTH (not height) - derived from 1560x940 at 0.8 height
+// At 1560px: Y = 0.48 * 1560 = 749px. At 430px: Y = 0.48 * 430 = 206px
+const BUSHES_INITIAL_Y_WIDTH_RATIO = 0.48;
+
+// Gentle ease-out curve - starts slow, gradual deceleration for subtle effect
+const BUSHES_EASING: [number, number, number, number] = [0.1, 0, 0.25, 1];
+
+/**
+ * Compute interpolated value between mobile and desktop based on screen width.
+ * Uses linear interpolation clamped to [MIN_WIDTH, MAX_WIDTH].
+ */
+function interpolateByWidth(
+  mobileValue: number,
+  desktopValue: number,
+  width: number,
+): number {
+  const t = Math.max(
+    0,
+    Math.min(1, (width - MIN_WIDTH) / (MAX_WIDTH - MIN_WIDTH)),
+  );
+  return mobileValue + (desktopValue - mobileValue) * t;
+}
 
 export const Route = createFileRoute("/app")({
   ssr: false,
@@ -16,6 +49,27 @@ function AppPage() {
   const [isComplete, setIsComplete] = useState(false);
 
   const totalSteps = ONBOARDING_STEPS.length;
+
+  // Compute bushes animation values ONCE at mount.
+  // - Scale is interpolated based on screen width (mobile vs desktop)
+  // - Y offset is derived from width (since image scales with width)
+  const bushesAnimation = useMemo(() => {
+    const width = typeof window !== "undefined" ? window.innerWidth : 1920;
+
+    return {
+      initialScale: interpolateByWidth(
+        BUSHES.mobile.initialScale,
+        BUSHES.desktop.initialScale,
+        width,
+      ),
+      animateScale: interpolateByWidth(
+        BUSHES.mobile.animateScale,
+        BUSHES.desktop.animateScale,
+        width,
+      ),
+      initialY: BUSHES_INITIAL_Y_WIDTH_RATIO * width,
+    };
+  }, []);
 
   // First: animation completes and fades out, background fades in
   useEffect(() => {
@@ -101,17 +155,20 @@ function AppPage() {
               transition={{ duration: 0.8, ease: "backOut" }}
             />
 
-            {/* Bushes - scale from 72% to 91% */}
+            {/* Bushes - Y offset is percentage of viewport height */}
             <motion.img
               alt=""
-              animate={{ scale: 1.28 }}
+              animate={{ scale: bushesAnimation.animateScale }}
               aria-hidden="true"
               className="pointer-events-none absolute inset-x-0 bottom-0 w-full origin-bottom"
-              initial={{ scale: 1, y: 400 }}
+              initial={{
+                scale: bushesAnimation.initialScale,
+                y: bushesAnimation.initialY,
+              }}
               src="/assets/app-hero-gradient.png"
               transition={{
                 duration: 5.15,
-                ease: [0, 0, 0.58, 1],
+                ease: BUSHES_EASING,
               }}
             />
 
@@ -135,7 +192,7 @@ function AppPage() {
                 className="mt-4 md:mt-6"
                 initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
                 transition={{
-                  duration: 2,
+                  duration: 3,
                   delay: 2.2,
                   ease: [0.5, 0, 0, 1],
                 }}
