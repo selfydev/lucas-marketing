@@ -58,6 +58,14 @@ function lerp(mobile: number, desktop: number, width: number): number {
 
 export const Route = createFileRoute("/autopilot")({
   ssr: false,
+  head: () => ({
+    meta: [
+      {
+        name: "theme-color",
+        content: "#B7D3E5",
+      },
+    ],
+  }),
   component: AppPage,
 });
 
@@ -117,7 +125,7 @@ function AppPage() {
   const gradientOpacity = showCard ? 0.4 : 0.8;
 
   return (
-    <main className="relative h-screen w-full overflow-hidden bg-white">
+    <main className="relative h-screen w-full overflow-hidden bg-[#B7D3E5]">
       {/* Background - static, always visible */}
       <OptimizedImage
         alt=""

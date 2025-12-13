@@ -16,6 +16,11 @@ import { cdn } from "@/lib/cdn";
 import { generateMetadata } from "@/lib/seo";
 import appCss from "@/styles/app.css?url";
 
+const THEME_COLORS = {
+  default: "#F8FDF5",
+  autopilot: "#B7D3E5",
+} as const;
+
 export const Route = createRootRoute({
   head: () => {
     const metadata = generateMetadata();
@@ -27,6 +32,10 @@ export const Route = createRootRoute({
             "Lucas - AI College Admissions Advisor | Essays, Test Prep & Applications",
         },
         ...metadata.meta,
+        {
+          name: "theme-color",
+          content: THEME_COLORS.default,
+        },
       ],
       links: [
         { rel: "stylesheet", href: appCss },
@@ -69,6 +78,22 @@ function RootComponent() {
     initPostHog();
   }, []);
 
+  // Update Safari status bar color (body bg for iOS 18+, meta tag for iOS 15-17)
+  useEffect(() => {
+    const color = isAppFullscreenRoute
+      ? THEME_COLORS.autopilot
+      : THEME_COLORS.default;
+
+    // Modern Safari (18+): samples body background-color
+    document.body.style.backgroundColor = color;
+
+    // Older Safari (15-17): reads theme-color meta tag
+    const metaTag = document.querySelector('meta[name="theme-color"]');
+    if (metaTag) {
+      metaTag.setAttribute("content", color);
+    }
+  }, [isAppFullscreenRoute]);
+
   // Track pageviews on route changes
   useEffect(() => {
     const handleRouteChange = () => {
@@ -106,18 +131,10 @@ function RootDocument({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/**
-         * Safari (iOS 17.4+) only honors multiple theme-color tags when we also
-         * declare the supported color schemes. Rendering these tags ahead of
-         * HeadContent avoids TanStack Router's deduping.
-         */}
-        <meta content="#F8FDF5" name="theme-color" />
+        <meta content={THEME_COLORS.default} name="theme-color" />
         <HeadContent />
       </head>
-      <body
-        className="min-h-screen text-slate-950 antialiased"
-        style={{ backgroundColor: "#F8FDF5" }}
-      >
+      <body className="min-h-screen text-slate-950 antialiased">
         {children}
         {import.meta.env.DEV && !hideDevtools ? (
           <TanStackRouterDevtools position="bottom-right" />
