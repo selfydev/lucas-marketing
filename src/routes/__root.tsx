@@ -41,7 +41,7 @@ function RootComponent() {
     select: (state) => state.location.pathname,
   });
   const isAppFullscreenRoute =
-    pathname === "/app" || pathname.startsWith("/app/");
+    pathname === "/autopilot" || pathname.startsWith("/autopilot/");
   // Create QueryClient instance once per component lifecycle
   const [queryClient] = useState(
     () =>
