@@ -53,7 +53,7 @@ function lerp(mobile: number, desktop: number, width: number): number {
 // ROUTE & COMPONENT
 // =============================================================================
 
-export const Route = createFileRoute("/autopilot")({
+export const Route = createFileRoute("/app")({
   ssr: false,
   component: AppPage,
 });

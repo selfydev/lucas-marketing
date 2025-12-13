@@ -1,5 +1,4 @@
 import path from "node:path";
-import netlify from "@netlify/vite-plugin-tanstack-start";
 import tailwindcss from "@tailwindcss/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react-swc";
@@ -26,7 +25,6 @@ export default defineConfig({
       },
     }),
     react(),
-    netlify(),
   ],
   ssr: {
     // Mark posthog-js as external for SSR to avoid "window is not defined" errors

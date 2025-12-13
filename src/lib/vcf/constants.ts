@@ -7,7 +7,7 @@ export const LUCAS_BOT_CONTACT = {
   lastName: "🎓",
   email: "lucas@meetlucas.ai",
   url: "https://meetlucas.ai",
-  photoPath: "/assets/lucas-contact-avatar3.png",
+  photoPath: "/assets/lucas-contact-avatar.png",
 } as const;
 
 export const VCF_FILENAME = "lucas.vcf";
