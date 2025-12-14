@@ -75,12 +75,19 @@ function AppPage() {
   const [showCard, setShowCard] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const totalSteps = ONBOARDING_STEPS.length;
 
-  // Compute bushes animation values once at mount
+  // Mark as mounted after hydration to avoid SSR/client mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Compute bushes animation values - only use window after mount
   const bushesAnimation = useMemo(() => {
-    const width = typeof window !== "undefined" ? window.innerWidth : 1920;
+    // Use consistent default during SSR/prerender, actual values after mount
+    const width = mounted ? window.innerWidth : 1920;
     return {
       initialScale: lerp(
         BUSHES.mobile.initialScale,
@@ -94,7 +101,7 @@ function AppPage() {
       ),
       initialY: BUSHES.yWidthRatio * width,
     };
-  }, []);
+  }, [mounted]);
 
   // Intro completion timer
   useEffect(() => {
