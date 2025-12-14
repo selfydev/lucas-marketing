@@ -59,8 +59,8 @@ export default defineConfig({
     minify: "esbuild",
     // Optimize chunk size warnings
     chunkSizeWarningLimit: 1000,
-    // Generate source maps for production debugging (can be disabled)
-    sourcemap: false,
+    // Generate hidden source maps for PostHog error tracking (no sourceMappingURL in JS)
+    sourcemap: "hidden",
   },
   esbuild: {
     // Drop console and debugger statements in production
