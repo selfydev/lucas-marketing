@@ -88,12 +88,12 @@ const Hero = () => {
             filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))',
           }}
         >
-          School on Autopilot
+          Study on Autopilot
         </h1>
 
         {/* Subtext */}
         <p 
-          className="mt-6 sm:mt-8 max-w-4xl text-center font-normal text-white text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] px-4 sm:px-0"
+          className="mt-6 sm:mt-8 max-w-4xl text-center font-normal text-white text-[18px] sm:text-[16px] md:text-[18px] lg:text-[20px] px-4 sm:px-0"
           style={{ lineHeight: '1.6', letterSpacing: '-0.006em' }}
         >
           Lucas automates your school tasks, helps you stay on top of deadlines, improve grades,
@@ -105,7 +105,7 @@ const Hero = () => {
         {/* CTA Button */}
         <a
           href="#message-lucas"
-          className="group mt-6 sm:mt-8 flex h-[44px] sm:h-[48px] items-center justify-center gap-4 sm:gap-6 rounded-[8px] px-4 sm:px-5 text-[16px] sm:text-[18px] md:text-[20px] font-medium text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#34C759]/30"
+          className="group mt-6 sm:mt-8 flex h-[44px] sm:h-[48px] items-center justify-center gap-4 sm:gap-6 rounded-[8px] px-4 sm:px-5 text-[18px] sm:text-[18px] md:text-[20px] font-medium text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#34C759]/30"
           style={{ 
             background: 'linear-gradient(135deg, #30D158 0%, #34C759 100%)',
             boxShadow: '0 4px 14px rgba(52, 199, 89, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
