@@ -98,7 +98,7 @@ const Features = () => {
       {/* Mobile version - at top (bottom of hero section) */}
       <div 
         data-mobile-cloud
-        className="pointer-events-none absolute top-[60px] left-1/2 -translate-x-1/2 z-[1] block md:hidden"
+        className="pointer-events-none absolute top-[80px] left-1/2 -translate-x-1/2 z-[1] block md:hidden"
         aria-hidden="true"
         // #region agent log
         ref={(el) => {
