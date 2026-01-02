@@ -252,7 +252,7 @@ const Navbar = () => {
           style={{ transitionDelay: isMenuOpen ? '800ms' : '0ms' }}
         >
           {/* Copyright Text - Left */}
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-gray-400" style={{ fontFamily: '"HW Cigar"' }}>
             © Lucas {new Date().getFullYear()}
           </p>
 
