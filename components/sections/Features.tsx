@@ -74,8 +74,12 @@ const Features = () => {
     <section
       ref={sectionRef}
       id="features"
-      className="relative overflow-visible md:overflow-hidden"
-      style={{ backgroundColor: '#C7EBFE' }}
+      className="relative md:overflow-hidden"
+      style={{ 
+        backgroundColor: '#C7EBFE',
+        overflowX: 'hidden',
+        overflowY: 'visible'
+      }}
       aria-label="Features section"
     >
       {/* Cloud Large - Desktop at top, Mobile at bottom */}

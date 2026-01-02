@@ -143,7 +143,7 @@ const Hero = () => {
 
       {/* Cloud Left */}
       <div 
-        className="pointer-events-none absolute -bottom-[40px] sm:-bottom-[60px] md:-bottom-[80px] left-0 z-30 w-[280px] sm:w-[350px] md:w-[400px] lg:w-[509px]"
+        className="pointer-events-none absolute -bottom-[40px] sm:-bottom-[60px] md:-bottom-[80px] -left-[20px] sm:left-0 md:left-0 z-30 w-[280px] sm:w-[350px] md:w-[400px] lg:w-[509px]"
         aria-hidden="true"
       >
         <Image
@@ -157,7 +157,7 @@ const Hero = () => {
 
       {/* Cloud Right */}
       <div 
-        className="pointer-events-none absolute -bottom-[40px] sm:-bottom-[60px] md:-bottom-[80px] right-0 z-30 w-[260px] sm:w-[330px] md:w-[380px] lg:w-[482px]"
+        className="pointer-events-none absolute -bottom-[40px] sm:-bottom-[60px] md:-bottom-[80px] -right-[20px] sm:right-0 md:right-0 z-30 w-[260px] sm:w-[330px] md:w-[380px] lg:w-[482px]"
         aria-hidden="true"
       >
         <Image
