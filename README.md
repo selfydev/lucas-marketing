@@ -29,8 +29,42 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Vercel Auto-Deploy Setup
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is configured for automatic deployment on Vercel. Here's how it works:
+
+1. **Connect to Vercel** (one-time setup):
+   - Go to [vercel.com](https://vercel.com) and sign in
+   - Click "Add New Project"
+   - Import the `selfydev/lucas-marketing` repository
+   - Vercel will auto-detect Next.js settings
+   - Click "Deploy"
+
+2. **Deploying Changes**:
+   ```bash
+   # Make your changes, then:
+   git add .
+   git commit -m "Your commit message"
+   git push origin main
+   ```
+   
+   Vercel will automatically detect the push and deploy your changes! 🚀
+
+3. **Quick Deploy Script**:
+   Use the included `deploy.sh` script for faster deployments:
+   ```bash
+   ./deploy.sh "Your commit message"
+   ```
+
+### Repository
+- **GitHub**: [https://github.com/selfydev/lucas-marketing](https://github.com/selfydev/lucas-marketing)
+- **Branch**: `main` (auto-deploys to Vercel)
+
+### Manual Deployment
+If you need to deploy manually, you can also use the Vercel CLI:
+```bash
+npm i -g vercel
+vercel
+```
