@@ -11,7 +11,8 @@ const normalizedServerUrl =
   import.meta.env.VITE_SERVER_URL?.replace(/\/$/, "") ??
   (import.meta.env.DEV ? LOCAL_SERVER_FALLBACK : "");
 
-if (!normalizedServerUrl) {
+// Only throw error at runtime, not during build/SSR
+if (!normalizedServerUrl && typeof window !== "undefined") {
   throw new Error(
     "VITE_SERVER_URL must be configured for the marketing app in production.",
   );
