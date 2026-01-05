@@ -138,7 +138,67 @@ function RootDocument({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta content={THEME_COLORS.default} name="theme-color" />
+        {/* Critical inline styles to prevent FOUC */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              body {
+                background-color: ${THEME_COLORS.default} !important;
+                margin: 0;
+                padding: 0;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                text-rendering: optimizeLegibility;
+              }
+              /* Hide body until CSS is loaded */
+              body:not(.css-loaded) {
+                visibility: hidden;
+              }
+              body.css-loaded {
+                visibility: visible;
+              }
+            `,
+          }}
+        />
         <HeadContent />
+        {/* Script to mark CSS as loaded */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                function checkCSSLoaded() {
+                  var sheets = document.styleSheets;
+                  var loaded = false;
+                  try {
+                    for (var i = 0; i < sheets.length; i++) {
+                      if (sheets[i].cssRules || sheets[i].rules) {
+                        loaded = true;
+                        break;
+                      }
+                    }
+                  } catch (e) {
+                    // Cross-origin stylesheet, assume loaded
+                    loaded = true;
+                  }
+                  if (loaded || document.readyState === 'complete') {
+                    document.body.classList.add('css-loaded');
+                  } else {
+                    setTimeout(checkCSSLoaded, 10);
+                  }
+                }
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', checkCSSLoaded);
+                } else {
+                  checkCSSLoaded();
+                }
+                // Fallback: show after 100ms max
+                setTimeout(function() {
+                  document.body.classList.add('css-loaded');
+                }, 100);
+              })();
+            `,
+          }}
+        />
       </head>
       <body 
         className="min-h-screen text-slate-950 antialiased"
