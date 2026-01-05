@@ -111,10 +111,13 @@ function RootComponent() {
     };
   }, [router]);
 
+  // Don't show the old Navigation on homepage (it has its own NewNavbar)
+  const isHomepage = pathname === "/";
+  
   return (
     <QueryClientProvider client={queryClient}>
       <RootDocument hideDevtools={isAppFullscreenRoute}>
-        {isAppFullscreenRoute ? null : <Navigation />}
+        {isAppFullscreenRoute || isHomepage ? null : <Navigation />}
         <Outlet />
       </RootDocument>
     </QueryClientProvider>

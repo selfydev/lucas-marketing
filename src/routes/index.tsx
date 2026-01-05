@@ -1,34 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { AboutUsSection } from "@/components/sections/AboutUsSection";
-import { ApplicationFeaturesSection } from "@/components/sections/ApplicationFeaturesSection";
-import { AppShowcaseSection } from "@/components/sections/AppShowcaseSection";
-import { ContactSection } from "@/components/sections/ContactSection";
-import { FeaturesSection } from "@/components/sections/FeaturesSection";
-import { FooterSection } from "@/components/sections/FooterSection";
-import { HeroSection } from "@/components/sections/HeroSection";
-import { InterviewPrepSection } from "@/components/sections/InterviewPrepSection";
-import { SliderSection } from "@/components/sections/SliderSection";
-import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { VisualBreakSection } from "@/components/sections/VisualBreakSection";
+import { NewNavbar } from "@/components/sections/NewNavbar";
+import { NewHero } from "@/components/sections/NewHero";
+import { NewFeatures } from "@/components/sections/NewFeatures";
 
 export const Route = createFileRoute("/")({
-  component: IndexRoute,
+	component: IndexRoute,
 });
 
 function IndexRoute() {
-  return (
-    <main className="w-full bg-gradient-to-b from-[#F8FDF5] via-white to-white">
-      <HeroSection />
-      <AboutUsSection />
-      <FeaturesSection />
-      <SliderSection />
-      <AppShowcaseSection />
-      <ApplicationFeaturesSection />
-      <InterviewPrepSection />
-      <TestimonialsSection />
-      <VisualBreakSection />
-      <ContactSection />
-      <FooterSection />
-    </main>
-  );
+	return (
+		<>
+			<NewNavbar />
+			<main className="w-full">
+				<NewHero />
+				<NewFeatures />
+			</main>
+		</>
+	);
 }

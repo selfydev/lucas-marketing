@@ -70,11 +70,11 @@ export const Route = createFileRoute("/autopilot")({
 });
 
 function AppPage() {
-  // State
-  const [animationComplete, setAnimationComplete] = useState(false);
-  const [showCard, setShowCard] = useState(false);
+  // State - TEMPORARILY DISABLED FLOW: Skip directly to completion screen
+  const [animationComplete, setAnimationComplete] = useState(true); // Skip intro
+  const [showCard, setShowCard] = useState(false); // Skip onboarding card
   const [currentStep, setCurrentStep] = useState(0);
-  const [isComplete, setIsComplete] = useState(false);
+  const [isComplete, setIsComplete] = useState(true); // Show "text me" screen immediately
   const [mounted, setMounted] = useState(false);
 
   const totalSteps = ONBOARDING_STEPS.length;
@@ -103,22 +103,22 @@ function AppPage() {
     };
   }, [mounted]);
 
-  // Intro completion timer
-  useEffect(() => {
-    const timer = setTimeout(
-      () => setAnimationComplete(true),
-      TIMING.introDuration,
-    );
-    return () => clearTimeout(timer);
-  }, []);
+  // TEMP DISABLED: Intro completion timer
+  // useEffect(() => {
+  //   const timer = setTimeout(
+  //     () => setAnimationComplete(true),
+  //     TIMING.introDuration,
+  //   );
+  //   return () => clearTimeout(timer);
+  // }, []);
 
-  // Card appearance delay (after intro completes)
-  useEffect(() => {
-    if (animationComplete) {
-      const timer = setTimeout(() => setShowCard(true), TIMING.cardDelay);
-      return () => clearTimeout(timer);
-    }
-  }, [animationComplete]);
+  // TEMP DISABLED: Card appearance delay (after intro completes)
+  // useEffect(() => {
+  //   if (animationComplete) {
+  //     const timer = setTimeout(() => setShowCard(true), TIMING.cardDelay);
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [animationComplete]);
 
   const handleContinue = () => {
     if (currentStep < totalSteps - 1) {
@@ -260,8 +260,8 @@ function AppPage() {
             transition={{ duration: 0.6, delay: 0.5 }}
           >
             <motion.h1
-              animate={{ opacity: 1, y: 0 }}
-              className="w-full max-w-[calc(100%-2rem)] text-center font-serif text-5xl text-white tracking-[-2px] sm:max-w-[calc(100%-4rem)] sm:text-7xl sm:tracking-[-3px] md:text-8xl md:tracking-[-4px] lg:max-w-none lg:text-[130px] lg:tracking-[-5.2px]"
+              animate={{ opacity: 0.5, y: 0 }}
+              className="w-full max-w-[calc(100%-2rem)] rounded-none text-center font-serif text-5xl text-white tracking-[-2px] sm:max-w-[calc(100%-4rem)] sm:text-7xl sm:tracking-[-3px] md:text-8xl md:tracking-[-4px] lg:max-w-none lg:text-[130px] lg:tracking-[-5.2px]"
               initial={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
             >
