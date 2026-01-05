@@ -71,9 +71,8 @@ export function generateMetadata(config: SEOConfig = {}) {
       { rel: "canonical", href: url },
 
       // Favicons
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico", sizes: "any" },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-      { rel: "alternate icon", type: "image/png", href: "/favicon-96x96.png" },
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
 
       // Web manifest for PWA
