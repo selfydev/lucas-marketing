@@ -13,7 +13,7 @@
 		"fix": "bun x ultracite fix"
 	},
 	"dependencies": {
-		"@lucas-ai/contracts": "workspace:*",
+		"@lucas-ai/contracts": "file:./packages/contracts",
 		"@orpc/client": "^1.12.2",
 		"@radix-ui/react-accordion": "^1.2.12",
 		"@radix-ui/react-slot": "^1.2.4",
