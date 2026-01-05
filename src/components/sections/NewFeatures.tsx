@@ -33,7 +33,7 @@ export function NewFeatures() {
 		}
 
 		return () => observer.disconnect();
-	}, [mounted]);
+	}, []);
 
 	return (
 		<section
