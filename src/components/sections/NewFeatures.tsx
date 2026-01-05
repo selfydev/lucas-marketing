@@ -5,23 +5,15 @@ export function NewFeatures() {
 	const [animationData, setAnimationData] = useState<unknown>(null);
 	const [isInView, setIsInView] = useState(false);
 	const [animationKey, setAnimationKey] = useState(0);
-	const [mounted, setMounted] = useState(false);
 	const sectionRef = useRef<HTMLElement>(null);
 
-	// Mark as mounted after hydration to prevent FOUC
 	useEffect(() => {
-		setMounted(true);
-	}, []);
-
-	useEffect(() => {
-		if (!mounted) return;
 		fetch("/images/flock.json")
 			.then((res) => res.json())
 			.then((data) => setAnimationData(data));
-	}, [mounted]);
+	}, []);
 
 	useEffect(() => {
-		if (!mounted) return;
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
@@ -84,7 +76,7 @@ export function NewFeatures() {
 				/>
 			</div>
 			{/* Flying Flock Animation */}
-			{mounted && animationData && isInView && (
+			{animationData && isInView && (
 				<div
 					key={`flock-${animationKey}`}
 					className="pointer-events-none absolute left-0 top-[10px] z-40 w-[317px]"
@@ -103,7 +95,7 @@ export function NewFeatures() {
 			)}
 
 			{/* Flying Plane Animation - Right to Left */}
-			{mounted && isInView && (
+			{isInView && (
 				<div
 					key={`plane-${animationKey}`}
 					className="pointer-events-none absolute top-[280px] md:top-[180px] z-[50] md:z-[5]"
