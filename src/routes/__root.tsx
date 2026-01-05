@@ -85,11 +85,14 @@ function RootComponent() {
       : THEME_COLORS.default;
 
     // Modern Safari (18+): samples body background-color
-    document.body.style.backgroundColor = color;
+    // Only update if different to avoid unnecessary repaints
+    if (document.body.style.backgroundColor !== color) {
+      document.body.style.backgroundColor = color;
+    }
 
     // Older Safari (15-17): reads theme-color meta tag
     const metaTag = document.querySelector('meta[name="theme-color"]');
-    if (metaTag) {
+    if (metaTag && metaTag.getAttribute("content") !== color) {
       metaTag.setAttribute("content", color);
     }
   }, [isAppFullscreenRoute]);
@@ -137,7 +140,11 @@ function RootDocument({
         <meta content={THEME_COLORS.default} name="theme-color" />
         <HeadContent />
       </head>
-      <body className="min-h-screen text-slate-950 antialiased">
+      <body 
+        className="min-h-screen text-slate-950 antialiased"
+        style={{ backgroundColor: THEME_COLORS.default }}
+        suppressHydrationWarning
+      >
         {children}
         {import.meta.env.DEV && !hideDevtools ? (
           <TanStackRouterDevtools position="bottom-right" />
